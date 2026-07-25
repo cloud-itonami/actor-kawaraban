@@ -263,6 +263,6 @@
                (let [updated (mapv #(apply-result % (get by-id (:id %))) outlets)]
                  (.writeFileSync fs allowlist-path (render-allowlist (file-header text) updated))
                  (println (str "wrote " allowlist-path " (:verified/:note"
-                               (when discover? "/:feed-url") " set from this run)")))))))))
+                               (when discover? "/:feed-url") " set from this run)"))))))))))
 
 (-main)
