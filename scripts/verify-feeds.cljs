@@ -218,9 +218,21 @@
                         (zero? items) (str "HTTP 200, parsed as " (name kind) ", but 0 items — nothing to mirror.")
                         :else (str "HTTP " status ", kind=" (name (or kind :error)) ", items=" items "."))))))
 
+(def min-retained-ratio
+  "回帰ガード（ADR-2607253200）。前回 :verified true だった媒体のうち、この割合を下回る
+  数しか今回通らなかったら **書き戻さずに失敗する**。
+
+  これを毎週 CI から無人で回す以上、一番危ないのは『実行環境側のネットワーク障害で
+  全 feed が落ち、84 件の verified が一斉に false になって commit される』こと。1回の
+  実行結果は測定値だが、測定装置の故障まで測定値として書き込んではいけない。個々の
+  媒体が落ちるのは正常な変動なので通し、全体が崩れたときだけ止める。
+  KAWARABAN_VERIFY_MIN_RETAINED で上書き可（0 で無効）。"
+  (js/parseFloat (or (.. js/process -env -KAWARABAN_VERIFY_MIN_RETAINED) "0.7")))
+
 (defn -main []
   (let [text (str (.readFileSync fs allowlist-path "utf8"))
-        outlets (edn/read-string text)]
+        outlets (edn/read-string text)
+        prev-verified (count (filter :verified outlets))]
     (println (str "verifying " (count outlets) " feed(s) from " allowlist-path
                   " (concurrency " concurrency ", timeout " timeout-ms "ms"
                   (when discover? ", discovery ON") ")"))
@@ -229,12 +241,28 @@
          (fn [results]
            (let [by-id (into {} (map (juxt :id identity) results))
                  ok-n (count (filter :ok results))]
-             (println (str "\n" ok-n "/" (count results) " feeds verified live"))
-             (if apply?
+             (println (str "\n" ok-n "/" (count results) " feeds verified live"
+                           " (previously " prev-verified ")"))
+             (cond
+               (not apply?)
+               (println "\n(report only — pass --apply to write :verified/:note back)")
+
+               (and (pos? min-retained-ratio)
+                    (pos? prev-verified)
+                    (< ok-n (* min-retained-ratio prev-verified)))
+               (do (println (str "\nREFUSED to write: verified count collapsed from " prev-verified
+                                 " to " ok-n " (< " (Math/round (* 100 min-retained-ratio))
+                                 "% retained). That pattern is an environment/network failure far more"
+                                 " often than " (- prev-verified ok-n) " outlets going dark at once,"
+                                 " and this run is not going to record a broken probe as a measurement."
+                                 " Re-run when connectivity is known-good, or set"
+                                 " KAWARABAN_VERIFY_MIN_RETAINED=0 to override deliberately."))
+                   (.exit js/process 1))
+
+               :else
                (let [updated (mapv #(apply-result % (get by-id (:id %))) outlets)]
                  (.writeFileSync fs allowlist-path (render-allowlist (file-header text) updated))
                  (println (str "wrote " allowlist-path " (:verified/:note"
-                               (when discover? "/:feed-url") " set from this run)")))
-               (println "\n(report only — pass --apply to write :verified/:note back)"))))))))
+                               (when discover? "/:feed-url") " set from this run)")))))))))
 
 (-main)
