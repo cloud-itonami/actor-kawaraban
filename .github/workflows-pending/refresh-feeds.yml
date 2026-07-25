@@ -1,0 +1,77 @@
+# kawaraban 瓦版 — weekly outlet-feed re-measurement (ADR-2607253200).
+#
+# WHY THIS EXISTS: :verified / :note in data/outlets/allowlist.edn are measurements
+# with a date on them, not intentions. A measurement nobody re-takes silently becomes
+# a claim about the past dressed as a claim about the present. The prior state of this
+# repo is the evidence: the flags said 30 working feeds when 29 actually parsed, and
+# they had been that way since 2026-07-10 because running the check was a thing a human
+# had to remember.
+#
+# WHY GITHUB ACTIONS AND NOT LAUNCHD: the failure mode being fixed is "nobody runs it".
+# A launchd job on one laptop has exactly that failure mode (it was never installed,
+# and the machine is not always on). This needs no credentials — Wikidata and public
+# RSS are unauthenticated — so there is no reason to tie it to one machine.
+#
+# SAFETY: verify-feeds.cljs refuses to write when the verified count collapses (see its
+# own min-retained-ratio). A network-broken runner therefore fails the job loudly
+# instead of committing "everything is dead" as if it were a finding.
+
+name: refresh-feeds
+
+on:
+  schedule:
+    # Mondays 03:17 UTC. Off the hour on purpose — every scheduled job in the world
+    # fires at :00 and GitHub delays the crowd.
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-feeds
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install nbb
+        run: npm install -g nbb@latest
+
+      - name: Re-measure every feed
+        env:
+          KAWARABAN_VERIFY_TIMEOUT_MS: "12000"
+        run: nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn --discover --apply
+
+      - name: Check the allowlist still parses
+        run: |
+          nbb -e '(require (quote ["node:fs" :as fs]))
+                  (let [v (cljs.reader/read-string (.readFileSync fs "data/outlets/allowlist.edn" "utf8"))]
+                    (when-not (and (vector? v) (every? :id v))
+                      (println "allowlist is not a vector of entries with :id")
+                      (.exit js/process 1))
+                    (println (str (count v) " outlets, " (count (filter :verified v)) " verified")))'
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- data/outlets/allowlist.edn; then
+            echo "no change — every feed measured the same as last week"
+            exit 0
+          fi
+          git config user.name "kawaraban-refresh[bot]"
+          git config user.email "kawaraban-refresh@users.noreply.github.com"
+          git add data/outlets/allowlist.edn
+          git commit -m "chore(outlets): weekly feed re-measurement
+
+          Automated by .github/workflows/refresh-feeds.yml (ADR-2607253200).
+          :verified/:note/:feed-url reflect what the feeds actually returned today;
+          see each entry's :note for the per-outlet result."
+          git push
