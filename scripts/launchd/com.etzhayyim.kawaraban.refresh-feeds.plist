@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- kawaraban 瓦版 — 週次の feed 再測定（ADR-2607253200）。
+
+     なぜ launchd か: `.github/workflows/` への書き込みには OAuth token の
+     `workflow` scope が要り、このワークスペースのトークンは持っていない
+     （GH_TOKEN/GITHUB_TOKEN 環境変数・kagi vault・secrets-location-map の
+     いずれにも GitHub PAT は無い）。等価な Actions 版は
+     `.github/workflows-pending/refresh-feeds.yml` に温存してあり、scope が
+     付いた日に `git mv` すれば置き換えられる — どちらも同じ
+     `scripts/refresh-cron.cljs` を叩くだけなので、二重メンテにはならない。
+
+     launchd の弱点は正直に: このマシンが眠っていれば動かない。
+     StartCalendarInterval なので、指定時刻を寝過ごした場合は次の起動時に
+     1回だけ発火する（StartInterval と違い、溜まった回数分は撃たない）。
+     GitHub Actions ならマシン非依存だが、今日動くのはこちら。
+
+     専用 clone `~/.kawaraban/refresh-clone` の中で動く。west 管理下の共有
+     checkout は触らない — 無人ジョブが `git reset --hard` する場所と、人が
+     編集する場所を同じにしてはいけない。
+
+     インストール:
+       cp scripts/launchd/com.etzhayyim.kawaraban.refresh-feeds.plist ~/Library/LaunchAgents/
+       launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.etzhayyim.kawaraban.refresh-feeds.plist
+     手動実行:
+       launchctl kickstart -k gui/$(id -u)/com.etzhayyim.kawaraban.refresh-feeds
+     ログ: ~/.kawaraban/logs/refresh-feeds.log
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.etzhayyim.kawaraban.refresh-feeds</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/nbb</string>
+    <string>/Users/junkawasaki/.kawaraban/refresh-clone/scripts/refresh-cron.cljs</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/junkawasaki/.kawaraban/refresh-clone</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>HOME</key><string>/Users/junkawasaki</string>
+    <key>KAWARABAN_VERIFY_TIMEOUT_MS</key><string>12000</string>
+  </dict>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key><integer>1</integer>
+    <key>Hour</key><integer>3</integer>
+    <key>Minute</key><integer>17</integer>
+  </dict>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>/Users/junkawasaki/.kawaraban/logs/refresh-feeds.log</string>
+  <key>StandardErrorPath</key><string>/Users/junkawasaki/.kawaraban/logs/refresh-feeds.log</string>
+  <key>ProcessType</key><string>Background</string>
+</dict>
+</plist>
