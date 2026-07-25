@@ -54,7 +54,7 @@
   :feed-url "https://rss.orf.at/news.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rdf, 34 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rdf, 32 items."}
 
  {:id "outlet.abc-au"
   :name "ABC News Australia"
@@ -114,7 +114,7 @@
   :feed-url "https://ici.radio-canada.ca/rss/4159"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 16 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
 
  {:id "outlet.cgtn"
   :name "CGTN (China Global Television Network) — World"
@@ -150,7 +150,7 @@
   :feed-url "http://www.cubadebate.cu/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
 
  {:id "outlet.granma"
   :name "Granma International"
@@ -162,7 +162,7 @@
   :feed-url "https://en.granma.cu/feed"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 137 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 137 items."}
 
  {:id "outlet.radio-prague"
   :name "Radio Prague International"
@@ -186,7 +186,7 @@
   :feed-url "https://www.deutschlandfunk.de/nachrichten-100.rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 28 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 24 items."}
 
  {:id "outlet.dw"
   :name "Deutsche Welle"
@@ -306,7 +306,7 @@
   :feed-url "https://www.francetvinfo.fr/titres.rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 29 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 31 items."}
 
  {:id "outlet.rfi"
   :name "RFI English"
@@ -426,7 +426,7 @@
   :feed-url "https://vijesti.hrt.hr/feed.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 33 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 33 items."}
 
  {:id "outlet.antara"
   :name "Antara News"
@@ -510,7 +510,7 @@
   :feed-url "https://www.telesurenglish.net/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items."}
 
  {:id "outlet.un-news"
   :name "UN News"
@@ -556,9 +556,9 @@
   :access "open"
   :homepage "https://www.wto.org/english/news_e/news_e.htm"
   :feed-url "https://www.wto.org/library/rss/latest_news_e.xml"
-  :verified true
+  :verified false
   :section "sec.economy"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+  :note "verify-feeds 2026-07-25: HTTP 503 — not a usable feed endpoint."}
 
  {:id "outlet.irna"
   :name "Islamic Republic News Agency"
@@ -570,7 +570,7 @@
   :feed-url "https://en.irna.ir/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items."}
 
  {:id "outlet.ruv"
   :name "RÚV"
@@ -642,7 +642,7 @@
   :feed-url "https://en.yna.co.kr/RSS/news.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 96 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 97 items."}
 
  {:id "outlet.kazinform"
   :name "Kazinform"
@@ -690,7 +690,7 @@
   :feed-url "https://snrtnews.com/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
 
  {:id "outlet.imer"
   :name "Instituto Mexicano de la Radio"
@@ -702,7 +702,7 @@
   :feed-url "https://www.imer.mx/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 5 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 5 items."}
 
  {:id "outlet.bernama"
   :name "BERNAMA — Malaysian National News Agency"
@@ -762,7 +762,7 @@
   :feed-url "https://www.rnz.co.nz/rss/national.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 39 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 37 items."}
 
  {:id "outlet.app-pk"
   :name "Associated Press of Pakistan"
@@ -822,7 +822,7 @@
   :feed-url "https://www.rts.rs/vesti/rss.html"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
 
  {:id "outlet.tass"
   :name "TASS — Russian News Agency"
@@ -906,7 +906,7 @@
   :feed-url "https://www.trtworld.com/feed/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items. Feed URL discovered from the homepage this run."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items."}
 
  {:id "outlet.ukrinform"
   :name "Ukrinform"
@@ -1036,9 +1036,9 @@
   :access "open"
   :homepage "https://www.sabcnews.com/"
   :feed-url "https://www.sabcnews.com/sabcnews/feed/"
-  :verified true
+  :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+  :note "verify-feeds 2026-07-25: HTTP 200, parsed as unknown, but 0 items — nothing to mirror."}
 
  {:id "outlet.dubai-media"
   :name "Dubai Media Incorporated — Dubai Eye"
@@ -1362,7 +1362,7 @@
   :feed-url "https://www.fao.org/feeds/newsroom/en/"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+  :note "verify-feeds 2026-07-25: HTTP 504 — not a usable feed endpoint."}
 
  {:id "outlet.iaea"
   :name "IAEA"
