@@ -140,6 +140,30 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
 
+ {:id "outlet.cubadebate"
+  :name "Cubadebate"
+  :kind "ngo-press"
+  :country "CU"
+  :lang ["es"]
+  :access "open"
+  :homepage "http://www.cubadebate.cu/"
+  :feed-url "http://www.cubadebate.cu/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items. Feed URL discovered from the homepage this run."}
+
+ {:id "outlet.granma"
+  :name "Granma International"
+  :kind "wire-agency"
+  :country "CU"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://en.granma.cu/"
+  :feed-url "https://en.granma.cu/feed"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 137 items. Feed URL discovered from the homepage this run."}
+
  {:id "outlet.radio-prague"
   :name "Radio Prague International"
   :kind "public-broadcaster"
@@ -392,6 +416,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
 
+ {:id "outlet.hrt-hr"
+  :name "HRT Vijesti"
+  :kind "public-broadcaster"
+  :country "HR"
+  :lang ["hr"]
+  :access "open"
+  :homepage "https://vijesti.hrt.hr/"
+  :feed-url "https://vijesti.hrt.hr/feed.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 33 items. Feed URL discovered from the homepage this run."}
+
  {:id "outlet.antara"
   :name "Antara News"
   :kind "wire-agency"
@@ -524,6 +560,18 @@
   :section "sec.economy"
   :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
 
+ {:id "outlet.irna"
+  :name "Islamic Republic News Agency"
+  :kind "wire-agency"
+  :country "IR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://en.irna.ir/"
+  :feed-url "https://en.irna.ir/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items. Feed URL discovered from the homepage this run."}
+
  {:id "outlet.ruv"
   :name "RÚV"
   :kind "public-broadcaster"
@@ -632,6 +680,30 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
 
+ {:id "outlet.snrt"
+  :name "SNRT News"
+  :kind "public-broadcaster"
+  :country "MA"
+  :lang ["ar"]
+  :access "open"
+  :homepage "https://snrtnews.com/"
+  :feed-url "https://snrtnews.com/rss.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items. Feed URL discovered from the homepage this run."}
+
+ {:id "outlet.imer"
+  :name "Instituto Mexicano de la Radio"
+  :kind "public-broadcaster"
+  :country "MX"
+  :lang ["es"]
+  :access "open"
+  :homepage "https://www.imer.mx/"
+  :feed-url "https://www.imer.mx/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 5 items. Feed URL discovered from the homepage this run."}
+
  {:id "outlet.bernama"
   :name "BERNAMA — Malaysian National News Agency"
   :kind "wire-agency"
@@ -739,6 +811,18 @@
   :verified true
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200, rss, 3 items."}
+
+ {:id "outlet.rts-rs-alt"
+  :name "RTS Vesti"
+  :kind "public-broadcaster"
+  :country "RS"
+  :lang ["sr"]
+  :access "open"
+  :homepage "https://www.rts.rs/vesti.html"
+  :feed-url "https://www.rts.rs/vesti/rss.html"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items. Feed URL discovered from the homepage this run."}
 
  {:id "outlet.tass"
   :name "TASS — Russian News Agency"
@@ -956,6 +1040,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
 
+ {:id "outlet.dubai-media"
+  :name "Dubai Media Incorporated — Dubai Eye"
+  :kind "public-broadcaster"
+  :country "AE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.dubaieye1038.com/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
  {:id "outlet.wam"
   :name "Emirates News Agency (WAM)"
   :kind "wire-agency"
@@ -968,6 +1064,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
 
+ {:id "outlet.bangladesh-betar"
+  :name "Bangladesh Betar"
+  :kind "public-broadcaster"
+  :country "BD"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.betar.gov.bd/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
  {:id "outlet.bss-bd"
   :name "Bangladesh Sangbad Sangstha"
   :kind "wire-agency"
@@ -976,6 +1084,18 @@
   :access "open"
   :homepage "https://www.bssnews.net/"
   :feed-url "https://www.bssnews.net/rss.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.dhaka-tribune-bss"
+  :name "Bangladesh Sangbad Sangstha (alt host)"
+  :kind "wire-agency"
+  :country "BD"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bssnews.net/news"
+  :feed-url "https://www.bssnews.net/rss/all"
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
@@ -992,6 +1112,30 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
 
+ {:id "outlet.bnr-bg"
+  :name "Bulgarian National Radio (bg)"
+  :kind "public-broadcaster"
+  :country "BG"
+  :lang ["bg"]
+  :access "open"
+  :homepage "https://bnr.bg/horizont"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.bnt"
+  :name "Bulgarian National Television"
+  :kind "public-broadcaster"
+  :country "BG"
+  :lang ["bg"]
+  :access "open"
+  :homepage "https://bntnews.bg/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
  {:id "outlet.cbc"
   :name "CBC News — World"
   :kind "public-broadcaster"
@@ -1004,6 +1148,42 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
 
+ {:id "outlet.cbc-alt"
+  :name "CBC News — Top Stories"
+  :kind "public-broadcaster"
+  :country "CA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.cbc.ca/news"
+  :feed-url "https://www.cbc.ca/webfeed/rss/rss-topstories"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.rts-ch"
+  :name "RTS Info"
+  :kind "public-broadcaster"
+  :country "CH"
+  :lang ["fr"]
+  :access "open"
+  :homepage "https://www.rts.ch/info/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 406 — not a usable feed endpoint."}
+
+ {:id "outlet.srf"
+  :name "SRF News"
+  :kind "public-broadcaster"
+  :country "CH"
+  :lang ["de"]
+  :access "open"
+  :homepage "https://www.srf.ch/news"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
  {:id "outlet.swissinfo"
   :name "SWI swissinfo.ch"
   :kind "public-broadcaster"
@@ -1012,6 +1192,18 @@
   :access "open"
   :homepage "https://www.swissinfo.ch/eng/"
   :feed-url "https://www.swissinfo.ch/service/rss/all/rss.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.swissinfo-alt"
+  :name "SWI swissinfo.ch"
+  :kind "public-broadcaster"
+  :country "CH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.swissinfo.ch/eng/latest-news/"
+  :feed-url nil
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
@@ -1036,6 +1228,30 @@
   :access "open"
   :homepage "https://www.aps.dz/en/"
   :feed-url "https://www.aps.dz/en/?format=feed&type=rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.radio-algerienne"
+  :name "Radio Algérienne"
+  :kind "public-broadcaster"
+  :country "DZ"
+  :lang ["fr"]
+  :access "open"
+  :homepage "https://news.radioalgerie.dz/fr"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.ebc-et"
+  :name "Ethiopian Broadcasting Corporation"
+  :kind "public-broadcaster"
+  :country "ET"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ebc.et/"
+  :feed-url nil
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
@@ -1076,6 +1292,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
 
+ {:id "outlet.mti"
+  :name "MTI / hirado.hu (alt)"
+  :kind "wire-agency"
+  :country "HU"
+  :lang ["hu"]
+  :access "open"
+  :homepage "https://www.hirado.hu/belfold/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
  {:id "outlet.kan"
   :name "Kan (Israeli Public Broadcasting)"
   :kind "public-broadcaster"
@@ -1083,6 +1311,18 @@
   :lang ["he"]
   :access "open"
   :homepage "https://www.kan.org.il/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.kan-en"
+  :name "Kan English"
+  :kind "public-broadcaster"
+  :country "IL"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.kan.org.il/lang/en/"
   :feed-url nil
   :verified false
   :section "sec.international"
@@ -1268,6 +1508,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
 
+ {:id "outlet.jordan-tv"
+  :name "Jordan Radio and Television"
+  :kind "public-broadcaster"
+  :country "JO"
+  :lang ["ar"]
+  :access "open"
+  :homepage "https://www.jrtv.jo/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
  {:id "outlet.petra"
   :name "Jordan News Agency (Petra)"
   :kind "wire-agency"
@@ -1288,6 +1540,18 @@
   :access "open"
   :homepage "https://www3.nhk.or.jp/nhkworld/"
   :feed-url "https://www3.nhk.or.jp/nhkworld/en/news/all.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.nhk-world-rss"
+  :name "NHK World-Japan (English)"
+  :kind "public-broadcaster"
+  :country "JP"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www3.nhk.or.jp/nhkworld/en/news/"
+  :feed-url "https://www3.nhk.or.jp/nhkworld/en/news/rss/all.xml"
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
@@ -1316,6 +1580,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
 
+ {:id "outlet.kuwait-tv"
+  :name "Kuwait TV / Ministry of Information"
+  :kind "public-broadcaster"
+  :country "KW"
+  :lang ["ar"]
+  :access "open"
+  :homepage "https://media.gov.kw/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
  {:id "outlet.map-morocco"
   :name "Maghreb Arabe Presse"
   :kind "wire-agency"
@@ -1327,6 +1603,18 @@
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.mnb"
+  :name "Mongolian National Broadcaster"
+  :kind "public-broadcaster"
+  :country "MN"
+  :lang ["mn"]
+  :access "open"
+  :homepage "https://mnb.mn/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
 
  {:id "outlet.montsame"
   :name "MONTSAME"
@@ -1352,6 +1640,30 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
 
+ {:id "outlet.canal22"
+  :name "Canal 22"
+  :kind "public-broadcaster"
+  :country "MX"
+  :lang ["es"]
+  :access "open"
+  :homepage "https://canal22.org.mx/"
+  :feed-url nil
+  :verified false
+  :section "sec.culture"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.pbs-ph-radyo"
+  :name "Philippine Broadcasting Service — Radyo Pilipinas"
+  :kind "public-broadcaster"
+  :country "PH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://rp1.pbs.gov.ph/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
  {:id "outlet.pna"
   :name "Philippine News Agency"
   :kind "wire-agency"
@@ -1364,6 +1676,30 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
 
+ {:id "outlet.ptv-ph"
+  :name "PTV News (People's Television Network)"
+  :kind "public-broadcaster"
+  :country "PH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ptvnews.ph/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.pap"
+  :name "Polska Agencja Prasowa"
+  :kind "wire-agency"
+  :country "PL"
+  :lang ["pl"]
+  :access "open"
+  :homepage "https://www.pap.pl/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
  {:id "outlet.polskieradio"
   :name "Polskie Radio"
   :kind "public-broadcaster"
@@ -1372,6 +1708,18 @@
   :access "open"
   :homepage "https://www.polskieradio.pl/"
   :feed-url "https://polskieradio24.pl/rss/all.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.tvp-world"
+  :name "TVP World"
+  :kind "public-broadcaster"
+  :country "PL"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://tvpworld.com/"
+  :feed-url nil
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
@@ -1400,6 +1748,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
 
+ {:id "outlet.saudi-tv"
+  :name "Saudi Broadcasting Authority"
+  :kind "public-broadcaster"
+  :country "SA"
+  :lang ["ar"]
+  :access "open"
+  :homepage "https://www.sba.gov.sa/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
  {:id "outlet.spa"
   :name "Saudi Press Agency"
   :kind "wire-agency"
@@ -1411,6 +1771,18 @@
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.nnt-th"
+  :name "National News Bureau of Thailand"
+  :kind "wire-agency"
+  :country "TH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://thainews.prd.go.th/en"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
 
  {:id "outlet.thai-pbs-world"
   :name "Thai PBS World"
@@ -1424,6 +1796,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
 
+ {:id "outlet.thaipbs-th"
+  :name "Thai PBS (th)"
+  :kind "public-broadcaster"
+  :country "TH"
+  :lang ["th"]
+  :access "open"
+  :homepage "https://www.thaipbs.or.th/news"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
  {:id "outlet.tap-tunisia"
   :name "Tunis Afrique Presse"
   :kind "wire-agency"
@@ -1436,6 +1820,18 @@
   :section "sec.international"
   :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
 
+ {:id "outlet.wataniya"
+  :name "Télévision Tunisienne (Wataniya)"
+  :kind "public-broadcaster"
+  :country "TN"
+  :lang ["ar"]
+  :access "open"
+  :homepage "https://www.watania1.tn/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
  {:id "outlet.suspilne"
   :name "Suspilne Media"
   :kind "public-broadcaster"
@@ -1447,6 +1843,18 @@
   :verified false
   :section "sec.international"
   :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.ukrinform-alt"
+  :name "Ukrinform (alt feed)"
+  :kind "wire-agency"
+  :country "UA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ukrinform.net/rss"
+  :feed-url "https://www.ukrinform.net/rss/rss-ukrinform-news.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
 
  {:id "outlet.ap"
   :name "Associated Press"

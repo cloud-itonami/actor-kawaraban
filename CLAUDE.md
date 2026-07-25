@@ -55,7 +55,8 @@ charter violation.
 
 - `.solve()` raises `RuntimeError` at R0 on every cell — live execution is G8-gated. Do not
   wire a cell to a live RSS endpoint or the firehose; that needs Council Lv6+ + operator.
-- Run the complete standalone gate with `bb test`, then `bb audit`.
+- Run the complete standalone gate with `clojure -M:test`, then `clojure -M scripts/audit.clj`.
+  (`bb` was retired repo-wide by ADR-2607173000 — the old `bb test` / `bb audit` no longer exist.)
 - The actor→面 wire table lives in `src/kawaraban/methods/route.cljc` (`ACTOR-WIRE`). When a new first-party
   actor should feed a 面, add it there with an honest `basis`.
 

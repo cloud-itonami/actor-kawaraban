@@ -11,7 +11,7 @@ inverse of a news app. Central ingest actor of the ADR-2606161536 pipeline (`uts
 | Manifest | ✅ canonical `manifest.edn` — gates G1–G11 |
 | Tests | ✅ `clojure -M:test`: **81 tests / 182 assertions / 0 failures** (2026-07-25) |
 | Archive | ✅ `data/articles/YYYY-MM-DD.edn` + `schema/news.edn` + `clojure -M:query` (ADR-2607252600) — empty until the G8 gate opens |
-| Outlets | 🟡 120 registered / **77 feed-verified across 50 countries** (measured 2026-07-25 by `scripts/verify-feeds.cljs`) |
+| Outlets | 🟡 154 registered / **84 feed-verified across 56 countries** (re-measured weekly by `.github/workflows/refresh-feeds.yml`) |
 | Methods | ✅ route/analyze/ingest/live-fetch plus signed publisher/CACAO/Aozora runtime |
 | Audit | ✅ EDN syntax, canonical/wire pairing, wire boundary, deprecated artifact exclusion |
 
@@ -119,3 +119,22 @@ pipeline ADR-2606161536, the CC-corpus → G4-bounded `:article` derivation (D1)
 > empty until an operator opens the G8 gate** (`KAWARABAN_ALLOW_LIVE_INGEST=1` + Council
 > Lv6+) — that decision is explicitly out of this ADR's scope, and registering an outlet
 > collects nothing by itself.
+
+> **2026-07-25 (2) coverage + weekly re-measurement (ADR-2607253200):** allowlist
+> 120 → **154 entries, 84 feed-verified across 56 countries** (was 77 / 50). Second- and
+> third-choice public broadcasters were tried for every country that had no working feed
+> at all; that unlocked **CU, HR, IR, MA, MX, RS** (Granma, Cubadebate, HRT Vijesti, IRNA,
+> SNRT, IMER, RTS Vesti), 7 of 34 candidates. The other 27 are kept with dated failure
+> notes so the gap stays visible rather than looking unconsidered.
+>
+> **Sites that return 403 to an honestly-identified bot are recorded as unreachable and
+> left that way.** Spoofing a browser User-Agent to get past bot detection is not
+> something this repo does, so IMF / OHCHR / UNHCR / ILO / OECD / IAEA / PIB India /
+> Kan / MAP / MTI stay `:verified false` with the 403 in their `:note`. That is a real
+> coverage limit, not a bug to engineer around.
+>
+> `.github/workflows/refresh-feeds.yml` now re-measures every feed weekly and commits
+> the result, because the failure mode being fixed is "nobody runs the check" — which is
+> exactly how the flags came to claim 30 working feeds when 29 parsed. `verify-feeds.cljs`
+> refuses to write when the verified count collapses below 70% of the previous run: a
+> network-broken runner must fail loudly, never commit "everything is dead" as a finding.
