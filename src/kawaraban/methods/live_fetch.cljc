@@ -121,7 +121,11 @@
    "url"      (or (first-tag-text block "link") "")
    "lang"     (:lang outlet "en")
    "asOf"     (parse-date->epoch (or (first-tag-text block "pubDate") (first-tag-text block "dc:date")))
-   "access"   "open"})
+   "access"   "open"
+   ;; G5 — this came off the outlet's OWN feed, so it is not the illustrative
+   ;; ":representative" data/seed.edn shape. ingest/normalize-record maps this to
+   ;; :news.article/sourcing :verified (ADR-2607252600).
+   "sourcing" "verified"})
 
 (defn atom-entry->record
   "One Atom `<entry>` block -> the ingest.cljc input-record shape."
@@ -133,7 +137,9 @@
    "url"      (or (atom-link-href block) "")
    "lang"     (:lang outlet "en")
    "asOf"     (parse-date->epoch (or (first-tag-text block "published") (first-tag-text block "updated")))
-   "access"   "open"})
+   "access"   "open"
+   ;; G5 — see rss-item->record.
+   "sourcing" "verified"})
 
 (defn parse-feed
   "Parse RSS 2.0, RSS 1.0/RDF, or Atom 1.0 XML text into a vector of ingest-record maps for

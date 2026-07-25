@@ -8,82 +8,53 @@
 ;; Selection criterion (owner instruction 2026-07-10): state/public-broadcaster or
 ;; non-profit/international-organization press ONLY — no commercial/ad-funded outlets.
 ;;
-;; :verified true  — the :feed-url is a well-known, high-confidence public RSS/Atom
-;;                    endpoint for this outlet as of this file's authoring.
-;; :verified false — best-effort guess; MUST be confirmed against the outlet's live
-;;                    feed index / robots.txt before KAWARABAN_ALLOW_LIVE_INGEST is ever
-;;                    enabled for it (G5 source-provenance-honest — do not trust blindly).
+;; :verified / :note ARE MACHINE-OWNED — DO NOT HAND-EDIT (ADR-2607252600, 2026-07-25).
 ;;
-;; Adding an outlet: append an entry here, then add a matching :news.outlet/* record via
-;; the outlet_ingest cell (data/lex/outlet.edn) before it can appear in a :mirror article.
+;; :verified true  — this exact :feed-url actually returned HTTP 200 with parseable
+;;                    RSS/Atom items on the date recorded in its :note. A measurement,
+;;                    not a confidence level.
+;; :verified false — could not be confirmed on that date; :note says why (404, an HTML
+;;                    landing page, 403 bot-block, unreachable, or 0 items). The entry is
+;;                    KEPT rather than deleted so that "tried and could not collect" stays
+;;                    distinguishable from "never considered" — the orchestrator filters on
+;;                    :verified, so an unverified entry is inert, not harmful.
+;;
+;; Both fields are written by:
+;;   nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn --discover --apply
+;; which re-measures every feed and, for entries whose URL is missing or dead, discovers a
+;; replacement from the outlet's homepage <link rel="alternate"> (or common feed paths).
+;; The prior convention was a hand-written "well-known, high-confidence endpoint" flag; on
+;; 2026-07-25 that flag claimed 30 working feeds when only 29 actually parsed, which is why
+;; the judgement moved out of human memory and into a re-runnable measurement (G5).
+;;
+;; Adding an outlet: append :id/:name/:kind/:country/:lang/:access/:homepage/:section
+;; (:feed-url optional — discovery will look for it), run verify-feeds.cljs --discover
+;; --apply, then add a matching :news.outlet/* record via the outlet_ingest cell
+;; (data/lex/outlet.edn) before it can appear in a :mirror article.
 
-[{:id "outlet.nhk-world"
-  :name "NHK World-Japan"
+[{:id "outlet.radio-nacional-ar"
+  :name "Radio Nacional Argentina"
   :kind "public-broadcaster"
-  :country "JP"
-  :lang ["en"]
+  :country "AR"
+  :lang ["es"]
   :access "open"
-  :homepage "https://www3.nhk.or.jp/nhkworld/"
-  :feed-url "https://www3.nhk.or.jp/nhkworld/en/news/all.xml"
-  :verified false
-  :section "sec.international"
-  :note "live-checked 2026-07-10: this URL returns an HTML page, not RSS/Atom XML (guessed wrong). Needs a corrected feed URL before it will yield any articles."}
-
- {:id "outlet.bbc-world"
-  :name "BBC News — World"
-  :kind "public-broadcaster"
-  :country "GB"
-  :lang ["en"]
-  :access "open"
-  :homepage "https://www.bbc.co.uk/news"
-  :feed-url "http://feeds.bbci.co.uk/news/world/rss.xml"
-  :verified true
-  :section "sec.international"}
-
- {:id "outlet.dw"
-  :name "Deutsche Welle"
-  :kind "public-broadcaster"
-  :country "DE"
-  :lang ["en"]
-  :access "open"
-  :homepage "https://www.dw.com/"
-  :feed-url "https://rss.dw.com/rdf/rss-en-all"
-  :verified true
-  :section "sec.international"}
-
- {:id "outlet.france24"
-  :name "France 24"
-  :kind "public-broadcaster"
-  :country "FR"
-  :lang ["en"]
-  :access "open"
-  :homepage "https://www.france24.com/en/"
-  :feed-url "https://www.france24.com/en/rss"
-  :verified true
-  :section "sec.international"}
-
- {:id "outlet.rthk"
-  :name "RTHK News"
-  :kind "public-broadcaster"
-  :country "HK"
-  :lang ["en"]
-  :access "open"
-  :homepage "https://news.rthk.hk/"
-  :feed-url "https://rthk9.rthk.hk/rthk/news/rss/e_expressnews_elocal.xml"
-  :verified true
-  :section "sec.international"}
-
- {:id "outlet.cbc"
-  :name "CBC News — World"
-  :kind "public-broadcaster"
-  :country "CA"
-  :lang ["en"]
-  :access "open"
-  :homepage "https://www.cbc.ca/news"
-  :feed-url "https://www.cbc.ca/cmlink/rss-world"
+  :homepage "https://www.radionacional.com.ar/"
+  :feed-url "https://www.radionacional.com.ar/rss"
   :verified true
   :section "sec.international"
-  :note "re-checked 2026-07-10: was a transient timeout from the earlier environment, not a broken URL -- 200, 20 items on retry."}
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 15 items."}
+
+ {:id "outlet.orf"
+  :name "ORF news"
+  :kind "public-broadcaster"
+  :country "AT"
+  :lang ["de"]
+  :access "open"
+  :homepage "https://orf.at/"
+  :feed-url "https://rss.orf.at/news.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rdf, 34 items."}
 
  {:id "outlet.abc-au"
   :name "ABC News Australia"
@@ -94,7 +65,788 @@
   :homepage "https://www.abc.net.au/news"
   :feed-url "https://www.abc.net.au/news/feed/51120/rss.xml"
   :verified true
-  :section "sec.international"}
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 25 items."}
+
+ {:id "outlet.rtbf"
+  :name "RTBF Info"
+  :kind "public-broadcaster"
+  :country "BE"
+  :lang ["fr"]
+  :access "open"
+  :homepage "https://www.rtbf.be/en-continu"
+  :feed-url "https://rss.rtbf.be/article/rss/highlight_rtbfinfo_info.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.vrt-nws"
+  :name "VRT NWS"
+  :kind "public-broadcaster"
+  :country "BE"
+  :lang ["nl"]
+  :access "open"
+  :homepage "https://www.vrt.be/vrtnws/nl/"
+  :feed-url "https://www.vrt.be/vrtnws/nl.rss.articles.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, atom, 50 items."}
+
+ {:id "outlet.agencia-brasil"
+  :name "Agência Brasil (EBC — Brazil's public broadcaster)"
+  :kind "public-broadcaster"
+  :country "BR"
+  :lang ["pt"]
+  :access "open"
+  :homepage "https://agenciabrasil.ebc.com.br/"
+  :feed-url "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.radio-canada"
+  :name "Radio-Canada Info"
+  :kind "public-broadcaster"
+  :country "CA"
+  :lang ["fr"]
+  :access "open"
+  :homepage "https://ici.radio-canada.ca/"
+  :feed-url "https://ici.radio-canada.ca/rss/4159"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 16 items."}
+
+ {:id "outlet.cgtn"
+  :name "CGTN (China Global Television Network) — World"
+  :kind "public-broadcaster"
+  :country "CN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.cgtn.com/"
+  :feed-url "https://www.cgtn.com/subscribe/rss/section/world.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.xinhua"
+  :name "Xinhua News Agency — World"
+  :kind "wire-agency"
+  :country "CN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://english.news.cn/"
+  :feed-url "http://www.xinhuanet.com/english/rss/worldrss.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.radio-prague"
+  :name "Radio Prague International"
+  :kind "public-broadcaster"
+  :country "CZ"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://english.radio.cz/"
+  :feed-url "https://english.radio.cz/rcz-rss/en"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 120 items."}
+
+ {:id "outlet.deutschlandfunk"
+  :name "Deutschlandfunk"
+  :kind "public-broadcaster"
+  :country "DE"
+  :lang ["de"]
+  :access "open"
+  :homepage "https://www.deutschlandfunk.de/"
+  :feed-url "https://www.deutschlandfunk.de/nachrichten-100.rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 28 items."}
+
+ {:id "outlet.dw"
+  :name "Deutsche Welle"
+  :kind "public-broadcaster"
+  :country "DE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.dw.com/"
+  :feed-url "https://rss.dw.com/rdf/rss-en-all"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rdf, 140 items."}
+
+ {:id "outlet.dw-business"
+  :name "Deutsche Welle — Business"
+  :kind "public-broadcaster"
+  :country "DE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.dw.com/en/business/"
+  :feed-url "https://rss.dw.com/rdf/rss-en-bus"
+  :verified true
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 200, rdf, 20 items."}
+
+ {:id "outlet.dw-culture"
+  :name "Deutsche Welle — Culture"
+  :kind "public-broadcaster"
+  :country "DE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.dw.com/en/culture/"
+  :feed-url "https://rss.dw.com/rdf/rss-en-cul"
+  :verified true
+  :section "sec.culture"
+  :note "verify-feeds 2026-07-25: HTTP 200, rdf, 12 items."}
+
+ {:id "outlet.tagesschau"
+  :name "tagesschau (ARD)"
+  :kind "public-broadcaster"
+  :country "DE"
+  :lang ["de"]
+  :access "open"
+  :homepage "https://www.tagesschau.de/"
+  :feed-url "https://www.tagesschau.de/xml/rss2/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 40 items."}
+
+ {:id "outlet.dr"
+  :name "DR Nyheder"
+  :kind "public-broadcaster"
+  :country "DK"
+  :lang ["da"]
+  :access "open"
+  :homepage "https://www.dr.dk/nyheder"
+  :feed-url "https://www.dr.dk/nyheder/service/feeds/allenyheder"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.err-news"
+  :name "ERR News"
+  :kind "public-broadcaster"
+  :country "EE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://news.err.ee/"
+  :feed-url "https://news.err.ee/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.rtve"
+  :name "RTVE Noticias"
+  :kind "public-broadcaster"
+  :country "ES"
+  :lang ["es"]
+  :access "open"
+  :homepage "https://www.rtve.es/noticias/"
+  :feed-url "https://api2.rtve.es/rss/temas_noticias.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 40 items."}
+
+ {:id "outlet.yle-news"
+  :name "Yle News"
+  :kind "public-broadcaster"
+  :country "FI"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://yle.fi/news"
+  :feed-url "https://yle.fi/rss/news"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.france24"
+  :name "France 24"
+  :kind "public-broadcaster"
+  :country "FR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.france24.com/en/"
+  :feed-url "https://www.france24.com/en/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 24 items."}
+
+ {:id "outlet.francetvinfo"
+  :name "France Info"
+  :kind "public-broadcaster"
+  :country "FR"
+  :lang ["fr"]
+  :access "open"
+  :homepage "https://www.francetvinfo.fr/"
+  :feed-url "https://www.francetvinfo.fr/titres.rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 29 items."}
+
+ {:id "outlet.rfi"
+  :name "RFI English"
+  :kind "public-broadcaster"
+  :country "FR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.rfi.fr/en/"
+  :feed-url "https://www.rfi.fr/en/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 22 items."}
+
+ {:id "outlet.bbc-arts"
+  :name "BBC News — Entertainment & Arts"
+  :kind "public-broadcaster"
+  :country "GB"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bbc.co.uk/news/entertainment_and_arts"
+  :feed-url "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
+  :verified true
+  :section "sec.culture"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 24 items."}
+
+ {:id "outlet.bbc-business"
+  :name "BBC News — Business"
+  :kind "public-broadcaster"
+  :country "GB"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bbc.co.uk/news/business"
+  :feed-url "http://feeds.bbci.co.uk/news/business/rss.xml"
+  :verified true
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 48 items."}
+
+ {:id "outlet.bbc-science"
+  :name "BBC News — Science & Environment"
+  :kind "public-broadcaster"
+  :country "GB"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bbc.co.uk/news/science_and_environment"
+  :feed-url "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
+  :verified true
+  :section "sec.science"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 41 items."}
+
+ {:id "outlet.bbc-sport"
+  :name "BBC Sport"
+  :kind "public-broadcaster"
+  :country "GB"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bbc.co.uk/sport"
+  :feed-url "http://feeds.bbci.co.uk/sport/rss.xml"
+  :verified true
+  :section "sec.sports"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 79 items."}
+
+ {:id "outlet.bbc-world"
+  :name "BBC News — World"
+  :kind "public-broadcaster"
+  :country "GB"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bbc.co.uk/news"
+  :feed-url "http://feeds.bbci.co.uk/news/world/rss.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 26 items."}
+
+ {:id "outlet.gbc-ghana"
+  :name "Ghana Broadcasting Corporation"
+  :kind "public-broadcaster"
+  :country "GH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.gbcghanaonline.com/"
+  :feed-url "https://www.gbcghanaonline.com/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.ert"
+  :name "ERT News"
+  :kind "public-broadcaster"
+  :country "GR"
+  :lang ["el"]
+  :access "open"
+  :homepage "https://www.ertnews.gr/"
+  :feed-url "https://www.ertnews.gr/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 35 items."}
+
+ {:id "outlet.rthk"
+  :name "RTHK News"
+  :kind "public-broadcaster"
+  :country "HK"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://news.rthk.hk/"
+  :feed-url "https://rthk9.rthk.hk/rthk/news/rss/e_expressnews_elocal.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.antara"
+  :name "Antara News"
+  :kind "wire-agency"
+  :country "ID"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://en.antaranews.com/"
+  :feed-url "https://en.antaranews.com/rss/news.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.rte"
+  :name "RTÉ News"
+  :kind "public-broadcaster"
+  :country "IE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.rte.ie/news/"
+  :feed-url "https://www.rte.ie/feeds/rss/?index=/news/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 60 items."}
+
+ {:id "outlet.newsonair"
+  :name "All India Radio News"
+  :kind "public-broadcaster"
+  :country "IN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.newsonair.gov.in/"
+  :feed-url "https://www.newsonair.gov.in/rss-feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items."}
+
+ {:id "outlet.esa"
+  :name "European Space Agency"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.esa.int/"
+  :feed-url "https://www.esa.int/rssfeed/Our_Activities/Space_News"
+  :verified true
+  :section "sec.science"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 9 items."}
+
+ {:id "outlet.icrc"
+  :name "International Committee of the Red Cross"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.icrc.org/en/news"
+  :feed-url "https://www.icrc.org/rss/news"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.rferl"
+  :name "Radio Free Europe / Radio Liberty"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.rferl.org/"
+  :feed-url "https://www.rferl.org/api/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.telesur"
+  :name "teleSUR English"
+  :kind "public-broadcaster"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.telesurenglish.net/"
+  :feed-url "https://www.telesurenglish.net/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items. Feed URL discovered from the homepage this run."}
+
+ {:id "outlet.un-news"
+  :name "UN News"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://news.un.org/en/"
+  :feed-url "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items."}
+
+ {:id "outlet.unicef"
+  :name "UNICEF"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.unicef.org/press-releases"
+  :feed-url "https://www.unicef.org/news/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 60 items."}
+
+ {:id "outlet.who-news"
+  :name "WHO News"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.who.int/news"
+  :feed-url "https://www.who.int/rss-feeds/news-english.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 25 items."}
+
+ {:id "outlet.wto"
+  :name "World Trade Organization"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.wto.org/english/news_e/news_e.htm"
+  :feed-url "https://www.wto.org/library/rss/latest_news_e.xml"
+  :verified true
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.ruv"
+  :name "RÚV"
+  :kind "public-broadcaster"
+  :country "IS"
+  :lang ["is"]
+  :access "open"
+  :homepage "https://www.ruv.is/"
+  :feed-url "https://www.ruv.is/rss/frettir"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 40 items."}
+
+ {:id "outlet.rainews"
+  :name "Rai News"
+  :kind "public-broadcaster"
+  :country "IT"
+  :lang ["it"]
+  :access "open"
+  :homepage "https://www.rainews.it/"
+  :feed-url "https://www.rainews.it/rss/tutti"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 40 items."}
+
+ {:id "outlet.nhk-news-ja"
+  :name "NHKニュース (NHK News, domestic Japanese)"
+  :kind "public-broadcaster"
+  :country "JP"
+  :lang ["ja"]
+  :access "open"
+  :homepage "https://www3.nhk.or.jp/news/"
+  :feed-url "https://www3.nhk.or.jp/rss/news/cat0.xml"
+  :verified true
+  :section "sec.front"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 7 items."}
+
+ {:id "outlet.kbc"
+  :name "Kenya Broadcasting Corporation"
+  :kind "public-broadcaster"
+  :country "KE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.kbc.co.ke/"
+  :feed-url "https://www.kbc.co.ke/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items. Feed URL discovered from the homepage this run."}
+
+ {:id "outlet.kbs-world"
+  :name "KBS World Radio — News (English)"
+  :kind "public-broadcaster"
+  :country "KR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://world.kbs.co.kr/"
+  :feed-url "http://world.kbs.co.kr/rss/rss_news.htm?lang=e"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items."}
+
+ {:id "outlet.yonhap"
+  :name "Yonhap News Agency"
+  :kind "wire-agency"
+  :country "KR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://en.yna.co.kr/"
+  :feed-url "https://en.yna.co.kr/RSS/news.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 96 items."}
+
+ {:id "outlet.kazinform"
+  :name "Kazinform"
+  :kind "wire-agency"
+  :country "KZ"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://en.inform.kz/"
+  :feed-url "https://en.inform.kz/feed.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.lrt"
+  :name "LRT English"
+  :kind "public-broadcaster"
+  :country "LT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.lrt.lt/en/news-in-english"
+  :feed-url "https://www.lrt.lt/en/news-in-english?rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items."}
+
+ {:id "outlet.lsm"
+  :name "Public Broadcasting of Latvia (eng.lsm.lv)"
+  :kind "public-broadcaster"
+  :country "LV"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://eng.lsm.lv/"
+  :feed-url "https://eng.lsm.lv/rss/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.bernama"
+  :name "BERNAMA — Malaysian National News Agency"
+  :kind "wire-agency"
+  :country "MY"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bernama.com/en/"
+  :feed-url "https://www.bernama.com/en/rssfeed.php"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.nan-nigeria"
+  :name "News Agency of Nigeria"
+  :kind "wire-agency"
+  :country "NG"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://nannews.ng/"
+  :feed-url "https://nannews.ng/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.nos"
+  :name "NOS Nieuws"
+  :kind "public-broadcaster"
+  :country "NL"
+  :lang ["nl"]
+  :access "open"
+  :homepage "https://nos.nl/"
+  :feed-url "https://feeds.nos.nl/nosnieuwsalgemeen"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.nrk"
+  :name "NRK"
+  :kind "public-broadcaster"
+  :country "NO"
+  :lang ["no"]
+  :access "open"
+  :homepage "https://www.nrk.no/"
+  :feed-url "https://www.nrk.no/toppsaker.rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items."}
+
+ {:id "outlet.rnz"
+  :name "RNZ"
+  :kind "public-broadcaster"
+  :country "NZ"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.rnz.co.nz/"
+  :feed-url "https://www.rnz.co.nz/rss/national.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 39 items."}
+
+ {:id "outlet.app-pk"
+  :name "Associated Press of Pakistan"
+  :kind "wire-agency"
+  :country "PK"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.app.com.pk/"
+  :feed-url "https://www.app.com.pk/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.rtp"
+  :name "RTP Notícias"
+  :kind "public-broadcaster"
+  :country "PT"
+  :lang ["pt"]
+  :access "open"
+  :homepage "https://www.rtp.pt/noticias/"
+  :feed-url "https://www.rtp.pt/noticias/rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.aljazeera"
+  :name "Al Jazeera English"
+  :kind "public-broadcaster"
+  :country "QA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.aljazeera.com/"
+  :feed-url "https://www.aljazeera.com/xml/rss/all.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 25 items."}
+
+ {:id "outlet.rri"
+  :name "Radio Romania International"
+  :kind "public-broadcaster"
+  :country "RO"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.rri.ro/en_gb/"
+  :feed-url "https://www.rri.ro/en/feed"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 3 items."}
+
+ {:id "outlet.tass"
+  :name "TASS — Russian News Agency"
+  :kind "wire-agency"
+  :country "RU"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://tass.com/"
+  :feed-url "https://tass.com/rss/v2.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items."}
+
+ {:id "outlet.sveriges-radio"
+  :name "Sveriges Radio Ekot"
+  :kind "public-broadcaster"
+  :country "SE"
+  :lang ["sv"]
+  :access "open"
+  :homepage "https://sverigesradio.se/ekot"
+  :feed-url "https://api.sr.se/api/rss/program/83"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, atom, 20 items."}
+
+ {:id "outlet.cna"
+  :name "CNA (Channel NewsAsia)"
+  :kind "public-broadcaster"
+  :country "SG"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.channelnewsasia.com/"
+  :feed-url "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.rtvslo"
+  :name "RTV Slovenija"
+  :kind "public-broadcaster"
+  :country "SI"
+  :lang ["sl"]
+  :access "open"
+  :homepage "https://www.rtvslo.si/"
+  :feed-url "https://www.rtvslo.si/feeds/00.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.stvr"
+  :name "STVR Spravy (Slovakia)"
+  :kind "public-broadcaster"
+  :country "SK"
+  :lang ["sk"]
+  :access "open"
+  :homepage "https://spravy.stvr.sk/"
+  :feed-url "https://spravy.stvr.sk/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items."}
+
+ {:id "outlet.anadolu"
+  :name "Anadolu Agency"
+  :kind "wire-agency"
+  :country "TR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.aa.com.tr/en"
+  :feed-url "https://www.aa.com.tr/en/rss/default?cat=guncel"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 21 items."}
+
+ {:id "outlet.trt-world"
+  :name "TRT World"
+  :kind "public-broadcaster"
+  :country "TR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.trtworld.com/"
+  :feed-url "https://www.trtworld.com/feed/rss.xml"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 100 items. Feed URL discovered from the homepage this run."}
+
+ {:id "outlet.ukrinform"
+  :name "Ukrinform"
+  :kind "wire-agency"
+  :country "UA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ukrinform.net/"
+  :feed-url "https://www.ukrinform.net/rss/block-lastnews"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items."}
+
+ {:id "outlet.nasa"
+  :name "NASA"
+  :kind "ngo-press"
+  :country "US"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.nasa.gov/news/"
+  :feed-url "https://www.nasa.gov/rss/dyn/breaking_news.rss"
+  :verified true
+  :section "sec.science"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
 
  {:id "outlet.npr"
   :name "NPR — World"
@@ -105,7 +857,44 @@
   :homepage "https://www.npr.org/"
   :feed-url "https://feeds.npr.org/1004/rss.xml"
   :verified true
-  :section "sec.international"}
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.npr-arts"
+  :name "NPR — Arts & Life"
+  :kind "ngo-press"
+  :country "US"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.npr.org/sections/arts/"
+  :feed-url "https://feeds.npr.org/1008/rss.xml"
+  :verified true
+  :section "sec.culture"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.npr-business"
+  :name "NPR — Business"
+  :kind "ngo-press"
+  :country "US"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.npr.org/sections/business/"
+  :feed-url "https://feeds.npr.org/1006/rss.xml"
+  :verified true
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.npr-science"
+  :name "NPR — Science"
+  :kind "ngo-press"
+  :country "US"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.npr.org/sections/science/"
+  :feed-url "https://feeds.npr.org/1007/rss.xml"
+  :verified true
+  :section "sec.science"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
 
  {:id "outlet.pbs-newshour"
   :name "PBS NewsHour"
@@ -116,7 +905,548 @@
   :homepage "https://www.pbs.org/newshour/"
   :feed-url "https://www.pbs.org/newshour/feeds/rss/headlines"
   :verified true
-  :section "sec.society"}
+  :section "sec.society"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.voa-news"
+  :name "Voice of America"
+  :kind "public-broadcaster"
+  :country "US"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.voanews.com/"
+  :feed-url "https://www.voanews.com/api/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+
+ {:id "outlet.telesur-en"
+  :name "teleSUR English"
+  :kind "public-broadcaster"
+  :country "VE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.telesurenglish.net/"
+  :feed-url "https://www.telesurenglish.net/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 30 items."}
+
+ {:id "outlet.vietnamplus"
+  :name "Vietnam News Agency (VietnamPlus)"
+  :kind "wire-agency"
+  :country "VN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://en.vietnamplus.vn/"
+  :feed-url "https://en.vietnamplus.vn/rss/home.rss"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 50 items."}
+
+ {:id "outlet.sabc"
+  :name "SABC News"
+  :kind "public-broadcaster"
+  :country "ZA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.sabcnews.com/"
+  :feed-url "https://www.sabcnews.com/sabcnews/feed/"
+  :verified true
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200, rss, 10 items."}
+
+ {:id "outlet.wam"
+  :name "Emirates News Agency (WAM)"
+  :kind "wire-agency"
+  :country "AE"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.wam.ae/en"
+  :feed-url "https://www.wam.ae/en/rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.bss-bd"
+  :name "Bangladesh Sangbad Sangstha"
+  :kind "wire-agency"
+  :country "BD"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.bssnews.net/"
+  :feed-url "https://www.bssnews.net/rss.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.bnr"
+  :name "Bulgarian National Radio"
+  :kind "public-broadcaster"
+  :country "BG"
+  :lang ["bg"]
+  :access "open"
+  :homepage "https://bnr.bg/"
+  :feed-url "https://bnr.bg/rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.cbc"
+  :name "CBC News — World"
+  :kind "public-broadcaster"
+  :country "CA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.cbc.ca/news"
+  :feed-url "https://www.cbc.ca/cmlink/rss-world"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.swissinfo"
+  :name "SWI swissinfo.ch"
+  :kind "public-broadcaster"
+  :country "CH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.swissinfo.ch/eng/"
+  :feed-url "https://www.swissinfo.ch/service/rss/all/rss.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.prensa-latina"
+  :name "Prensa Latina"
+  :kind "wire-agency"
+  :country "CU"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.plenglish.com/"
+  :feed-url "https://www.plenglish.com/feed/"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.aps-algeria"
+  :name "Algérie Presse Service"
+  :kind "wire-agency"
+  :country "DZ"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.aps.dz/en/"
+  :feed-url "https://www.aps.dz/en/?format=feed&type=rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.ena-ethiopia"
+  :name "Ethiopian News Agency"
+  :kind "wire-agency"
+  :country "ET"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ena.et/"
+  :feed-url "https://www.ena.et/rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.hrt"
+  :name "Voice of Croatia (HRT)"
+  :kind "public-broadcaster"
+  :country "HR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://glashrvatske.hrt.hr/en"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.hirado"
+  :name "Híradó (MTVA)"
+  :kind "public-broadcaster"
+  :country "HU"
+  :lang ["hu"]
+  :access "open"
+  :homepage "https://hirado.hu/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.kan"
+  :name "Kan (Israeli Public Broadcasting)"
+  :kind "public-broadcaster"
+  :country "IL"
+  :lang ["he"]
+  :access "open"
+  :homepage "https://www.kan.org.il/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.dd-news"
+  :name "DD News (Prasar Bharati)"
+  :kind "public-broadcaster"
+  :country "IN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://ddnews.gov.in/en"
+  :feed-url "https://ddnews.gov.in/en/feed/"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.pib-india"
+  :name "Press Information Bureau, India"
+  :kind "wire-agency"
+  :country "IN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://pib.gov.in/"
+  :feed-url "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.fao"
+  :name "FAO Newsroom"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.fao.org/newsroom/"
+  :feed-url "https://www.fao.org/feeds/newsroom/en/"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.iaea"
+  :name "IAEA"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.iaea.org/news"
+  :feed-url "https://www.iaea.org/feeds/topnews.rss"
+  :verified false
+  :section "sec.science"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.ilo"
+  :name "International Labour Organization"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ilo.org/resource/news"
+  :feed-url nil
+  :verified false
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.imf"
+  :name "International Monetary Fund"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.imf.org/en/News"
+  :feed-url "https://www.imf.org/en/News/RSS?language=eng"
+  :verified false
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: unreachable — This operation was aborted. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.oecd"
+  :name "OECD"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.oecd.org/en/about/news.html"
+  :feed-url nil
+  :verified false
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.ohchr"
+  :name "UN Human Rights (OHCHR)"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.ohchr.org/en/news"
+  :feed-url "https://www.ohchr.org/en/rss/news"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.undp"
+  :name "UNDP"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.undp.org/press-releases"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.unesco"
+  :name "UNESCO"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.unesco.org/en/articles"
+  :feed-url "https://www.unesco.org/en/rss.xml"
+  :verified false
+  :section "sec.culture"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.unhcr"
+  :name "UNHCR"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.unhcr.org/news"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.wfp"
+  :name "World Food Programme"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.wfp.org/news"
+  :feed-url "https://www.wfp.org/rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.wmo"
+  :name "World Meteorological Organization"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://wmo.int/news"
+  :feed-url "https://wmo.int/rss.xml"
+  :verified false
+  :section "sec.science"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.worldbank"
+  :name "World Bank"
+  :kind "ngo-press"
+  :country "INT"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.worldbank.org/en/news"
+  :feed-url "https://www.worldbank.org/en/news/all?format=rss"
+  :verified false
+  :section "sec.economy"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.presstv"
+  :name "Press TV"
+  :kind "public-broadcaster"
+  :country "IR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.presstv.ir/"
+  :feed-url "https://www.presstv.ir/rss.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.petra"
+  :name "Jordan News Agency (Petra)"
+  :kind "wire-agency"
+  :country "JO"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://petra.gov.jo/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.nhk-world"
+  :name "NHK World-Japan"
+  :kind "public-broadcaster"
+  :country "JP"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www3.nhk.or.jp/nhkworld/"
+  :feed-url "https://www3.nhk.or.jp/nhkworld/en/news/all.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.arirang"
+  :name "Arirang News"
+  :kind "public-broadcaster"
+  :country "KR"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.arirang.com/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.kuna"
+  :name "Kuwait News Agency"
+  :kind "wire-agency"
+  :country "KW"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.kuna.net.kw/"
+  :feed-url "https://www.kuna.net.kw/RSSFeed.aspx?language=en"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.map-morocco"
+  :name "Maghreb Arabe Presse"
+  :kind "wire-agency"
+  :country "MA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.mapnews.ma/en"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.montsame"
+  :name "MONTSAME"
+  :kind "wire-agency"
+  :country "MN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://montsame.mn/en/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.canal-once"
+  :name "Canal Once"
+  :kind "public-broadcaster"
+  :country "MX"
+  :lang ["es"]
+  :access "open"
+  :homepage "https://canalonce.mx/"
+  :feed-url "https://canalonce.mx/feed"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.pna"
+  :name "Philippine News Agency"
+  :kind "wire-agency"
+  :country "PH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.pna.gov.ph/"
+  :feed-url "https://www.pna.gov.ph/rss"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
+
+ {:id "outlet.polskieradio"
+  :name "Polskie Radio"
+  :kind "public-broadcaster"
+  :country "PL"
+  :lang ["pl"]
+  :access "open"
+  :homepage "https://www.polskieradio.pl/"
+  :feed-url "https://polskieradio24.pl/rss/all.xml"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.qna"
+  :name "Qatar News Agency"
+  :kind "wire-agency"
+  :country "QA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.qna.org.qa/en"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.rts-rs"
+  :name "Radio Television of Serbia"
+  :kind "public-broadcaster"
+  :country "RS"
+  :lang ["sr"]
+  :access "open"
+  :homepage "https://www.rts.rs/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
+
+ {:id "outlet.spa"
+  :name "Saudi Press Agency"
+  :kind "wire-agency"
+  :country "SA"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://www.spa.gov.sa/en"
+  :feed-url "https://www.spa.gov.sa/rss/en"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.thai-pbs-world"
+  :name "Thai PBS World"
+  :kind "public-broadcaster"
+  :country "TH"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://world.thaipbs.or.th/"
+  :feed-url "https://world.thaipbs.or.th/feed/"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}
+
+ {:id "outlet.tap-tunisia"
+  :name "Tunis Afrique Presse"
+  :kind "wire-agency"
+  :country "TN"
+  :lang ["en"]
+  :access "open"
+  :homepage "https://tap.info.tn/en"
+  :feed-url "https://tap.info.tn/en/feed"
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."}
+
+ {:id "outlet.suspilne"
+  :name "Suspilne Media"
+  :kind "public-broadcaster"
+  :country "UA"
+  :lang ["uk"]
+  :access "open"
+  :homepage "https://suspilne.media/"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 403 — not a usable feed endpoint."}
 
  {:id "outlet.ap"
   :name "Associated Press"
@@ -128,156 +1458,16 @@
   :feed-url nil
   :verified false
   :section "sec.front"
-  :note "AP does not currently publish a straightforward public RSS endpoint (post-2020 site redesign); left unresolved (nil feed-url) rather than guessing a wrong URL. Do not enable without a confirmed source."}
+  :note "verify-feeds 2026-07-25: HTTP 404 — not a usable feed endpoint."}
 
- {:id "outlet.aljazeera"
-  :name "Al Jazeera English"
+ {:id "outlet.vov"
+  :name "Voice of Vietnam (VOV World, English service)"
   :kind "public-broadcaster"
-  :country "QA"
+  :country "VN"
   :lang ["en"]
   :access "open"
-  :homepage "https://www.aljazeera.com/"
-  :feed-url "https://www.aljazeera.com/xml/rss/all.xml"
-  :verified true
-  :section "sec.international"}
-
- {:id "outlet.un-news"
-  :name "UN News"
-  :kind "ngo-press"
-  :country "INT"
-  :lang ["en"]
-  :access "open"
-  :homepage "https://news.un.org/en/"
-  :feed-url "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
-  :verified true
-  :section "sec.international"}
-
- ;; ── topic-diversification wave (2026-07-10, owner instruction: "トピックの偏り
- ;; を解消") — category feeds for outlets already above, so 面 isn't 88% sec.international.
- ;; Each entry is a genuinely distinct RSS endpoint (verified live), not a re-tag of the
- ;; same "world" feed.
-
- {:id "outlet.bbc-business" :name "BBC News — Business" :kind "public-broadcaster"
-  :country "GB" :lang ["en"] :access "open" :homepage "https://www.bbc.co.uk/news/business"
-  :feed-url "http://feeds.bbci.co.uk/news/business/rss.xml" :verified true :section "sec.economy"}
-
- {:id "outlet.bbc-science" :name "BBC News — Science & Environment" :kind "public-broadcaster"
-  :country "GB" :lang ["en"] :access "open" :homepage "https://www.bbc.co.uk/news/science_and_environment"
-  :feed-url "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml" :verified true :section "sec.science"}
-
- {:id "outlet.bbc-arts" :name "BBC News — Entertainment & Arts" :kind "public-broadcaster"
-  :country "GB" :lang ["en"] :access "open" :homepage "https://www.bbc.co.uk/news/entertainment_and_arts"
-  :feed-url "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml" :verified true :section "sec.culture"}
-
- {:id "outlet.bbc-sport" :name "BBC Sport" :kind "public-broadcaster"
-  :country "GB" :lang ["en"] :access "open" :homepage "https://www.bbc.co.uk/sport"
-  :feed-url "http://feeds.bbci.co.uk/sport/rss.xml" :verified true :section "sec.sports"}
-
- {:id "outlet.npr-business" :name "NPR — Business" :kind "ngo-press"
-  :country "US" :lang ["en"] :access "open" :homepage "https://www.npr.org/sections/business/"
-  :feed-url "https://feeds.npr.org/1006/rss.xml" :verified true :section "sec.economy"}
-
- {:id "outlet.npr-science" :name "NPR — Science" :kind "ngo-press"
-  :country "US" :lang ["en"] :access "open" :homepage "https://www.npr.org/sections/science/"
-  :feed-url "https://feeds.npr.org/1007/rss.xml" :verified true :section "sec.science"}
-
- {:id "outlet.npr-arts" :name "NPR — Arts & Life" :kind "ngo-press"
-  :country "US" :lang ["en"] :access "open" :homepage "https://www.npr.org/sections/arts/"
-  :feed-url "https://feeds.npr.org/1008/rss.xml" :verified true :section "sec.culture"}
-
- {:id "outlet.dw-business" :name "Deutsche Welle — Business" :kind "public-broadcaster"
-  :country "DE" :lang ["en"] :access "open" :homepage "https://www.dw.com/en/business/"
-  :feed-url "https://rss.dw.com/rdf/rss-en-bus" :verified true :section "sec.economy"}
-
- {:id "outlet.dw-culture" :name "Deutsche Welle — Culture" :kind "public-broadcaster"
-  :country "DE" :lang ["en"] :access "open" :homepage "https://www.dw.com/en/culture/"
-  :feed-url "https://rss.dw.com/rdf/rss-en-cul" :verified true :section "sec.culture"}
-
- ;; ── first Japanese-language source (owner instruction: "日本語ソースを追加").
- ;; NOT the "NHK World-Japan" (English international service) entry above, whose feed
- ;; URL is still unresolved -- this is NHK's real DOMESTIC Japanese-language news RSS,
- ;; a genuinely different NHK product. Labeled honestly as such (G5).
- {:id "outlet.nhk-news-ja" :name "NHKニュース (NHK News, domestic Japanese)" :kind "public-broadcaster"
-  :country "JP" :lang ["ja"] :access "open" :homepage "https://www3.nhk.or.jp/news/"
-  :feed-url "https://www3.nhk.or.jp/rss/news/cat0.xml" :verified true :section "sec.front"}
-
- ;; ── world-scope expansion (ADR-2607197800, 2026-07-19) — the pre-existing 22 entries
- ;; above skewed heavily anglophone + Japan + Qatar (US/GB/DE/FR/HK/CA/AU/JP/QA/INT only).
- ;; This wave adds real state/public-broadcaster and non-profit/international-org press
- ;; spanning China, Russia, Iran, Turkey, South Africa, Brazil, Latin America (multi-country),
- ;; Vietnam, Malaysia, Singapore, South Korea, and WHO (international org). India (DD News /
- ;; PIB) is intentionally NOT added here — handled by a separate concurrent task on the
- ;; kouhou repo instead. Every :verified true entry below was live-fetched this session and
- ;; confirmed to return real RSS/Atom XML with current (2026-07-19-dated) items — not just a
- ;; guessed URL pattern. Every :verified false entry has an honest :note explaining exactly
- ;; what could not be confirmed (same discipline as the pre-existing NHK World / AP entries
- ;; above) — no feed URL below was fabricated.
-
- {:id "outlet.cgtn" :name "CGTN (China Global Television Network) — World" :kind "public-broadcaster"
-  :country "CN" :lang ["en"] :access "open" :homepage "https://www.cgtn.com/"
-  :feed-url "https://www.cgtn.com/subscribe/rss/section/world.xml" :verified true :section "sec.international"}
-
- {:id "outlet.xinhua" :name "Xinhua News Agency — World" :kind "wire-agency"
-  :country "CN" :lang ["en"] :access "open" :homepage "https://english.news.cn/"
-  :feed-url "http://www.xinhuanet.com/english/rss/worldrss.xml" :verified false :section "sec.international"
-  :note "live-checked 2026-07-19: URL returns real RSS 2.0 XML from xinhuanet.com's own domain (structurally valid), but every item's <pubDate> is stale (2017-04 through 2018-01 across both worldrss.xml and chinarss.xml) — this is an abandoned legacy RSS endpoint, not a live feed. Xinhua's current site (english.news.cn) does not expose an obvious replacement RSS URL. Do not enable without locating and confirming a genuinely live feed."}
-
- {:id "outlet.tass" :name "TASS — Russian News Agency" :kind "wire-agency"
-  :country "RU" :lang ["en"] :access "open" :homepage "https://tass.com/"
-  :feed-url "https://tass.com/rss/v2.xml" :verified true :section "sec.international"}
-
- {:id "outlet.presstv" :name "Press TV" :kind "public-broadcaster"
-  :country "IR" :lang ["en"] :access "open" :homepage "https://www.presstv.ir/"
-  :feed-url "https://www.presstv.ir/rss.xml" :verified true :section "sec.international"
-  :note "state broadcaster affiliated with Islamic Republic of Iran Broadcasting (IRIB), per its own channel description."}
-
- {:id "outlet.anadolu" :name "Anadolu Agency" :kind "wire-agency"
-  :country "TR" :lang ["en"] :access "open" :homepage "https://www.aa.com.tr/en"
-  :feed-url "https://www.aa.com.tr/en/rss/default?cat=guncel" :verified true :section "sec.international"}
-
- {:id "outlet.trt-world" :name "TRT World" :kind "public-broadcaster"
-  :country "TR" :lang ["en"] :access "open" :homepage "https://www.trtworld.com/"
-  :feed-url nil :verified false :section "sec.international"
-  :note "checked 2026-07-19: tried /rss, /rss.xml, /feed, /news/rss, /news/rss.xml, and the corporate trt.net.tr/english/rss page — all 404 or non-feed HTML; robots.txt lists only sitemaps, no RSS. No working public feed URL located this session; left unresolved (nil feed-url) rather than guessing wrong, same discipline as the existing AP entry above. Turkey is otherwise covered by outlet.anadolu (verified) above."}
-
- {:id "outlet.sabc" :name "SABC News" :kind "public-broadcaster"
-  :country "ZA" :lang ["en"] :access "open" :homepage "https://www.sabcnews.com/"
-  :feed-url "https://www.sabcnews.com/sabcnews/feed/" :verified true :section "sec.international"}
-
- {:id "outlet.agencia-brasil" :name "Agência Brasil (EBC — Brazil's public broadcaster)" :kind "public-broadcaster"
-  :country "BR" :lang ["pt"] :access "open" :homepage "https://agenciabrasil.ebc.com.br/"
-  :feed-url "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml" :verified true :section "sec.international"
-  :note "Agência Brasil is EBC's (Empresa Brasil de Comunicação, Brazil's public broadcasting company — also operates TV Brasil) news-wire arm; feed is Portuguese-language."}
-
- {:id "outlet.telesur" :name "teleSUR English" :kind "public-broadcaster"
-  :country "INT" :lang ["en"] :access "open" :homepage "https://www.telesurenglish.net/"
-  :feed-url nil :verified false :section "sec.international"
-  :note "checked 2026-07-19: tried /rss.xml and /rss/RssTeleSUR.xml, both 404. No working public feed URL located this session; left unresolved (nil feed-url) rather than guessing wrong. teleSUR is a multi-state-funded consortium broadcaster (Venezuela plus Cuba/Nicaragua/Bolivia et al.), :country marked INT rather than a single state."}
-
- {:id "outlet.vov" :name "Voice of Vietnam (VOV World, English service)" :kind "public-broadcaster"
-  :country "VN" :lang ["en"] :access "open" :homepage "https://vovworld.vn/en-US"
-  :feed-url nil :verified false :section "sec.international"
-  :note "checked 2026-07-19: vovworld.vn redirects to its homepage HTML; no discoverable RSS/Atom endpoint found this session. Left unresolved (nil feed-url) rather than guessing wrong."}
-
- {:id "outlet.bernama" :name "BERNAMA — Malaysian National News Agency" :kind "wire-agency"
-  :country "MY" :lang ["en"] :access "open" :homepage "https://www.bernama.com/en/"
-  :feed-url "https://www.bernama.com/en/rssfeed.php" :verified true :section "sec.international"}
-
- {:id "outlet.cna" :name "CNA (Channel NewsAsia)" :kind "public-broadcaster"
-  :country "SG" :lang ["en"] :access "open" :homepage "https://www.channelnewsasia.com/"
-  :feed-url "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511" :verified true :section "sec.international"
-  :note "semi-state, not a classic license-fee public broadcaster: CNA is operated by Mediacorp, Singapore's media company wholly owned via Temasek Holdings (a state investment arm). Included under the state/public-broadcaster criterion on that basis, flagged honestly rather than presented as fully independent commercial press."}
-
- {:id "outlet.kbs-world" :name "KBS World Radio — News (English)" :kind "public-broadcaster"
-  :country "KR" :lang ["en"] :access "open" :homepage "https://world.kbs.co.kr/"
-  :feed-url "http://world.kbs.co.kr/rss/rss_news.htm?lang=e" :verified true :section "sec.international"
-  :note "URL has an .htm extension and text/html Content-Type header (server misconfiguration), but the response body is genuine, current RSS 2.0 XML — confirmed live-fetched 2026-07-19."}
-
- {:id "outlet.arirang" :name "Arirang News" :kind "public-broadcaster"
-  :country "KR" :lang ["en"] :access "open" :homepage "https://www.arirang.com/"
-  :feed-url nil :verified false :section "sec.international"
-  :note "checked 2026-07-19: arirang.com does not expose a discoverable RSS endpoint (tried /rss, /RSS/News_En.xml, /index.web patterns, all 404); no official feed URL located this session. Left unresolved (nil feed-url) rather than guessing wrong. South Korea is otherwise covered by outlet.kbs-world (verified) above."}
-
- {:id "outlet.who-news" :name "WHO News" :kind "ngo-press"
-  :country "INT" :lang ["en"] :access "open" :homepage "https://www.who.int/news"
-  :feed-url "https://www.who.int/rss-feeds/news-english.xml" :verified true :section "sec.international"}]
+  :homepage "https://vovworld.vn/en-US"
+  :feed-url nil
+  :verified false
+  :section "sec.international"
+  :note "verify-feeds 2026-07-25: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."}]

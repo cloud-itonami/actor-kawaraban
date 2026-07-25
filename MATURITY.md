@@ -9,7 +9,9 @@ inverse of a news app. Central ingest actor of the ADR-2606161536 pipeline (`uts
 | Lexicons | ✅ 6 canonical semantic EDN under `data/lex`; Datomic projections and wire JSON separated |
 | Cells | ✅ 7 canonical CLJC cells including fulltext-cache and social projection |
 | Manifest | ✅ canonical `manifest.edn` — gates G1–G11 |
-| Tests | ✅ `bb test`: **89 tests / 207 assertions / 0 failures** (2026-07-18) |
+| Tests | ✅ `clojure -M:test`: **81 tests / 182 assertions / 0 failures** (2026-07-25) |
+| Archive | ✅ `data/articles/YYYY-MM-DD.edn` + `schema/news.edn` + `clojure -M:query` (ADR-2607252600) — empty until the G8 gate opens |
+| Outlets | 🟡 120 registered / **77 feed-verified across 50 countries** (measured 2026-07-25 by `scripts/verify-feeds.cljs`) |
 | Methods | ✅ route/analyze/ingest/live-fetch plus signed publisher/CACAO/Aozora runtime |
 | Audit | ✅ EDN syntax, canonical/wire pairing, wire boundary, deprecated artifact exclusion |
 
@@ -90,3 +92,30 @@ pipeline ADR-2606161536, the CC-corpus → G4-bounded `:article` derivation (D1)
 > round trip. `clojure -M:test` — 29 tests / 56 assertions, 0
 > failures/errors (20/46 pre-existing + 9/10 new). Fleet placement on
 > Murakumo (Phase D) is a separate, later, explicitly-confirmed step.
+
+> **2026-07-25 queryable archive + measured world coverage (ADR-2607252600):** collected
+> articles now persist locally as `:news.*` datoms in `data/articles/YYYY-MM-DD.edn`
+> (`kawaraban.store`, written by BOTH orchestrators, deduped on `:news.article/id`,
+> undated articles quarantined in `unknown-as-of.edn`), transactable against the new
+> `schema/news.edn` and queryable via `clojure -M:query` (DataScript; `data/seed.edn`
+> excluded unless `--seed`, so counts read as real coverage rather than illustration).
+> The archive is deliberately NOT bounded by `:max-articles-per-outlet` — that bound
+> protects the PDS and per-article wasm instantiation cost, neither of which applies to
+> appending EDN, and the archive is an observation record rather than a publish ledger.
+> `:news.article/sourcing` now distinguishes `:verified` (came off the outlet's own feed)
+> from `:representative` (the illustrative seed); the previous hard-coded
+> `":representative"` labelled real BBC articles as examples, which G5 forbids.
+>
+> The outlet allowlist grew 37 → **120 entries, of which 77 were feed-verified live on
+> 2026-07-25 across 50 countries/regions and 15 languages** (was: 20 countries, 3
+> languages, and a hand-written `:verified` flag that claimed 30 working feeds when only
+> 29 parsed). `:verified`/`:note` are now machine-owned, written by
+> `nbb scripts/verify-feeds.cljs --discover --apply`, which re-measures every feed and
+> discovers replacement URLs from the outlet homepage — 15 of the working feeds were
+> found that way after the guessed URL 404'd. The 43 entries that could not be confirmed
+> (403 bot-blocks at IMF/OHCHR/UNHCR/ILO/OECD/IAEA/PIB India/Kan/MAP, plus feedless or
+> unreachable sites) are KEPT with honest notes so the gap is visible in the file; 22
+> registered countries currently have no working feed at all. **`data/articles/` stays
+> empty until an operator opens the G8 gate** (`KAWARABAN_ALLOW_LIVE_INGEST=1` + Council
+> Lv6+) — that decision is explicitly out of this ADR's scope, and registering an outlet
+> collects nothing by itself.

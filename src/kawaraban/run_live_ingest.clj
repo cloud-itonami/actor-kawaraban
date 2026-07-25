@@ -28,9 +28,11 @@
   (:require [clojure.data.json :as json]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
+            [clojure.string :as str]
             [kawaraban.methods.live-fetch :as live-fetch]
             [kawaraban.mirror-actor :as mirror-actor]
-            [kawaraban.publish :as publish])
+            [kawaraban.publish :as publish]
+            [kawaraban.store :as store])
   (:gen-class))
 
 (def ^:private base-opts
@@ -71,21 +73,33 @@
   persist next -- the max as-of seen among FETCHED records, whether or not every one of
   them published successfully; a transient publish failure is retried next tick via the
   normal feed-window overlap, not by refusing to advance the mark)."
-  ([outlet] (run-outlet! outlet 0))
-  ([outlet mark]
+  ([outlet] (run-outlet! outlet 0 {}))
+  ([outlet mark] (run-outlet! outlet mark {}))
+  ([outlet mark opts]
    (let [{:keys [refused reason ok gate-refused fetch-error]} (live-fetch/fetch-outlet! outlet)]
      (cond
        refused {:outlet (:id outlet) :refused true :reason reason :new-mark mark}
        fetch-error {:outlet (:id outlet) :fetch-error fetch-error :new-mark mark}
        :else (let [fresh (new-since ok mark)
                    results (publish-outlet! outlet fresh)]
-               {:outlet (:id outlet)
-                :fetched (count ok)
-                :new (count fresh)
-                :gate-refused (count gate-refused)
-                :published (count (filter :ok results))
-                :publish-errors (mapv :error (remove :ok results))
-                :new-mark (max-as-of ok mark)})))))
+               (merge
+                {:outlet (:id outlet)
+                 :fetched (count ok)
+                 :new (count fresh)
+                 :gate-refused (count gate-refused)
+                 :published (count (filter :ok results))
+                 :publish-errors (mapv :error (remove :ok results))
+                 :new-mark (max-as-of ok mark)}
+                ;; [ADR-2607252600] Same local datom archive the wasm orchestrator writes.
+                ;; Both paths fetch the same articles through the same gate, so whichever
+                ;; one an operator runs, the collected articles end up queryable -- an
+                ;; article's presence in the archive must not depend on which orchestrator
+                ;; happened to be scheduled. `:articles-dir` nil disables it.
+                (when-let [dir (get opts :articles-dir store/default-archive-dir)]
+                  (when (seq ok)
+                    (try
+                      {:archived (reduce + 0 (map :added (vals (store/append-articles! dir ok))))}
+                      (catch Exception e {:archive-error (ex-message e)}))))))))))
 
 (def ^:private inter-outlet-delay-ms
   "Spaced out, not fired back-to-back (ADR-2607110200 addendum 2): a single outlet's
@@ -103,15 +117,16 @@
   jvm-http-fn's timeout fix) produced zero visible output for the run's entire duration,
   making it indistinguishable from a genuine hang from the outside (CI logs, a human
   watching) until it either finished or the job's own outer timeout killed it."
-  ([allowlist-path last-seen-path] (run-all! allowlist-path last-seen-path (fn [_])))
-  ([allowlist-path last-seen-path on-result]
+  ([allowlist-path last-seen-path] (run-all! allowlist-path last-seen-path (fn [_]) {}))
+  ([allowlist-path last-seen-path on-result] (run-all! allowlist-path last-seen-path on-result {}))
+  ([allowlist-path last-seen-path on-result opts]
    (let [outlets (->> (live-fetch/load-allowlist allowlist-path)
                        (filter :verified))
          last-seen (load-last-seen last-seen-path)
          results (mapv (fn [outlet]
                           (when (pos? inter-outlet-delay-ms) (Thread/sleep inter-outlet-delay-ms))
                           (let [result (try
-                                         (run-outlet! outlet (get last-seen (:id outlet) 0))
+                                         (run-outlet! outlet (get last-seen (:id outlet) 0) opts)
                                          (catch Exception e
                                            {:outlet (:id outlet) :error (.getMessage e)
                                             :new-mark (get last-seen (:id outlet) 0)}))]
@@ -125,10 +140,17 @@
 (defn -main [& _]
   (let [allowlist-path (or (System/getenv "KAWARABAN_ALLOWLIST_PATH") "data/outlets/allowlist.edn")
         last-seen-path (or (System/getenv "KAWARABAN_LAST_SEEN_PATH") "data/ingest/last-seen.edn")
+        ;; [ADR-2607252600] KAWARABAN_ARTICLES_DIR="" disables the local archive.
+        articles-dir (let [v (System/getenv "KAWARABAN_ARTICLES_DIR")]
+                       (cond (nil? v) store/default-archive-dir
+                             (str/blank? v) nil
+                             :else v))
         results (run-all! allowlist-path last-seen-path
-                           (fn [r] (println (pr-str r)) (flush)))
+                           (fn [r] (println (pr-str r)) (flush))
+                           {:articles-dir articles-dir})
         errors (filter #(or (:error %) (:fetch-error %) (seq (:publish-errors %))) results)]
     (println (str "kawaraban live-ingest: " (count results) " outlets, "
+                   (reduce + 0 (map #(or (:archived %) 0) results)) " archived, "
                    (reduce + 0 (map #(or (:published %) 0) results)) " published, "
                    (count errors) " with errors"))
     (when (and (seq errors) (= (count errors) (count results)))

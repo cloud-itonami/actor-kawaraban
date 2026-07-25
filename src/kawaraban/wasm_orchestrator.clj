@@ -139,6 +139,7 @@
             [clojure.string :as str]
             [kawaraban.methods.live-fetch :as live-fetch]
             [kawaraban.publisher :as publisher]
+            [kawaraban.store :as store]
             [kototama.contract :as contract]
             [kototama.tender :as tender])
   (:import [java.security MessageDigest]
@@ -780,20 +781,56 @@
      :errors (mapv :error (filter #(= :error (:stage %)) results))
      :new-mark (published-mark bounded results mark)}))
 
+(def default-articles-dir
+  "[com-junkawasaki/root ADR-2607252600] Where `kawaraban.store` writes the
+  day-partitioned, `schema/news.edn`-transactable mirror archive. Aliased
+  from `kawaraban.store` so the writer here and the reader in
+  `kawaraban.query` cannot drift apart."
+  store/default-archive-dir)
+
+(defn- archive-records!
+  "[com-junkawasaki/root ADR-2607252600] Persist every GATE-PASSED record to
+  the local datom archive, BEFORE and INDEPENDENT of the aozora publish
+  half.
+
+  Deliberately not bounded by `:max-articles-per-outlet`: that bound exists
+  to protect the PDS and this machine's CPU from per-article wasm/Chicory
+  instantiation, and neither cost applies to appending EDN. Nor is it
+  conditioned on publish success -- the archive is an observation record,
+  not a publish ledger, so an article that was fetched and passed the
+  charter gate belongs in it whether or not aozora accepted it (or was
+  even attempted). This is the ONLY place kawaraban's own collected
+  articles become queryable without round-tripping through the PDS.
+
+  Returns nil (and reports the failure into the result map) rather than
+  throwing: a full disk or a read-only checkout must not take down the
+  publish half of a run that is otherwise working."
+  [dir records]
+  (when (and dir (seq records))
+    (try
+      {:archived (reduce + 0 (map :added (vals (store/append-articles! dir records))))}
+      (catch Exception e
+        {:archive-error (ex-message e)}))))
+
 (defn run-outlet!
-  "One outlet's G8-gated fetch -> gate -> wasm-publish pass. `mark` is this
-  outlet's prior high-water-mark (0 if never seen). G8 (live ingest
+  "One outlet's G8-gated fetch -> gate -> archive -> wasm-publish pass. `mark`
+  is this outlet's prior high-water-mark (0 if never seen). G8 (live ingest
   requires `KAWARABAN_ALLOW_LIVE_INGEST=1` + Council attestation) is
   enforced by `live-fetch/fetch-outlet!` itself, UNCHANGED -- this function
-  never bypasses or re-implements that gate."
+  never bypasses or re-implements that gate.
+
+  `:articles-dir` (default `default-articles-dir`, nil to disable) is the
+  local datom archive -- see `archive-records!` for why it is written from
+  the FULL gate-passed set rather than the bounded/published subset."
   ([outlet mark] (run-outlet! outlet mark {}))
   ([outlet mark opts]
    (let [{:keys [refused reason ok gate-refused fetch-error]} (live-fetch/fetch-outlet! outlet)]
      (cond
        refused {:outlet (:id outlet) :refused true :reason reason :new-mark mark}
        fetch-error {:outlet (:id outlet) :fetch-error fetch-error :new-mark mark}
-       :else (assoc (process-outlet-records! outlet ok mark opts)
-                    :gate-refused (count gate-refused))))))
+       :else (merge (process-outlet-records! outlet ok mark opts)
+                    {:gate-refused (count gate-refused)}
+                    (archive-records! (get opts :articles-dir default-articles-dir) ok))))))
 
 (defn load-last-seen [path]
   (let [f (io/file path)]
@@ -846,11 +883,18 @@
               :max-outlets (if-let [v (System/getenv "KAWARABAN_WASM_MAX_OUTLETS")]
                              (Integer/parseInt v) default-max-outlets)
               :max-articles-per-outlet (if-let [v (System/getenv "KAWARABAN_WASM_MAX_ARTICLES_PER_OUTLET")]
-                                         (Integer/parseInt v) default-max-articles-per-outlet)}
+                                         (Integer/parseInt v) default-max-articles-per-outlet)
+              ;; [ADR-2607252600] Local datom archive. KAWARABAN_ARTICLES_DIR="" disables it
+              ;; (publish-only run); unset = the in-repo default.
+              :articles-dir (let [v (System/getenv "KAWARABAN_ARTICLES_DIR")]
+                              (cond (nil? v) default-articles-dir
+                                    (str/blank? v) nil
+                                    :else v))}
         results (run-all! allowlist-path last-seen-path opts
                            (fn [r] (println (pr-str r)) (flush)))
         errors (filter #(or (:error %) (:fetch-error %) (seq (:errors %))) results)]
     (println (str "kawaraban wasm-orchestrator: " (count results) " outlets, "
+                   (reduce + 0 (map #(or (:archived %) 0) results)) " archived, "
                    (reduce + 0 (map #(or (:published %) 0) results)) " published, "
                    (reduce + 0 (map #(or (:session-refused %) 0) results)) " session-refused, "
                    (count errors) " with errors"))
