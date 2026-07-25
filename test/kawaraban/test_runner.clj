@@ -5,6 +5,7 @@
             [kawaraban.publish-test]
             [kawaraban.publisher-test]
             [kawaraban.run-live-ingest-test]
+            [kawaraban.store-test]
             [kawaraban.cells.test-state-machine]
             [kawaraban.methods.test-analyze]
             [kawaraban.methods.test-charter-gates]
@@ -18,6 +19,7 @@
     kawaraban.publish-test
     kawaraban.publisher-test
     kawaraban.run-live-ingest-test
+    kawaraban.store-test
     kawaraban.cells.test-state-machine
     kawaraban.methods.test-analyze
     kawaraban.methods.test-charter-gates

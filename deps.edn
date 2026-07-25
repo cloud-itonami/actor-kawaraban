@@ -20,11 +20,22 @@
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
-                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}
+                      ;; [ADR-2607252600] store_test round-trips the archive through the
+                      ;; SAME DataScript the :query alias uses — asserting that the files
+                      ;; parse is not enough; the schema must actually transact them.
+                      datascript/datascript {:mvn/version "1.7.4"}}
          :main-opts ["-m" "cognitect.test-runner"]}
   :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
          :main-opts    ["-m" "clj-kondo.main" "--lint" "src" "test" "--fail-level" "error"]}
   :live-ingest {:main-opts ["-m" "kawaraban.run-live-ingest"]}
+  ;; [com-junkawasaki/root ADR-2607252600] datalog over the local mirror archive
+  ;; (`data/articles/*.edn` + `schema/news.edn`). DataScript rather than Datomic:
+  ;; the archive is a file-backed EDN corpus with no transactor, and the schema is
+  ;; written to transact unchanged into either. Only the READ path needs this dep,
+  ;; so it stays an alias — the launchd orchestrator's classpath is unaffected.
+  :query {:extra-deps {datascript/datascript {:mvn/version "1.7.4"}}
+          :main-opts ["-m" "kawaraban.query"]}
   ;; Phase G (com-junkawasaki/root): the wasm-path orchestrator's own
   ;; entrypoint (fetch -> G1/G3/G4/G8 gate -> per-outlet identity + CACAO
   ;; sign + aozora XRPC publish, all via kotoba-wasm/kototama.tender --

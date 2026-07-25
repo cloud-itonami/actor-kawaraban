@@ -31,6 +31,10 @@
    ["personalizedFor" "G3 (no per-reader feed)"]
    ["readerId" "G3 (no reader surveillance)"]])
 (def OPEN-ACCESS #{"open" "registration-wall"})
+(def SOURCING
+  "G5 — mirror of data/lex/article.edn's `sourcing` enum. \"verified\" = actually
+  fetched from the outlet's own feed; \"representative\" = illustrative (data/seed.edn)."
+  #{"representative" "verified"})
 
 ;; ── minimal JSON reader (subset sufficient for ingest batches) ────────────────
 ;; maps string-keyed, integers → long, literals → true/false/nil — Python json.loads shapes.
@@ -169,7 +173,19 @@
        ":news.article/excerpt" excerpt
        ":news.article/lang" (get rec "lang" "en")
        ":news.article/as-of" (to-int (get rec "asOf" 0))
-       ":news.article/sourcing" ":representative"
+       ;; G5 — provenance must not lie in either direction. A record fetched from the
+       ;; outlet's OWN feed is "verified"; an illustrative/offline batch record stays
+       ;; "representative" (the default, so every pre-existing caller is unchanged).
+       ;; Enum mirrors data/lex/article.edn's `sourcing` — anything else is refused
+       ;; rather than silently written through.
+       ":news.article/sourcing" (let [s (get rec "sourcing" "representative")]
+                                  (if (contains? SOURCING s)
+                                    (str ":" s)
+                                    (throw (ex-info (str oid ": sourcing " (pr-str s)
+                                                         " is not in the lexicon enum "
+                                                         (pr-str (vec (sort SOURCING)))
+                                                         " — G5 source-provenance-honest")
+                                                    {}))))
        "_excerpt_truncated" truncated})))
 
 (defn normalize-batch

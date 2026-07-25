@@ -1,0 +1,141 @@
+;; schema/news.edn — kawaraban 瓦版 :news.* attribute schema (Datomic / DataScript 互換)
+;; ============================================================================
+;; ADR-2607110200 (kawaraban R0→R1) の :news.* datom 形に対する、実際に transact
+;; できる属性定義。`data/seed.edn` と `data/articles/YYYY-MM-DD.edn`（live mirror
+;; archive、`kawaraban.store` が書く）の両方がこのスキーマで読める。
+;;
+;; 形式は `schema/publish.edn` と同じ **Datomic 形（:db/ident map の vector）**。
+;; DataScript は `{attr {…}}` の map 形を要求するので、ローダ側で変換する
+;; （`scripts/query.cljs` の `->datascript-schema` が正）。Datomic 固有キー
+;; （:db.install/_attribute 等）は使わない。
+;;
+;; ── 参照は ref ではなく「id 文字列」である（意図的）─────────────────────────
+;; :news.article/outlet は `"outlet.bbc-world"` という **文字列**であり
+;; :db.type/ref ではない。これは lexicon（data/lex/article.edn の
+;; `outlet {"type":"string"}`）と 1:1 で対応させるための設計で、AT-Proto
+;; record ↔ datom を往復させても参照が壊れない。join は id 属性経由で書く:
+;;
+;;   [:find ?headline ?country
+;;    :where [?a :news.article/headline ?headline]
+;;           [?a :news.article/outlet ?oid]
+;;           [?o :news.outlet/id ?oid]
+;;           [?o :news.outlet/country ?country]]
+;;
+;; ── G ゲートは「属性が存在しないこと」で表現される ─────────────────────────
+;; :news.article/full-text · /verdict · /truth-rating · /personalized-for ·
+;; /speak-as に相当する属性は **このスキーマに1つも無い**。CLAUDE.md の
+;; 「touch one, touch all three」に対する schema 側の答えは、値を false に
+;; 固定することではなく **属性そのものを不在にする**こと — 未定義属性を
+;; transact すれば Datomic は :db.error/not-an-entity で拒否し、DataScript も
+;; :db/valueType 無しの ref join を解決できない。G1/G3/G4/G9 はしたがって
+;; 「書けるが false」ではなく「書けない」。lexicon 側（data/lex/article.edn）は
+;; AT-Proto の型システム上 const false で表現するしかないので、そちらは
+;; const false のまま — 二重表現ではなく、それぞれの型システムで最も強い形。
+;;
+;; :news.article/kind の enum は {:mirror :actor-event} のみ（G11 — :original は
+;; 存在しない）、:news.outlet/access は {:open :registration-wall} のみ
+;; （G4 — :paywall / :proprietary-terminal は存在しない）。Datomic/DataScript は
+;; keyword の値域を宣言できないので、この不変条件の強制は lexicon enum と
+;; `kawaraban.methods.ingest` の refusal が担う（3箇所のうちの残り2つ）。
+
+[;; ── OUTLET ───────────────────────────────────────────────────────────────
+ #:db{:ident       :news.outlet/id
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :unique      :db.unique/identity
+      :doc         "\"outlet.bbc-world\" — data/outlets/allowlist.edn の :id と同一。article からは :news.article/outlet が文字列でこれを指す。"}
+ #:db{:ident :news.outlet/name :valueType :db.type/string :cardinality :db.cardinality/one}
+ #:db{:ident       :news.outlet/country
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "ISO 3166-1 alpha-2、ただし国に属さない国際機関は \"INT\"（UN/WHO 等）。"}
+ #:db{:ident       :news.outlet/lang
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/many
+      :doc         "BCP-47 の言語 subtag。1媒体が複数言語版を出すので cardinality/many。"}
+ #:db{:ident       :news.outlet/kind
+      :valueType   :db.type/keyword
+      :cardinality :db.cardinality/one
+      :doc         "lexicon enum: :public-broadcaster :wire-agency :newspaper :magazine :digital-native :ngo-press"}
+ #:db{:ident :news.outlet/homepage :valueType :db.type/string :cardinality :db.cardinality/one}
+ #:db{:ident       :news.outlet/access
+      :valueType   :db.type/keyword
+      :cardinality :db.cardinality/one
+      :doc         "G4 INVARIANT — :open | :registration-wall のみ。:paywall / :proprietary-terminal は lexicon enum に無く、ingest が refuse する。"}
+ #:db{:ident       :news.outlet/sourcing
+      :valueType   :db.type/keyword
+      :cardinality :db.cardinality/one
+      :doc         "G5 — :representative（説明用の例示。実在の取得結果ではない）| :verified（実際に取得・確認した）。"}
+
+ ;; ── SECTION（面）──────────────────────────────────────────────────────────
+ #:db{:ident       :news.section/id
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :unique      :db.unique/identity}
+ #:db{:ident :news.section/men     :valueType :db.type/keyword :cardinality :db.cardinality/one :doc "面の識別子（:front :politics …）。"}
+ #:db{:ident :news.section/name-ja :valueType :db.type/string  :cardinality :db.cardinality/one}
+ #:db{:ident :news.section/name-en :valueType :db.type/string  :cardinality :db.cardinality/one}
+
+ ;; ── ARTICLE ──────────────────────────────────────────────────────────────
+ #:db{:ident       :news.article/id
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :unique      :db.unique/identity
+      :doc         "upsert 鍵。同じ記事を別 tick で再取得しても行が増えないのはこの :db.unique/identity による（`kawaraban.store/merge-articles` のファイル側 dedupe と同じ規則を DB 側でも保証する）。"}
+ #:db{:ident       :news.article/kind
+      :valueType   :db.type/keyword
+      :cardinality :db.cardinality/one
+      :doc         "G11 INVARIANT — :mirror（実在媒体の公開ページ。:outlet + :url 必須）| :actor-event（第一者 Datom の面への射影。:source-actor + :source-tid 必須）。:original は存在しない（kawaraban は medium であって source ではない）。"}
+ #:db{:ident       :news.article/section
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "→ :news.section/id（文字列 join）。"}
+ #:db{:ident       :news.article/outlet
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "→ :news.outlet/id（文字列 join）。:mirror でのみ必須。"}
+ #:db{:ident       :news.article/url
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "G4 — canonical link-out。本文は決して保存しない。"}
+ #:db{:ident :news.article/headline :valueType :db.type/string :cardinality :db.cardinality/one}
+ #:db{:ident       :news.article/excerpt
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "G4 — 280 字上限の引用のみ（ingest/normalize-record が切り詰める）。"}
+ #:db{:ident :news.article/lang :valueType :db.type/string :cardinality :db.cardinality/one}
+ #:db{:ident       :news.article/as-of
+      :valueType   :db.type/long
+      :cardinality :db.cardinality/one
+      :doc         "epoch 秒。append-only — 最新が現在、流れ全体が痕跡（非終末論）。"}
+ #:db{:ident       :news.article/sourcing
+      :valueType   :db.type/keyword
+      :cardinality :db.cardinality/one
+      :doc         "G5 — :verified は「その媒体自身の feed から実際に取得した」の意（live 経路）。:representative は data/seed.edn の例示（実在の記事ではない）。この2つを混同させないことが G5 の実体。"}
+ #:db{:ident       :news.article/source-actor
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         ":actor-event でのみ。did:web の第一者 actor。"}
+ #:db{:ident       :news.article/source-tid
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         ":actor-event でのみ。元 Datom の tid（provenance）。"}
+
+ ;; ── MENTION EDGE（actor 間の連結線）───────────────────────────────────────
+ #:db{:ident       :news.mention/id
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :unique      :db.unique/identity}
+ #:db{:ident :news.mention/article     :valueType :db.type/string  :cardinality :db.cardinality/one :doc "→ :news.article/id（文字列 join）。"}
+ #:db{:ident :news.mention/target      :valueType :db.type/string  :cardinality :db.cardinality/one}
+ #:db{:ident :news.mention/target-kind :valueType :db.type/keyword :cardinality :db.cardinality/one :doc ":actor | :entity"}
+ #:db{:ident :news.mention/role        :valueType :db.type/keyword :cardinality :db.cardinality/one :doc ":subject | :mentioned | :affected | :responding"}
+
+ ;; ── ACTOR → 面 WIRE（連結媒体としての配線表）──────────────────────────────
+ #:db{:ident       :news.wire/id
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :unique      :db.unique/identity}
+ #:db{:ident :news.wire/actor   :valueType :db.type/string :cardinality :db.cardinality/one}
+ #:db{:ident :news.wire/section :valueType :db.type/string :cardinality :db.cardinality/one :doc "→ :news.section/id（文字列 join）。"}
+ #:db{:ident :news.wire/basis   :valueType :db.type/string :cardinality :db.cardinality/one :doc "G5 — なぜこの actor がこの面に流れるかの正直な根拠。"}]
