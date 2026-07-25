@@ -23,6 +23,14 @@
      :asOf        {:type "integer" :description "epoch — append-only; latest = current, the stream = the trail (非終末論)"}
      :sourcing    {:type "string" :enum ["representative" "verified"]}
      ;; ── structural-invariant fields: const false / forbidden ──
+     ;; ADR-2607253000 — owner instruction 2026-07-25「公人は記録して ok」。署名記事の
+     ;; byline は、媒体自身がその公開ページに載せている公表済みメタデータであり、
+     ;; 職業上の公的役割における氏名にあたる。ここに保持するのは媒体が出した署名
+     ;; 文字列だけで、その人物の連絡先・経歴・所属・他記事との横断プロファイルは
+     ;; 一切持たない（それは G3 の読者非追跡と同型の、人物を追跡しないという制約）。
+     ;; 署名が無い記事は単にこの属性を持たない — 空文字や "unknown" で埋めない。
+     :byline            {:type "string" :maxLength 200
+                         :description "the byline as published by the outlet (RSS dc:creator / Atom author). Public professional attribution only — no contact details, no biography, no cross-article person profile."}
      :verdict           {:type "boolean" :const false :description "G1 — kawaraban never rules a report true/false (ake/danjo boundary)"}
      :truthRating       {:type "integer" :const 0     :description "G1 — no fact-check score; mirror, not adjudicator"}
      :fullText          {:type "boolean" :const false :description "G4 — copyright; full body is unrepresentable (headline+link+excerpt only)"}

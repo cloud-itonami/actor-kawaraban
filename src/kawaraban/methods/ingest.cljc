@@ -161,8 +161,15 @@
       (throw (ex-info (str oid ": a :mirror article requires a canonical :url (G4/G5 link-out)") {})))
     (let [raw-excerpt (or (get rec "excerpt") "")
           excerpt (subs raw-excerpt 0 (min 280 (count raw-excerpt)))
-          truncated (> (count raw-excerpt) 280)]
-      {":news.article/id" (if (truthy? (get rec "id"))
+          truncated (> (count raw-excerpt) 280)
+          ;; ADR-2607253000 — 媒体が公開した署名だけを、lexicon の maxLength 200 に
+          ;; 収めて持つ。空文字は属性ごと落とす: 「署名が無い記事」と「署名が空だった
+          ;; 記事」を同じ形にすると、後者が前者に化ける。
+          raw-byline (or (get rec "byline") "")
+          byline (when (seq (str/trim raw-byline))
+                   (let [b (str/trim raw-byline)]
+                     (subs b 0 (min 200 (count b)))))]
+      (cond-> {":news.article/id" (if (truthy? (get rec "id"))
                             (get rec "id")
                             (str "art." oid "." (get rec "asOf" 0)))
        ":news.article/kind" ":mirror"
@@ -186,7 +193,8 @@
                                                          (pr-str (vec (sort SOURCING)))
                                                          " — G5 source-provenance-honest")
                                                     {}))))
-       "_excerpt_truncated" truncated})))
+       "_excerpt_truncated" truncated}
+        byline (assoc ":news.article/byline" byline)))))
 
 (defn normalize-batch
   "Returns [ok refused] — refused records are reported, never silently dropped (G5).

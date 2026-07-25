@@ -170,6 +170,66 @@
         {}
         by-day))))
 
+;; ── outlet registry → :news.outlet/* datoms ─────────────────────────────────
+;; ADR-2607253000. `data/outlets/allowlist.edn` は「どの feed を取りに行ってよいか」
+;; の **policy** ファイルであって :news.outlet/* datom ではない。allowlist の header は
+;; 「entry を足したら outlet_ingest cell 経由で :news.outlet/* を作れ」と書いているが、
+;; その cell は R0 scaffold（solve が RuntimeError）で、live ingest も outlet datom を
+;; 作らない。結果として article は溜まるのに outlet が空で、article→outlet→country の
+;; join が引けなかった。
+;;
+;; ここでは **生成ファイルを増やさず allowlist から直接射影する**。allowlist が唯一の
+;; 正本であり続けるので、両者がずれる余地そのものが無い（生成物を置くと、その同期が
+;; 新しい仕事として増える）。
+;;
+;; lexicon の :news.outlet/* と、kawaraban 固有の取得ポリシー
+;; (:kawaraban.ingest/*) は分けている。feed-url / verified / note は「その媒体が
+;; どういう存在か」ではなく「kawaraban がその媒体をどう取りに行くか」なので、
+;; AT-Proto に publish される outlet record に混ぜない。
+
+(def ^:private outlet-key->attr
+  {:id :news.outlet/id
+   :name :news.outlet/name
+   :kind :news.outlet/kind
+   :country :news.outlet/country
+   :lang :news.outlet/lang
+   :access :news.outlet/access
+   :homepage :news.outlet/homepage})
+
+(defn outlet-datom
+  "allowlist の 1 entry → :news.outlet/* datom（+ :kawaraban.ingest/* の取得ポリシー）。
+
+  `:news.outlet/sourcing` は allowlist の `:verified` から引く: feed を実際に取得
+  できた媒体は `:verified`、確認できなかった媒体は `:representative`。lexicon の enum
+  はこの2値しか持たないので第3の値は作らない。根拠が『feed が items を返した』で
+  あることは `:kawaraban.ingest/note` に日付つきで残っているので、この 1 bit を
+  それ以上の意味に読まないこと。"
+  [entry]
+  (let [base (reduce-kv (fn [m k attr]
+                          (if-let [v (get entry k)]
+                            (assoc m attr (if (contains? keyword-valued attr)
+                                            (keyword v)
+                                            v))
+                            m))
+                        {}
+                        outlet-key->attr)]
+    (cond-> (assoc base :news.outlet/sourcing (if (:verified entry) :verified :representative)
+                        :kawaraban.ingest/verified (boolean (:verified entry)))
+      (:feed-url entry) (assoc :kawaraban.ingest/feed-url (:feed-url entry))
+      (:section entry) (assoc :kawaraban.ingest/section (:section entry))
+      (:note entry) (assoc :kawaraban.ingest/note (:note entry)))))
+
+(defn outlet-datoms [allowlist] (mapv outlet-datom allowlist))
+
+#?(:clj
+   (defn load-outlets
+     "allowlist EDN を読んで :news.outlet/* datom 列にする。ファイルが無ければ []。"
+     [path]
+     (let [f (io/file path)]
+       (if (.exists f)
+         (outlet-datoms (edn/read-string (slurp f)))
+         []))))
+
 #?(:clj
    (defn load-archive
      "`dir` 配下の全日次ファイルを読み、1本の datom 列にする（query ローダ用）。"
