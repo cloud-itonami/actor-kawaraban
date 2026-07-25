@@ -77,6 +77,31 @@
         (unescape-xml (second m)))
       (self-closing-attr block "link" "href")))
 
+;; ── byline (ADR-2607253000) ─────────────────────────────────────────────────
+
+(defn rss-byline
+  "RSS の署名。`dc:creator` を優先し、無ければ `author`。
+
+  RSS 2.0 の `<author>` は仕様上メールアドレス（`a@b.com (Name)`）なので、括弧内の
+  表示名が有れば **そちらだけ**を採る。連絡先を残さないため — 記録するのは公表された
+  署名であって、その人への連絡手段ではない。括弧が無く `@` を含むだけの値は捨てる。"
+  [block]
+  (let [raw (or (first-tag-text block "dc:creator") (first-tag-text block "author"))]
+    (when (seq (str/trim (or raw "")))
+      (let [s (str/trim raw)]
+        (cond
+          (re-find #"\(([^)]+)\)" s) (str/trim (second (re-find #"\(([^)]+)\)" s)))
+          (str/includes? s "@") nil
+          :else s)))))
+
+(defn atom-byline
+  "Atom の `<author><name>…</name></author>`。`<author>` ブロック内の `<name>` に限る
+  （`<contributor><name>` を著者と取り違えないため）。"
+  [block]
+  (when-let [author (first (blocks block "author"))]
+    (let [n (first-tag-text author "name")]
+      (when (seq (str/trim (or n ""))) (str/trim n)))))
+
 ;; ── RFC-822 / ISO-8601 pubDate → epoch seconds (best-effort, no timezone db) ─
 
 (def ^:private months
@@ -125,7 +150,10 @@
    ;; G5 — this came off the outlet's OWN feed, so it is not the illustrative
    ;; ":representative" data/seed.edn shape. ingest/normalize-record maps this to
    ;; :news.article/sourcing :verified (ADR-2607252600).
-   "sourcing" "verified"})
+   "sourcing" "verified"
+   ;; ADR-2607253000 — nil when the feed carries no byline; ingest drops the attribute
+   ;; entirely rather than storing "".
+   "byline"   (rss-byline block)})
 
 (defn atom-entry->record
   "One Atom `<entry>` block -> the ingest.cljc input-record shape."
@@ -139,7 +167,9 @@
    "asOf"     (parse-date->epoch (or (first-tag-text block "published") (first-tag-text block "updated")))
    "access"   "open"
    ;; G5 — see rss-item->record.
-   "sourcing" "verified"})
+   "sourcing" "verified"
+   ;; ADR-2607253000 — see rss-item->record.
+   "byline"   (atom-byline block)})
 
 (defn parse-feed
   "Parse RSS 2.0, RSS 1.0/RDF, or Atom 1.0 XML text into a vector of ingest-record maps for

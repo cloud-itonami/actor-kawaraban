@@ -8,6 +8,7 @@
             [clojure.test :refer [deftest is testing]]
             [datascript.core :as d]
             [kawaraban.methods.ingest :as ingest]
+            [kawaraban.methods.live-fetch :as live-fetch]
             [kawaraban.query :as query]
             [kawaraban.store :as store]))
 
@@ -151,15 +152,19 @@
           (testing "seed is excluded by default, so counts are real coverage not illustration"
             (is (zero? (:seed counts))))
           (testing "the outlet registry joins in from the archive's own outlet-id strings"
-            ;; The archive holds only articles; outlets come from --seed or a separate
-            ;; transact, so a bare archive join yields nothing — this asserts the join
-            ;; SHAPE compiles and returns empty rather than throwing.
-            (is (= #{} (set (d/q '[:find ?country
-                                                 :where
-                                                 [?a :news.article/outlet ?oid]
-                                                 [?o :news.outlet/id ?oid]
-                                                 [?o :news.outlet/country ?country]]
-                                               db)))))
+            ;; ADR-2607253000 replaced this assertion's original form. It used to assert
+            ;; the join returned EMPTY, because outlets were never loaded: the allowlist
+            ;; is a policy file, and the outlet_ingest cell meant to turn it into
+            ;; :news.outlet/* datoms is an R0 scaffold whose solve throws. load-db now
+            ;; projects the allowlist directly, so the join resolves to the real countries
+            ;; of the outlets these fixture articles came from.
+            (is (= #{["GB"] ["DE"]}
+                   (set (d/q '[:find ?country
+                               :where
+                               [?a :news.article/outlet ?oid]
+                               [?o :news.outlet/id ?oid]
+                               [?o :news.outlet/country ?country]]
+                             db)))))
           (testing "counting by outlet works directly off the archive"
             (is (= #{["outlet.bbc-world" 2] ["outlet.dw" 1]}
                    (set (d/q '[:find ?oid (count ?a)
@@ -183,3 +188,86 @@
           (is (= 7 (d/q '[:find (count ?a) . :where [?a :news.article/kind :mirror]] db)))
           (is (= 10 (d/q '[:find (count ?s) . :where [?s :news.section/id]] db)))))
       (finally (delete-tree! dir)))))
+
+;; ── outlet registry projection + byline（ADR-2607253000）─────────────────────
+
+(deftest allowlist-projects-to-news-outlet-datoms
+  (let [entry {:id "outlet.x" :name "X Broadcasting" :kind "public-broadcaster"
+               :country "ZZ" :lang ["en" "fr"] :access "open"
+               :homepage "https://x.example" :feed-url "https://x.example/rss"
+               :verified true :section "sec.international" :note "verify-feeds 2026-07-25: HTTP 200, rss, 20 items."}
+        d (store/outlet-datom entry)]
+    (testing "lexicon fields become :news.outlet/* with keyword enums"
+      (is (= "outlet.x" (:news.outlet/id d)))
+      (is (= :public-broadcaster (:news.outlet/kind d)))
+      (is (= :open (:news.outlet/access d)))
+      (is (= ["en" "fr"] (:news.outlet/lang d))))
+    (testing "ingest policy stays OUT of the publishable outlet record"
+      (is (= "https://x.example/rss" (:kawaraban.ingest/feed-url d)))
+      (is (true? (:kawaraban.ingest/verified d)))
+      (is (nil? (:news.outlet/feed-url d)))
+      (is (nil? (:news.outlet/verified d))))
+    (testing "sourcing reflects the feed measurement"
+      (is (= :verified (:news.outlet/sourcing d)))
+      (is (= :representative (:news.outlet/sourcing (store/outlet-datom (assoc entry :verified false))))))))
+
+(deftest query-joins-articles-to-outlets-for-real
+  (testing "the join that was empty in ADR-2607252600 now resolves"
+    (let [dir (tmp-dir!)]
+      (try
+        (let [[ok _] (ingest/normalize-batch
+                      [(raw-record {:id "art.1" :outlet "outlet.bbc-world" :as-of jul-20
+                                    :headline "one" :sourcing "verified"})])]
+          (store/append-articles! dir ok)
+          (let [{:keys [db counts]} (query/load-db {:schema-path "schema/news.edn"
+                                                    :articles-dir dir
+                                                    :seed-path "data/seed.edn"
+                                                    :include-seed? false
+                                                    :allowlist-path "data/outlets/allowlist.edn"})]
+            (is (pos? (:outlets counts)))
+            (is (= #{["GB"]} (set (d/q '[:find ?country
+                                         :where
+                                         [?a :news.article/outlet ?oid]
+                                         [?o :news.outlet/id ?oid]
+                                         [?o :news.outlet/country ?country]]
+                                       db))))
+            (testing "feed-verified outlets are countable per country"
+              (is (pos? (count (d/q '[:find ?c
+                                      :where [?o :kawaraban.ingest/verified true]
+                                             [?o :news.outlet/country ?c]]
+                                    db)))))))
+        (finally (delete-tree! dir))))))
+
+(deftest byline-is-recorded-when-the-outlet-published-one
+  (testing "a published byline is kept, bounded to the lexicon maxLength"
+    (let [[[rec] _] (ingest/normalize-batch
+                     [(assoc (raw-record {:id "art.b1" :outlet "outlet.x" :as-of jul-20
+                                          :headline "H" :sourcing "verified"})
+                             "byline" "  Jane Doe  ")])]
+      (is (= "Jane Doe" (:news.article/byline (store/datomize rec))))))
+  (testing "no byline means the attribute is ABSENT, not empty-string"
+    (let [[[rec] _] (ingest/normalize-batch
+                     [(assoc (raw-record {:id "art.b2" :outlet "outlet.x" :as-of jul-20
+                                          :headline "H" :sourcing "verified"})
+                             "byline" "   ")])]
+      (is (not (contains? (store/datomize rec) :news.article/byline)))))
+  (testing "over-long bylines are truncated to 200 chars (lexicon maxLength)"
+    (let [[[rec] _] (ingest/normalize-batch
+                     [(assoc (raw-record {:id "art.b3" :outlet "outlet.x" :as-of jul-20
+                                          :headline "H" :sourcing "verified"})
+                             "byline" (apply str (repeat 500 "x")))])]
+      (is (= 200 (count (:news.article/byline (store/datomize rec))))))))
+
+(deftest byline-extraction-drops-contact-details
+  (testing "RSS dc:creator is preferred"
+    (is (= "Jane Doe" (live-fetch/rss-byline "<item><dc:creator>Jane Doe</dc:creator><author>x@y.com</author></item>"))))
+  (testing "RSS 2.0 author is an email address — only the display name is kept"
+    (is (= "Jane Doe" (live-fetch/rss-byline "<item><author>jane@example.com (Jane Doe)</author></item>")))
+    (testing "a bare address with no display name is dropped rather than stored as a contact"
+      (is (nil? (live-fetch/rss-byline "<item><author>jane@example.com</author></item>")))))
+  (testing "Atom takes author/name, not contributor/name"
+    (is (= "Jane Doe" (live-fetch/atom-byline "<entry><author><name>Jane Doe</name></author><contributor><name>Someone Else</name></contributor></entry>")))
+    (is (nil? (live-fetch/atom-byline "<entry><contributor><name>Someone Else</name></contributor></entry>"))))
+  (testing "a feed with no byline yields nil, so ingest omits the attribute"
+    (is (nil? (live-fetch/rss-byline "<item><title>t</title></item>")))
+    (is (nil? (live-fetch/atom-byline "<entry><title>t</title></entry>")))))

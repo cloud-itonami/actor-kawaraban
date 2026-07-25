@@ -1,86 +1,103 @@
 {
-  "lexicon" : 1,
-  "id" : "com.etzhayyim.kawaraban.article",
-  "defs" : {
-    "main" : {
-      "type" : "record",
-      "key" : "tid",
-      "record" : {
-        "type" : "object",
-        "required" : [ "articleId", "kind", "section", "headline", "asOf" ],
-        "properties" : {
-          "lang" : {
-            "type" : "string"
+  "lexicon": 1,
+  "id": "com.etzhayyim.kawaraban.article",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "articleId",
+          "kind",
+          "section",
+          "headline",
+          "asOf"
+        ],
+        "properties": {
+          "lang": {
+            "type": "string"
           },
-          "url" : {
-            "type" : "string",
-            "description" : "canonical link-out (required when kind='mirror')"
+          "url": {
+            "type": "string",
+            "description": "canonical link-out (required when kind='mirror')"
           },
-          "sourcing" : {
-            "type" : "string",
-            "enum" : [ "representative", "verified" ]
+          "sourcing": {
+            "type": "string",
+            "enum": [
+              "representative",
+              "verified"
+            ]
           },
-          "sourceTid" : {
-            "type" : "string",
-            "description" : "the source Datom tid (required when kind='actor-event') — provenance back to the canonical event"
+          "sourceTid": {
+            "type": "string",
+            "description": "the source Datom tid (required when kind='actor-event') — provenance back to the canonical event"
           },
-          "articleId" : {
-            "type" : "string",
-            "description" : "→ :news.article/id"
+          "articleId": {
+            "type": "string",
+            "description": "→ :news.article/id"
           },
-          "outlet" : {
-            "type" : "string",
-            "description" : "→ :news.outlet/id (required when kind='mirror')"
+          "outlet": {
+            "type": "string",
+            "description": "→ :news.outlet/id (required when kind='mirror')"
           },
-          "verdict" : {
-            "type" : "boolean",
-            "const" : false,
-            "description" : "G1 — kawaraban never rules a report true/false (ake/danjo boundary)"
+          "verdict": {
+            "type": "boolean",
+            "const": false,
+            "description": "G1 — kawaraban never rules a report true/false (ake/danjo boundary)"
           },
-          "section" : {
-            "type" : "string",
-            "description" : "→ :news.section/id (the 面)"
+          "section": {
+            "type": "string",
+            "description": "→ :news.section/id (the 面)"
           },
-          "fullText" : {
-            "type" : "boolean",
-            "const" : false,
-            "description" : "G4 — copyright; full body is unrepresentable (headline+link+excerpt only)"
+          "fullText": {
+            "type": "boolean",
+            "const": false,
+            "description": "G4 — copyright; full body is unrepresentable (headline+link+excerpt only)"
           },
-          "asOf" : {
-            "type" : "integer",
-            "description" : "epoch — append-only; latest = current, the stream = the trail (非終末論)"
+          "asOf": {
+            "type": "integer",
+            "description": "epoch — append-only; latest = current, the stream = the trail (非終末論)"
           },
-          "kind" : {
-            "type" : "string",
-            "enum" : [ "mirror", "actor-event" ],
-            "description" : "G11 INVARIANT — 'mirror' (real outlet, requires outlet+url) OR 'actor-event' (projected first-party Datom, requires sourceActor+sourceTid). 'original' is NOT an enum member: kawaraban is a medium, not a source"
+          "kind": {
+            "type": "string",
+            "enum": [
+              "mirror",
+              "actor-event"
+            ],
+            "description": "G11 INVARIANT — 'mirror' (real outlet, requires outlet+url) OR 'actor-event' (projected first-party Datom, requires sourceActor+sourceTid). 'original' is NOT an enum member: kawaraban is a medium, not a source"
           },
-          "speakAs" : {
-            "type" : "boolean",
-            "const" : false,
-            "description" : "G9 — never post AS an outlet or AS another actor (mirror invariant, ADR-2606042330)"
+          "speakAs": {
+            "type": "boolean",
+            "const": false,
+            "description": "G9 — never post AS an outlet or AS another actor (mirror invariant, ADR-2606042330)"
           },
-          "sourceActor" : {
-            "type" : "string",
-            "description" : "did:web actor (required when kind='actor-event')"
+          "sourceActor": {
+            "type": "string",
+            "description": "did:web actor (required when kind='actor-event')"
           },
-          "personalizedFor" : {
-            "type" : "boolean",
-            "const" : false,
-            "description" : "G3 — the 面 is identical for all readers; no per-reader feed"
+          "personalizedFor": {
+            "type": "boolean",
+            "const": false,
+            "description": "G3 — the 面 is identical for all readers; no per-reader feed"
           },
-          "truthRating" : {
-            "type" : "integer",
-            "const" : 0,
-            "description" : "G1 — no fact-check score; mirror, not adjudicator"
+          "truthRating": {
+            "type": "integer",
+            "const": 0,
+            "description": "G1 — no fact-check score; mirror, not adjudicator"
           },
-          "excerpt" : {
-            "type" : "string",
-            "maxLength" : 280,
-            "description" : "G4 — bounded fair-use quotation only; the full body is NEVER stored (see fullText below)"
+          "excerpt": {
+            "type": "string",
+            "maxLength": 280,
+            "description": "G4 — bounded fair-use quotation only; the full body is NEVER stored (see fullText below)"
           },
-          "headline" : {
-            "type" : "string"
+          "headline": {
+            "type": "string"
+          },
+          "byline": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "the byline as published by the outlet (RSS dc:creator / Atom author). Public professional attribution only — no contact details, no biography, no cross-article person profile. ADR-2607253000"
           }
         }
       }

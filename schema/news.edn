@@ -103,6 +103,10 @@
       :valueType   :db.type/string
       :cardinality :db.cardinality/one
       :doc         "G4 — 280 字上限の引用のみ（ingest/normalize-record が切り詰める）。"}
+ #:db{:ident       :news.article/byline
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "媒体自身が公開ページに載せた署名（RSS dc:creator / Atom author）。ADR-2607253000（owner 指示「公人は記録して ok」2026-07-25）。**公表済みの職業上の帰属だけ**を持ち、連絡先・経歴・所属・記事横断の人物プロファイルは持たない。署名の無い記事はこの属性を持たない（空文字や \"unknown\" で埋めない — 無いことと不明なことを区別する）。"}
  #:db{:ident :news.article/lang :valueType :db.type/string :cardinality :db.cardinality/one}
  #:db{:ident       :news.article/as-of
       :valueType   :db.type/long

@@ -53,19 +53,30 @@
           datomic-schema))
 
 (defn load-db
-  "スキーマ + 記事アーカイブ（+ 任意で seed）を DataScript DB にする。
-  戻り値 {:db … :counts {:archive n :seed n}}。"
-  [{:keys [schema-path articles-dir seed-path include-seed?]}]
+  "スキーマ + outlet registry + 記事アーカイブ（+ 任意で seed）を DataScript DB にする。
+  戻り値 {:db … :counts {:outlets n :archive n :seed n}}。
+
+  outlet は `data/outlets/allowlist.edn` から **その場で射影**する（ADR-2607253000）。
+  生成ファイルを挟まないので allowlist と outlet entity がずれない。これが無いと
+  article→outlet→country の join が空になる（allowlist は policy ファイルであって
+  :news.outlet/* datom ではなく、それを作るはずの outlet_ingest cell は R0 scaffold
+  のままだったため — 実際 ADR-2607252600 の時点でこの join は何も返さなかった）。"
+  [{:keys [schema-path articles-dir seed-path include-seed? allowlist-path]}]
   (let [schema (->datascript-schema (edn/read-string (slurp schema-path)))
+        outlets (store/load-outlets (or allowlist-path "data/outlets/allowlist.edn"))
         archive (store/load-archive articles-dir)
         seed (if (and include-seed? (.exists (io/file seed-path)))
                (edn/read-string (slurp seed-path))
                [])
         conn (d/create-conn schema)]
+    ;; outlet を先に入れる。seed も :news.outlet/id を持つので、:db.unique/identity に
+    ;; より同じ id は upsert され行が二重にならない（seed の NHK と allowlist の NHK は
+    ;; 別 id なので実際には衝突しないが、将来揃えたときに壊れない順序にしておく）。
+    (when (seq outlets) (d/transact! conn (vec outlets)))
     (when (seq archive) (d/transact! conn (vec archive)))
     (when (seq seed) (d/transact! conn (vec seed)))
     {:db (d/db conn)
-     :counts {:archive (count archive) :seed (count seed)}}))
+     :counts {:outlets (count outlets) :archive (count archive) :seed (count seed)}}))
 
 (def ^:private coverage-q
   '[:find ?country ?kind (count ?a)
@@ -75,9 +86,10 @@
     [?o :news.outlet/country ?country]
     [?o :news.outlet/kind ?kind]])
 
-(defn- report-counts! [{:keys [archive seed]}]
+(defn- report-counts! [{:keys [outlets archive seed]}]
   (binding [*out* *err*]
-    (println (str "loaded " archive " archived datom(s) from data/articles"
+    (println (str "loaded " outlets " outlet(s) from data/outlets/allowlist.edn + "
+                  archive " archived article datom(s) from data/articles"
                   (if (pos? seed)
                     (str " + " seed " ILLUSTRATIVE seed datom(s) (:representative — not real coverage)")
                     " (seed excluded; pass --seed to include data/seed.edn)")))))
@@ -96,13 +108,40 @@
       ;; "no articles collected yet" reads as a measurement rather than a null.
       (let [n (fn [q] (or (d/q q db) 0))]
         (pp/pprint {:articles (n '[:find (count ?a) . :where [?a :news.article/id]])
+                    :articles-verified (n '[:find (count ?a) . :where [?a :news.article/sourcing :verified]])
+                    :articles-representative (n '[:find (count ?a) . :where [?a :news.article/sourcing :representative]])
+                    :articles-with-byline (n '[:find (count ?a) . :where [?a :news.article/byline]])
                     :outlets (n '[:find (count ?o) . :where [?o :news.outlet/id]])
-                    :verified (n '[:find (count ?a) . :where [?a :news.article/sourcing :verified]])
-                    :representative (n '[:find (count ?a) . :where [?a :news.article/sourcing :representative]])}))
+                    :outlets-feed-verified (n '[:find (count ?o) . :where [?o :kawaraban.ingest/verified true]])
+                    :countries (count (d/q '[:find ?c :where [?o :news.outlet/country ?c]] db))
+                    :countries-feed-verified (count (d/q '[:find ?c
+                                                           :where [?o :kawaraban.ingest/verified true]
+                                                                  [?o :news.outlet/country ?c]]
+                                                         db))}))
 
       "coverage"
       (doseq [row (sort (d/q coverage-q db))]
         (println (format "%-4s %-20s %d" (nth row 0) (name (nth row 1)) (nth row 2))))
+
+      ;; 記事がまだ0件でも「どの国からどれだけ取りに行けるか」は今すぐ答えられる。
+      ;; :kawaraban.ingest/verified は「その日 feed が実際に items を返した」の測定値。
+      "outlets"
+      (let [rows (d/q '[:find ?country ?kind ?verified (count ?o)
+                        :where
+                        [?o :news.outlet/id]
+                        [?o :news.outlet/country ?country]
+                        [?o :news.outlet/kind ?kind]
+                        [?o :kawaraban.ingest/verified ?verified]]
+                      db)]
+        (doseq [row (sort rows)]
+          (println (format "%-4s %-20s %-14s %d"
+                           (nth row 0) (name (nth row 1))
+                           (if (nth row 2) "feed-verified" "unconfirmed") (nth row 3))))
+        (println (format "-- %d outlets, %d feed-verified, %d countries/regions with at least one working feed"
+                         (count (d/q '[:find ?o :where [?o :news.outlet/id]] db))
+                         (count (d/q '[:find ?o :where [?o :kawaraban.ingest/verified true]] db))
+                         (count (d/q '[:find ?c :where [?o :kawaraban.ingest/verified true]
+                                       [?o :news.outlet/country ?c]] db)))))
 
       "q"
       (if-let [qs (second args)]
@@ -110,5 +149,5 @@
         (binding [*out* *err*] (println "usage: clojure -M:query q '<datalog edn>'") (System/exit 2)))
 
       (binding [*out* *err*]
-        (println "usage: clojure -M:query [--seed] count|coverage|q '<datalog edn>'")
+        (println "usage: clojure -M:query [--seed] count|outlets|coverage|q '<datalog edn>'")
         (System/exit 2)))))
