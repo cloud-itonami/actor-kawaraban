@@ -1,57 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Phase G (com-junkawasaki/root, ADR-2607231600): 6時間ごとの常駐 tick で
-     kawaraban.wasm-orchestrator (RSS/Atom取得 -> G1/G3/G4/G8 charter gate ->
-     outlet別identity + CACAO署名 + aozora XRPC publish、全て kotoba-wasm /
-     kototama.tender 経由) を1周させる。src/kawaraban/wasm_orchestrator.clj の
-     namespace docstring 参照(3つの正直なスコープ制約: (1) 恒久identity署名は
-     wasm/identity_sign.kotoba 経由、(2) aozora_create_record.kotoba の
-     record.* フィールドは digest 形状の流用でkawaraban自身の:news.article/*
-     とは一致しない、(3) 送信先URLは.kotobaのコンパイル時literalなので
-     このplistが起動するバイナリは常に loopback 宛 -- 本番pds.aozora.appへの
-     到達は別途リコンパイルが必要、このplist単体では起きない)。
+<!-- kawaraban 瓦版 — 6時間ごとの実収集（ADR-2607252600 / 2607253400）。
 
-     G8ゲート(KAWARABAN_ALLOW_LIVE_INGEST)は既定で未設定のまま -- つまり
-     このplistは、operatorが明示的にCouncil attestation付きで環境変数を
-     設定するまでは無害な no-op を6時間毎に繰り返すだけ(fetch-outlet!が
-     毎回 :refused true を返すのみ、鍵生成・署名・ネットワーク呼び出し
-     一切なし)。運用側でこの環境変数を設定する場合は
-     ~/Library/LaunchAgents 配下のplist複製にEnvironmentVariablesとして
-     追記すること(本ファイル自体には焼き込まない)。
+     G8 は 2026-07-26 に承認済み（BOOTSTRAP-ATTESTATION-live-ingest.md、Seat 1
+     provisional）。この plist が KAWARABAN_ALLOW_LIVE_INGEST=1 を渡す。
 
-     KAWARABAN_WASM_MAX_OUTLETS / KAWARABAN_WASM_MAX_ARTICLES_PER_OUTLET
-     で1回あたりの上限を上書き可能(既定値は
-     src/kawaraban/wasm_orchestrator.clj の default-max-outlets/
-     default-max-articles-per-outlet -- 2026-07-10の「3/outlet」CPU超過の
-     前例を踏まえ保守的に小さい値)。
+     **KAWARABAN_WASM_PDS_ALLOWLIST は渡さない。** 未設定は kototama の url-allowed?
+     では deny-all なので、pds.aozora.app への publish は HttpClient.send の前で
+     拒否される。読むことと共有本番 PDS へ署名済みレコードを書くことは別の行為で、
+     後者を有効にするならそれ自身の判断と記録が要る。
 
-     clojure CLI (`/opt/homebrew/bin/clojure`) はJVM上で動く -- 実行環境に
-     javaが解決できること(JAVA_HOME/`/usr/libexec/java_home`経由)を
-     launchctl bootstrap前に確認すること。
+     KAWARABAN_WASM_MAX_ARTICLES_PER_OUTLET=0 は publish 対象を空にする。アーカイブは
+     gate を通った全件から書かれ（archive-records! はこの上限に縛られない）ので、
+     収集は完全・外向き処理はゼロ。2026-07-10 の「3記事/outlet」で CPU 予算を超過し
+     共有グラフの read latency が 4s→50s になった実測（ADR-2607110200 addendum 2）が
+     あるため、publish を戻すときは同じ轍を踏まないこと。
+
+     専用 clone ~/.kawaraban/ingest-clone で動く。west 管理下の共有 checkout でも、
+     週次 refresh 用 clone でもない — 無人ジョブが reset/clean する木を人や他ジョブと
+     共有しない。scripts/ingest-cron.cljs が fetch/reset/収集/検証/commit/push を行う。
 
      インストール:
-       sed "s|/Users/junkawasaki|$HOME|g; s|/Users/junkawasaki/github/com-junkawasaki/orgs/etzhayyim/com-etzhayyim-kawaraban|/path/to/orgs/etzhayyim/com-etzhayyim-kawaraban|g" \
-         scripts/launchd/com.etzhayyim.kawaraban.wasm-orchestrator.plist \
-         > ~/Library/LaunchAgents/com.etzhayyim.kawaraban.wasm-orchestrator.plist
+       cp scripts/launchd/com.etzhayyim.kawaraban.wasm-orchestrator.plist ~/Library/LaunchAgents/
        launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.etzhayyim.kawaraban.wasm-orchestrator.plist
-     ログ: ~/.kawaraban/logs/wasm-orchestrator.log -->
+     ログ: ~/.kawaraban/logs/ingest.log
+-->
 <plist version="1.0">
 <dict>
   <key>Label</key><string>com.etzhayyim.kawaraban.wasm-orchestrator</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/opt/homebrew/bin/clojure</string>
-    <string>-M:wasm-orchestrator</string>
+    <string>/opt/homebrew/bin/nbb</string>
+    <string>/Users/junkawasaki/.kawaraban/ingest-clone/scripts/ingest-cron.cljs</string>
   </array>
-  <key>WorkingDirectory</key><string>/Users/junkawasaki/github/com-junkawasaki/orgs/etzhayyim/com-etzhayyim-kawaraban</string>
+  <key>WorkingDirectory</key><string>/Users/junkawasaki/.kawaraban/ingest-clone</string>
   <key>EnvironmentVariables</key>
   <dict>
-    <key>PATH</key><string>/Users/junkawasaki/Library/pnpm:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
     <key>HOME</key><string>/Users/junkawasaki</string>
+    <key>KAWARABAN_ALLOW_LIVE_INGEST</key><string>1</string>
+    <key>KAWARABAN_WASM_MAX_OUTLETS</key><string>200</string>
+    <key>KAWARABAN_WASM_MAX_ARTICLES_PER_OUTLET</key><string>0</string>
   </dict>
   <key>StartInterval</key><integer>21600</integer>
-  <key>StandardOutPath</key><string>/Users/junkawasaki/.kawaraban/logs/wasm-orchestrator.log</string>
-  <key>StandardErrorPath</key><string>/Users/junkawasaki/.kawaraban/logs/wasm-orchestrator.log</string>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>/Users/junkawasaki/.kawaraban/logs/ingest.log</string>
+  <key>StandardErrorPath</key><string>/Users/junkawasaki/.kawaraban/logs/ingest.log</string>
   <key>ProcessType</key><string>Background</string>
 </dict>
 </plist>
