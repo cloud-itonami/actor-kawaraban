@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Sanctions, threats… the story of a genocidal vocation", :as-of 1778155550, :url "http://en.granma.cu/mundo/2026-05-07/sanctions-threats-the-story-of-a-genocidal-vocation", :section "sec.international", :byline "Laura Mercedes Giráldez", :excerpt "<p>U.S. policy against Cuba has been aimed at \"finding the source of income, finding out how the country works, and doing everything to ensure that none of it works\"<br><br></p>", :id "art.outlet.granma.1778155550", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "From university to industry: The best path for Artificial Intelligence", :as-of 1778155527, :url "http://en.granma.cu/cuba/2026-05-07/from-university-to-industry-the-best-path-for-artificial-intelligence", :section "sec.international", :byline "René Tamayo León", :excerpt "<p>First Secretary of the Central Committee of the Communist Party and President of the Republic, Miguel Díaz-Canel Bermúdez, visited the University of Havana this Wednesday morning, where he met with professors dedicated to research and the development of results in the field of", :id "art.outlet.granma.1778155527", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Our people will continue to defend the political system that is sovereignly recognized in the Constitution", :as-of 1778155502, :url "http://en.granma.cu/cuba/2026-05-07/our-people-will-continue-to-defend-the-political-system-that-is-sovereignly-recognized-in-the-constitution", :section "sec.international", :byline "National Assembly of People's Powe", :excerpt "<p>Statement of the International Relations Committee<br><br></p>", :id "art.outlet.granma.1778155502", :sourcing :verified}]

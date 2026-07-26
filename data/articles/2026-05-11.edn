@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Economic inequality harming children’s wellbeing in world’s wealthiest countries - UNICEF", :as-of 1778527471, :url "https://www.unicef.org/press-releases/economic-inequality-harming-childrens-wellbeing-worlds-wealthiest-countries-unicef", :section "sec.international", :excerpt "Children living in countries with highest levels of inequality 1.7 times more likely to be overweight than those living in most equal countries", :id "art.outlet.unicef.1778527471", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "The Arithmetic of a world in flames", :as-of 1778504755, :url "http://en.granma.cu/mundo/2026-05-11/the-arithmetic-of-a-world-in-flames", :section "sec.international", :byline "María Julia Mayoral", :excerpt "<p>Military spending at peaks. Persistent shortfall to fund sustainable development. Global Report confirms \"Alarmingly High\" levels of food insecurity and malnutrition<br><br></p>", :id "art.outlet.granma.1778504755", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Cuban tobacco is also being rolled using solar energy", :as-of 1778504754, :url "http://en.granma.cu/cuba/2026-05-11/cuban-tobacco-is-also-being-rolled-using-solar-energy", :section "sec.international", :byline "Yenima Díaz", :excerpt "<p>For several years, the use of renewable energy sources has been part of the strategic plan of the Las Tunas Tobacco Collection, Processing, and Rolling Company.<br><br></p>", :id "art.outlet.granma.1778504754", :sourcing :verified}
+ #:news.article{:outlet "outlet.bbc-sport", :lang ["en"], :kind :mirror, :headline "Why did England’s 2006 World Cup dream end in agony?", :as-of 1778475600, :url "http://www.bbc.co.uk/iplayer/episode/m002wbmg?at_mid=hBNq4xkQn6&at_campaign=England_2006_The_Golden_Generation_TEST_CONTROL&at_medium=display_ad&at_campaign_type=owned&at_nation=NET&at_audience_id=SS&at_product=iplayer&at_brand=m002wbmg&at_ptr_name=bbc&at_ptr_type=media&at_format=image&at_objective=consumption&at_link_title=England_2006_The_Golden_Generation_TEST_CONTROL&at_bbc_team=BBC&at_creation=Carousel_Test_Control", :section "sec.sports", :excerpt "Why did the England football team not fulfil their potential at the 2006 World Cup?", :id "art.outlet.bbc-sport.1778475600", :sourcing :verified}]

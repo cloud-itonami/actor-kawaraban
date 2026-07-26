@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Roemeense luchtmacht haalt voor derde dag op rij drone neer boven grondgebied", :as-of 1781789974, :url "https://vrtnws.be/p.DYVn5MYMy", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1781789974", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "\"Reality demands urgent and necessary changes\"", :as-of 1781784399, :url "http://en.granma.cu/cuba/2026-06-18/reality-demands-urgent-and-necessary-changes", :section "sec.international", :byline "Miguel Díaz-Canel Bermúdez", :excerpt "<p>Speech delivered by Miguel Mario Díaz-Canel Bermúdez, First Secretary of the Central Committee of the Communist Party of Cuba and President of the Republic, at the closing of the Extraordinary Plenary Session of the Central Committee of the Communist Party, at the Palace of th", :id "art.outlet.granma.1781784399", :sourcing :verified}]

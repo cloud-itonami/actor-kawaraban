@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "What is the thermal conversion process for improving Cuban crude oil?", :as-of 1778587549, :url "http://en.granma.cu/cuba/2026-05-12/what-is-the-thermal-conversion-process-for-improving-cuban-crude-oil", :section "sec.international", :byline "Carmen Maturell Senon", :excerpt "<p>Although these advances don't solve everything immediately, they represent a firm step on the path to the country's energy sovereignty<br><br><br></p>", :id "art.outlet.granma.1778587549", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Digital fascism and automated warfare", :as-of 1778587524, :url "http://en.granma.cu/mundo/2026-05-12/digital-fascism-and-automated-warfare", :section "sec.international", :byline "Emilia Reed, special for Granma", :excerpt "<p>The world is experiencing a new form of authoritarianism supported by algorithms, private platforms, and mass information control<br><br></p>", :id "art.outlet.granma.1778587524", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "A demolition of homes, of schools, and of childhood", :as-of 1778577027, :url "https://www.unicef.org/press-releases/demolition-homes-schools-and-childhood", :section "sec.international", :excerpt "This is a summary of what was said by UNICEF spokesperson, James Elder – to whom quoted text may be attributed – at today's press briefing at the Palais des Nations in Geneva", :id "art.outlet.unicef.1778577027", :sourcing :verified}]

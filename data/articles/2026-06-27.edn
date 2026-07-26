@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "Comedy legend Mel Brooks turns 100", :as-of 1782558420, :url "https://www.dw.com/en/comedy-legend-mel-brooks-turns-100/a-19360098?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "A parody of Adolf Hitler in the landmark 1968 movie \"The Producers\" was just the beginning for US actor Mel Brooks. The 100-year-old comedian is still on a roll today.", :id "art.outlet.dw.1782558420", :sourcing :verified}]

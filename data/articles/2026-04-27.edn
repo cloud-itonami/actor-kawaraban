@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Restrictions on girls’ education and women’s employment in Afghanistan could lead to a loss of over 25,000 female teachers and health workers by 2030 - UNICEF", :as-of 1777307457, :url "https://www.unicef.org/press-releases/restrictions-girls-education-and-womens-employment-afghanistan-could-lead-loss-over", :section "sec.international", :excerpt "Over a million girls denied the right to learn since ban imposed on secondary education in 2021", :id "art.outlet.unicef.1777307457", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Twenty years after global outcry, children in Darfur face a deeper crisis and far less attention", :as-of 1777298626, :url "https://www.unicef.org/press-releases/twenty-years-after-global-outcry-children-darfur-face-deeper-crisis-and-far-less", :section "sec.international", :excerpt "New UNICEF Child Alert warns violence, hunger, and displacement are once again defining childhood in one of Sudan’s most conflict-affected regions", :id "art.outlet.unicef.1777298626", :sourcing :verified}]

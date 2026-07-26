@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "“The reality for children in Sudan is growing darker hour by hour”&nbsp;", :as-of 1776155193, :url "https://www.unicef.org/press-releases/reality-children-sudan-growing-darker-hour-hour%C2%A0", :section "sec.international", :excerpt "This is a summary of what was said by UNICEF&nbsp;Chief of Communication&nbsp;in&nbsp;Sudan,&nbsp;Eva Hinds&nbsp;– to whom quoted text may be attributed – at today's press briefing at the Palais des Nations in Geneva&nbsp;", :id "art.outlet.unicef.1776155193", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "At least 245 child casualties in Sudan in the first 90 days of 2026", :as-of 1776149705, :url "https://www.unicef.org/press-releases/least-245-child-casualties-sudan-first-90-days-2026", :section "sec.international", :excerpt "After three years of war, children continue to bear the heaviest toll. Drone attacks account for nearly 80 per cent of all killings and injuries this year.", :id "art.outlet.unicef.1776149705", :sourcing :verified}]

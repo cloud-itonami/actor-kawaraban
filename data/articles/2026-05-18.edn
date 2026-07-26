@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "UNICEF scaling up efforts to protect and support children and families following Ebola outbreaks in the Democratic Republic of the Congo and Uganda", :as-of 1779131341, :url "https://www.unicef.org/press-releases/unicef-scaling-efforts-protect-and-support-children-and-families-following-ebola", :section "sec.international", :excerpt "", :id "art.outlet.unicef.1779131341", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Digital deception and the advertising business", :as-of 1779105905, :url "http://en.granma.cu/mundo/2026-05-18/digital-deception-and-the-advertising-business", :section "sec.international", :byline "María Julia Mayoral", :excerpt "<p>Millions of dollars finance the spread of dubious content. Fake news and hate speech are on the rise. Technological tools facilitate manipulation<br><br></p>", :id "art.outlet.granma.1779105905", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "\"Cuba neither threatens nor desires war\"", :as-of 1779102343, :url "http://en.granma.cu/mundo/2026-05-18/cuba-neither-threatens-nor-desires-war", :section "sec.international", :byline "International Editor", :excerpt "<p>The Cuban Foreign Minister asserted that the island \"defends peace and is prepared to confront external aggression in the exercise of its right to self-defense, recognized by the UN Charter\"<br><br></p>", :id "art.outlet.granma.1779102343", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Thucydides' dilemma: Challenges in an asymmetrical world", :as-of 1779102307, :url "http://en.granma.cu/mundo/2026-05-18/thucydides-dilemma-challenges-in-an-asymmetrical-world", :section "sec.international", :byline "Raúl Antonio Capote", :excerpt "<p>The threat that, according to Washington, Cuba represents is, in fact, a construct used to justify its historical aggression toward the island<br><br><br></p>", :id "art.outlet.granma.1779102307", :sourcing :verified}]

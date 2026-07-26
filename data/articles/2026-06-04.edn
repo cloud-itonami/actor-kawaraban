@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Russia and China: Two brotherly countries that have demonstrated their support for Cuba", :as-of 1780571163, :url "http://en.granma.cu/mundo/2026-06-04/russia-and-china-two-brotherly-countries-that-have-demonstrated-their-support-for-cuba", :section "sec.international", :byline "Yesey Pérez López", :excerpt "<p>A joint seminar held in Havana highlighted the strength of relations between Russia and China and the support of both nations for Cuba. Participants reaffirmed their support for Cuban sovereignty and congratulated Army General Raúl Castro Ruz on his 95th birthday<br><br></p>", :id "art.outlet.granma.1780571163", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Raúl's milestones in 21st-Century Latin America", :as-of 1780567618, :url "http://en.granma.cu/mundo/2026-06-04/rauls-milestones-in-21st-century-latin-america", :section "sec.international", :byline "International Editor", :excerpt "<p>Negotiation skills, a space for international ecumenism, medical solidarity, peace efforts, and cultural repositioning marked the Army General's leadership of Cuba<br><br></p>", :id "art.outlet.granma.1780567618", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "A center for science and soul is born", :as-of 1780567601, :url "http://en.granma.cu/cuba/2026-06-04/a-center-for-science-and-soul-is-born", :section "sec.international", :byline "Alina Perera Robbio", :excerpt "<p>The First Secretary of the Central Committee of the Communist Party of Cuba and President of the Republic, Miguel Díaz-Canel Bermúdez, and the member of the Political Bureau and Prime Minister, Manuel Marrero Cruz, attended the inauguration of the Outpatient Oncology Treatment", :id "art.outlet.granma.1780567601", :sourcing :verified}]

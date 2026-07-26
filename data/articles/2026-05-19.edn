@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "We will continue to denounce, in the firmest and most forceful manner, the genocidal siege that seeks to strangle our people", :as-of 1779217556, :url "http://en.granma.cu/mundo/2026-05-19/we-will-continue-to-denounce-in-the-firmest-and-most-forceful-manner-the-genocidal-siege-that-seeks-to-strangle-our-people", :section "sec.international", :byline "International Editor", :excerpt "<p><br>\"The collective punishment to which the Cuban people are being subjected is an act of genocide that must be condemned by international organizations and its promoters prosecuted,\" Díaz-Canel denounced on his X account<br><br></p>", :id "art.outlet.granma.1779217556", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Facing Eternity", :as-of 1779217523, :url "http://en.granma.cu/cuba/2026-05-19/facing-eternity", :section "sec.international", :byline "Anaisis Hidalgo Rodríguez", :excerpt "<p>This homeland with its immense heart, this one that today embraces your longed-for republic, while furious onslaughts erupt from the belly of the monster, has never conceived for you the dark realm of death, has never renounced your perpetual existence; for bullets kill men, b", :id "art.outlet.granma.1779217523", :sourcing :verified}]

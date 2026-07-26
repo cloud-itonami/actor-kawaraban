@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "UNICEF Executive Director Catherine Russell remarks at the Annual Session of the UNICEF Executive Board", :as-of 1781621987, :url "https://www.unicef.org/press-releases/unicef-executive-director-catherine-russell-remarks-annual-session-unicef-executive", :section "sec.international", :excerpt "As delivered", :id "art.outlet.unicef.1781621987", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "The foreman of the Blockade Inc. Company: What Rubio owes to hatred", :as-of 1781615188, :url "http://en.granma.cu/mundo/2026-06-16/the-foreman-of-the-blockade-inc-company-what-rubio-owes-to-hatred", :section "sec.international", :byline "Raúl Antonio Capote", :excerpt "<p>He is not just another hawk in the bellicose aviary of the U.S. capital; he is the meticulous watchmaker who fine-tunes the gears of others' suffering<br><br><br></p>", :id "art.outlet.granma.1781615188", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Faced with collective punishment, resilience", :as-of 1781615160, :url "http://en.granma.cu/cuba/2026-06-16/faced-with-collective-punishment-resilience", :section "sec.international", :byline "Anaisis Hidalgo Rodríguez", :excerpt "<p>The energy crisis gripping the country, caused by the U.S. blockade and exacerbated, as a form of collective punishment, by the executive orders of January and May, is forcing changes in the daily lives of Cubans<br><br><br></p>", :id "art.outlet.granma.1781615160", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Children increasingly exposed to overlapping climate risks worldwide, UNICEF warns", :as-of 1781600204, :url "https://www.unicef.org/press-releases/children-increasingly-exposed-overlapping-climate-risks-worldwide-unicef-warns", :section "sec.international", :excerpt "This is a summary of what was said by the UNICEF Chief of the WASH, Climate and Environment Data unit, Tom Slaymaker – to whom quoted text may be attributed – at today's press briefing at the Palais des Nations in Geneva", :id "art.outlet.unicef.1781600204", :sourcing :verified}]

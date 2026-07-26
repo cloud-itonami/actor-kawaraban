@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Raúl is to Santiago, as Santiago is to Cuba", :as-of 1779883528, :url "http://en.granma.cu/cuba/2026-05-27/raul-is-to-santiago-as-santiago-is-to-cuba", :section "sec.international", :byline "Luis Alberto Portuondo", :excerpt "<p>Both in the Sierra Maestra mountains and on the plains of Santiago de Cuba, the Leader's presence at the head of the Revolution is countless, and thousands of experiences bear witness to a mutual affection and respect<br><br></p>", :id "art.outlet.granma.1779883528", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "HEBERSaVax: The story of a Cuban product, unique in the world, with great potential in the fight against cancer", :as-of 1779883526, :url "http://en.granma.cu/cuba/2026-05-27/hebersavax-the-story-of-a-cuban-product-unique-in-the-world-with-great-potential-in-the-fight-against-cancer", :section "sec.international", :byline "Alina Perera Robbio", :excerpt "<p>The First Secretary of the Central Committee of the Communist Party of Cuba and President of the Republic, Miguel Díaz-Canel Bermúdez, led the regular Meeting of Experts and Scientists on Health Issues this Tuesday afternoon at the Palace of the Revolution<br><br></p>", :id "art.outlet.granma.1779883526", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Let Cuba Live in Peace", :as-of 1779883511, :url "http://en.granma.cu/mundo/2026-05-27/let-cuba-live-in-peace", :section "sec.international", :byline "Cubaminrex", :excerpt "<p>Cuba’s Minister of Foreign Affairs, Bruno Rodríguez Parrilla, spoke during the UN Security Council’s open debate on the defense of the purposes and principles of the United Nations Charter<br><br></p>", :id "art.outlet.granma.1779883511", :sourcing :verified}]
