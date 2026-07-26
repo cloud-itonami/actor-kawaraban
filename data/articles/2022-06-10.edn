@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.rtve", :lang ["es"], :kind :mirror, :headline "Tres muertos y tres heridos en un nuevo tiroteo masivo en Estados Unidos", :as-of 1654823100, :url "http://www.rtve.es/noticias/20220610/tres-muertos-tres-heridos-nuevo-tiroteo-masivo-estados-unidos/2372502.shtml", :section "sec.international", :excerpt "<ul> <li>Medios locales han se&ntilde;alado que el suceso ha tenido lugar en una f&aacute;brica de Smithsburg, Maryland</li> <li>El debate sobre el control de las armas se ha reactivado en EE. UU. tras la matanza de 19 ni&ntilde;os y dos profesoras en Texas</li> </ul><br/><a href", :id "art.outlet.rtve.1654823100", :sourcing :verified}
+ #:news.article{:outlet "outlet.rtve", :lang ["es"], :kind :mirror, :headline "Ucrania - Rusia, última hora de la guerra | Zelenski anuncia nuevas sanciones contra Putin y sus principales aliados en el Kremlin", :as-of 1654819380, :url "http://www.rtve.es/noticias/20220610/ucrania-rusia-ultima-hora-guerra-zelenski-anuncia-nuevas-sanciones-contra-putin-principales-aliados-kremlin/2372402.shtml", :section "sec.international", :excerpt "<ul> <li>La zona prorrusa de Donetsk ha condenado a muerte a dos brit&aacute;nicos y un marroqu&iacute; por combatir con Ucrania</li> </ul><br/><a href=\"http://www.rtve.es/noticias/20220610/ucrania-rusia-ultima-hora-guerra-zelenski-anuncia-nuevas-sanciones-contra-putin-principale", :id "art.outlet.rtve.1654819380", :sourcing :verified}]

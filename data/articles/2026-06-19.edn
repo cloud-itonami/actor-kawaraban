@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Economic and Social Transformations presented to Cuban Parliament", :as-of 1781881575, :url "http://en.granma.cu/cuba/2026-06-19/economic-and-social-transformations-presented-to-cuban-parliament", :section "sec.international", :byline "Wennys Diaz Ballaga", :excerpt "<p>The meeting includes the participation—via teleconference—of Army General Raúl Castro Ruz. Also present in the room was the First Secretary of the Central Committee of the Communist Party and President of the Republic, Miguel Díaz-Canel Bermúdez.<br><br><br></p>", :id "art.outlet.granma.1781881575", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Geneva Palais Briefing: A child a day: The deadly illusion of Gaza's ceasefire", :as-of 1781855139, :url "https://www.unicef.org/press-releases/geneva-palais-briefing-child-day-deadly-illusion-gazas-ceasefire", :section "sec.international", :excerpt "This is a summary of what was said by UNICEF Spokesperson, James Elder, to whom quoted text may be attributed – at today's press briefing at the Palais des Nations in Geneva", :id "art.outlet.unicef.1781855139", :sourcing :verified}]

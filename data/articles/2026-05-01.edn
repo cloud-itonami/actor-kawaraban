@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "UNICEF calls for the protection of children, schools and health facilities following deadly attacks in Mali", :as-of 1777670108, :url "https://www.unicef.org/press-releases/unicef-calls-protection-children-schools-and-health-facilities-following-deadly", :section "sec.international", :excerpt "", :id "art.outlet.unicef.1777670108", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Migration systems and policies must uphold the rights of children – UNICEF", :as-of 1777640801, :url "https://www.unicef.org/press-releases/migration-systems-and-policies-must-uphold-rights-children-unicef", :section "sec.international", :excerpt "", :id "art.outlet.unicef.1777640801", :sourcing :verified}]

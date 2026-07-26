@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.bbc-science", :lang ["en"], :kind :mirror, :headline "Simpler, older version of Stonehenge found three miles from famous site", :as-of 1781737889, :url "https://www.bbc.co.uk/news/articles/clyxw8550y8o?at_medium=RSS&at_campaign=rss", :section "sec.science", :excerpt "The structure consisted of two posts that lined up with the solstices 5,000 years ago.", :id "art.outlet.bbc-science.1781737889", :sourcing :verified}
+ #:news.article{:outlet "outlet.icrc", :lang ["en"], :kind :mirror, :headline "Reflecting on a 22-year legacy: First Roundtable on the ICRC’s Physical Rehabilitation Programme in India", :as-of 1781714203, :url "https://www.icrc.org/en/article/first-roundtable-icrc-physical-rehabilitation-programme-india", :section "sec.international", :excerpt "", :id "art.outlet.icrc.1781714203", :sourcing :verified}
+ #:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "WHO issues comprehensive guidelines on filovirus disease, including Ebola and Marburg disease", :as-of 1781703057, :url "https://www.who.int/news/item/17-06-2026-who-issues-comprehensive-guidelines-on-filovirus-disease--including-ebola-and-marburg-disease", :section "sec.international", :excerpt "As the Democratic Republic of the Congo is battling an Ebola disease outbreak caused by the Bundibugyo virus, the World Health Organization (WHO) has released its first comprehensive guidelines for the clinical management of filovirus disease which include all types of Ebola and ", :id "art.outlet.who-news.1781703057", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Statement by UNICEF Country Representative in Lebanon, Marcoluigi Corsi, on the ongoing suffering of children in Lebanon over 100 days into conflict", :as-of 1781682245, :url "https://www.unicef.org/press-releases/statement-unicef-country-representative-lebanon-marcoluigi-corsi-ongoing-suffering", :section "sec.international", :excerpt "With renewed hope for an end to hostilities, children need more than an end to violence, they need, protection, wellbeing, and a safer future.", :id "art.outlet.unicef.1781682245", :sourcing :verified}]

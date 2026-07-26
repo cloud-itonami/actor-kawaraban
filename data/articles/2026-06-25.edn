@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Thousands of children at risk after powerful earthquakes strike Venezuela", :as-of 1782431533, :url "https://www.unicef.org/press-releases/thousands-children-risk-after-powerful-earthquakes-strike-venezuela", :section "sec.international", :excerpt "", :id "art.outlet.unicef.1782431533", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw-culture", :lang ["en"], :kind :mirror, :headline "Human rights expert Philippe Sands wins German Peace Prize", :as-of 1782391080, :url "https://www.dw.com/en/human-rights-expert-philippe-sands-wins-german-peace-prize/a-77702306?maca=en-rss-en-cul-2090-rdf", :section "sec.culture", :excerpt "From advocating for the law of ecocide to representing Palestinian rights, the descendant of Holocaust survivors tirelessly fights against genocide and crimes against humanity.", :id "art.outlet.dw-culture.1782391080", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "When fascism calls it a regime, but the people call it dignity", :as-of 1782378382, :url "http://en.granma.cu/mundo/2026-06-25/when-fascism-calls-it-a-regime-but-the-people-call-it-dignity", :section "sec.international", :byline "Juan Fernández López", :excerpt "<p>Cuban-American politicians linked to the government are pushing to the limit to induce the error of confrontation<br><br></p>", :id "art.outlet.granma.1782378382", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Morales Ojeda denounces U.S. intention to take over Cuba", :as-of 1782378367, :url "http://en.granma.cu/cuba/2026-06-25/morales-ojeda-denounces-us-intention-to-take-over-cuba", :section "sec.international", :byline "Central Editor", :excerpt "<p>Roberto Morales Ojeda, member of the Political Bureau and Secretary of Organization of the Central Committee of the Communist Party of Cuba, denounced on his Facebook profile that the United States' policy toward the island aims for total domination and subjugation<br><br></p>", :id "art.outlet.granma.1782378367", :sourcing :verified}]

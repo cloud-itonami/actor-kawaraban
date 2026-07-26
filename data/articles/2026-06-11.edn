@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Israel: A tree born crooked", :as-of 1781176013, :url "http://en.granma.cu/mundo/2026-06-11/israel-a-tree-born-crooked", :section "sec.international", :byline "Elson Concepción Pérez", :excerpt "<p>Today, the state of Israel, and its Zionist practices, is determined to eliminate every last Palestinian from the face of the Earth<br><br><br></p>", :id "art.outlet.granma.1781176013", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "The doomsday clock: A chronicle of the banalization of the Apocalypse", :as-of 1781176011, :url "http://en.granma.cu/mundo/2026-06-11/the-doomsday-clock-a-chronicle-of-the-banalization-of-the-apocalypse", :section "sec.international", :byline "Raúl Antonio Capote", :excerpt "<p>I thought of my grandchildren, I thought of the children of Hiroshima, carbonized in an instant, while they played in the schoolyards...<br><br></p>", :id "art.outlet.granma.1781176011", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Refining domestic crude oil: A path of great effort that continues to yield results", :as-of 1781175996, :url "http://en.granma.cu/cuba/2026-06-11/refining-domestic-crude-oil-a-path-of-great-effort-that-continues-to-yield-results", :section "sec.international", :byline "Luis Alberto Portuondo", :excerpt "<p>The processing of 20,000 tons of domestic crude oil in the Santiago de Cuba refinery demonstrates the resilience of Cubans and their boundless will to find solutions in the face of the most complex adversities<br><br></p>", :id "art.outlet.granma.1781175996", :sourcing :verified}]

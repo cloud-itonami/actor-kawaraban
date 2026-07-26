@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "UNICEF:  680,000 children estimated to be in need of humanitarian assistance after Venezuela earthquakes", :as-of 1782605668, :url "https://www.unicef.org/press-releases/unicef-680000-children-estimated-be-need-humanitarian-assistance-after-venezuela", :section "sec.international", :excerpt "First UNICEF aid flight arrives in Venezuela with medical supplies, water and sanitation items", :id "art.outlet.unicef.1782605668", :sourcing :verified}]

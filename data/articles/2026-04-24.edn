@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Famine a harsh reality for children as acute hunger numbers double over past decade", :as-of 1777024754, :url "https://www.unicef.org/press-releases/famine-harsh-reality-children-acute-hunger-numbers-double-over-past-decade", :section "sec.international", :excerpt "This is a summary of remarks by UNICEF Deputy Spokesperson Ricardo Pires – to whom quoted text may be attributed – at the Palais des Nations in Geneva", :id "art.outlet.unicef.1777024754", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Acute food insecurity and malnutrition remain alarmingly high as crises deepen, UN, EU and partners warn in new report", :as-of 1777020789, :url "https://www.unicef.org/press-releases/acute-food-insecurity-and-malnutrition-remain-alarmingly-high-crises-deepen-un-eu", :section "sec.international", :excerpt "Over the past decade acute hunger numbers have doubled, while funding retreats to 2016 levels", :id "art.outlet.unicef.1777020789", :sourcing :verified}]

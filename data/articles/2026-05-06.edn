@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Sanctions and threats of war: The last stand", :as-of 1778061943, :url "http://en.granma.cu/cuba/2026-05-06/sanctions-and-threats-of-war-the-last-stand", :section "sec.international", :byline "Juan Fernández López", :excerpt "<p>The massive demonstration of support for the Government and the Revolution this May 1st is \"too much of a challenge\" for an administration that believes itself to be the master of the world and all-powerful in the Western Hemisphere</p>", :id "art.outlet.granma.1778061943", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Economic coercion and naval threats: The siege on Cuba’s self-determination", :as-of 1778061921, :url "http://en.granma.cu/mundo/2026-05-06/economic-coercion-and-naval-threats-the-siege-on-cubas-self-determination", :section "sec.international", :byline "Raúl Antonio Capote", :excerpt "<p>The imposition of U.S. sanctions against Cuba outside the framework of the United Nations Security Council violates the UN Charter</p>", :id "art.outlet.granma.1778061921", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "New immigration, foreigners, and citizenship laws transform Cuba’s migration system", :as-of 1778061909, :url "http://en.granma.cu/cuba/2026-05-06/new-immigration-foreigners-and-citizenship-laws-transform-cubas-migration-system", :section "sec.international", :byline "Wennys Díaz Ballaga", :excerpt "<p>The new regulations—Laws 171, 172, and 173—update legislation on immigration, foreign nationals, and citizenship, introducing innovative concepts such as “effective migratory residence”</p>", :id "art.outlet.granma.1778061909", :sourcing :verified}]

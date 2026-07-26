@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Cuba, the GAE, and the United States: Anatomy of a State Slander", :as-of 1780398418, :url "http://en.granma.cu/cuba/2026-06-02/cuba-the-gae-and-the-united-states-anatomy-of-a-state-slander", :section "sec.international", :byline "Government of the Republic of Cuba", :excerpt "<p>The GAE is not an opaque structure, nor is it parallel to the Cuban state; on the contrary, it has been a well-coordinated and proven effective response to the economic blockade that has historically sought to strangle the Cuban Revolution<br><br></p>", :id "art.outlet.granma.1780398418", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "The stoicism of a Hero", :as-of 1780398360, :url "http://en.granma.cu/cuba/2026-06-02/the-stoicism-of-a-hero", :section "sec.international", :byline "Pastor Batista Valdés", :excerpt "<p>If any man ever vowed never to fail the Commander-in-Chief (because to do so would have been to fail all of Cuba, history, Lina, Ángel, and himself), that man was and remains Raúl, who will turn 95 this June 3rd<br><br></p>", :id "art.outlet.granma.1780398360", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Increased transport costs mean less money for the lifesaving supplies children need", :as-of 1780387883, :url "https://www.unicef.org/press-releases/increased-transport-costs-mean-less-money-lifesaving-supplies-children-need", :section "sec.international", :excerpt "This is a summary of what was said by the UNICEF Chief of Global Transport and Logistics, Jean-Cedric Meeus – to whom quoted text may be attributed – at today's press briefing at the Palais des Nations in Geneva", :id "art.outlet.unicef.1780387883", :sourcing :verified}
+ #:news.article{:outlet "outlet.bbc-sport", :lang ["en"], :kind :mirror, :headline "How Cornish miners brought football to Mexico", :as-of 1780378105, :url "https://www.bbc.co.uk/sport/football/articles/cx21q453l4jo?at_medium=RSS&at_campaign=rss", :section "sec.sports", :excerpt "As Mexico prepares to become the first country to host or co-host the World Cup three times, BBC Sport looks at its Cornish footballing roots.", :id "art.outlet.bbc-sport.1780378105", :sourcing :verified}]

@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Unsafe food causes 866 million illnesses and 1.5 million deaths annually, young children at highest risk", :as-of 1780525811, :url "https://www.who.int/news/item/04-06-2026-unsafe-food-causes-866-million-illnesses-and-1.5-million-deaths-annually--young-children-at-highest-risk", :section "sec.international", :excerpt "Children aged less than five years face almost three times the risk of illness from unsafe food than older children and adults, according to new estimates released today by the World Health Organization (WHO).", :id "art.outlet.who-news.1780525811", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Raul Raúl: \"A true Cuban, with all the force that redundancy suggests\"", :as-of 1780495601, :url "http://en.granma.cu/cuba/2026-06-03/raul-a-true-cuban-with-all-the-force-that-redundancy-suggests", :section "sec.international", :byline "Digital Editor", :excerpt "<p>This is what Miguel Díaz-Canel Bermúdez, First Secretary of the Central Committee of the Party and President of the Republic, wrote on his Twitter account, on the occasion of the 95th birthday of Army General Raúl Castro Ruz<br><br></p>", :id "art.outlet.granma.1780495601", :sourcing :verified}]

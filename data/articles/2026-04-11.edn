@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.bbc-science", :lang ["en"], :kind :mirror, :headline "From blast off to splashdown: My days following Nasa's historic mission to the Moon", :as-of 1775949427, :url "https://www.bbc.co.uk/news/articles/clyrdkxvmmpo?at_medium=RSS&at_campaign=rss", :section "sec.science", :excerpt "BBC Science Editor Rebecca Morelle reflects on how it felt to watch history being made.", :id "art.outlet.bbc-science.1775949427", :sourcing :verified}]

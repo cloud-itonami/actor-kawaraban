@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Open letter to leaders of G7, G20, BRICS and all nations on finalizing the WHO Pandemic Agreement’s Pathogen Access and Benefit Sharing annex", :as-of 1781514336, :url "https://www.who.int/news/item/15-06-2026-open-letter-to-leaders-of-g7-g20-brics-and-all-nations-on-finalizing-the-who-pandemic-agreement-s-pathogen-access-and-benefit-sharing-annex", :section "sec.international", :excerpt "<p>Dear Leaders of the G7, the G20, BRICS and of all nations,</p><p>We write to you together, from Geneva and from Bras&iacute;lia, with one shared conviction: that the world must finish what it started, and that you can help it do so.</p><p>We begin not with an institution or an", :id "art.outlet.who-news.1781514336", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "Nearly half of the world’s children exposed to at least three overlapping climate threats – UNICEF", :as-of 1781488637, :url "https://www.unicef.org/press-releases/nearly-half-worlds-children-exposed-least-three-overlapping-climate-threats-unicef", :section "sec.international", :excerpt "Drought, extreme heat, and heatwaves are the most prevalent trio of hazards endangering millions of children globally, according to new climate report", :id "art.outlet.unicef.1781488637", :sourcing :verified}]

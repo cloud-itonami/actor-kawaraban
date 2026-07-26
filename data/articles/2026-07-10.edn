@@ -1,0 +1,15 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "Ukraine's Bidnyi 'outraged' by Russia's Olympic return", :as-of 1783697100, :url "https://www.dw.com/en/ukraine-s-bidnyi-outraged-by-russia-s-olympic-return/a-77903308?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "In exclusive comments to DW, Ukraine's sports minister, Matviy Bidnyi, said he is outraged by the IOC opening the door to Russia's return to the Olympics", :id "art.outlet.dw.1783697100", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "When London stank to high heaven", :as-of 1783689720, :url "https://www.dw.com/en/when-london-stank-to-high-heaven/a-77892633?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "In 1858, London sweltered through an unbearable heat wave. The River Thames reeked so badly it left people gasping for air. \"The Great Stink\" went down in history — and ultimately gave London a modern sewer system.", :id "art.outlet.dw.1783689720", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "Vegan pregnancy tests and other eco wins this week", :as-of 1783681740, :url "https://www.dw.com/en/vegan-pregnancy-tests-and-other-eco-wins-this-week/a-77902157?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "Keeping cool in the heat with a millennia-old tradition in India, a German company making animal-free medical tests, and building from bottles in Mozambique.", :id "art.outlet.dw.1783681740", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "Why the World Cup can be good for your mental health", :as-of 1783677960, :url "https://www.dw.com/en/why-the-world-cup-can-be-good-for-your-mental-health/a-77889619?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "The World Cup can offer more than just entertainment, it can also benefit your mental well-being. DW explains why.", :id "art.outlet.dw.1783677960", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "What's behind Germany's World Cup woes?", :as-of 1783673220, :url "https://www.dw.com/en/what-s-behind-germany-s-world-cup-woes/a-77886108?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "Germany have endured three straight disappointing World Cups. Experts say the reasons why are connected to football, but also to German society.", :id "art.outlet.dw.1783673220", :sourcing :verified}]

@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Cuba condemns the despicable accusation against the Leader of the Revolution", :as-of 1779307513, :url "http://en.granma.cu/cuba/2026-05-20/cuba-condemns-the-despicable-accusation-against-the-leader-of-the-revolution", :section "sec.international", :byline "Granma", :excerpt "<p>The Revolutionary Government condemns in the strongest terms the despicable accusation by the United States Department of Justice, announced on May 20 and foreshadowed for several weeks, against Army General Raúl Castro Ruz, leader of the Cuban Revolution<br><br></p>", :id "art.outlet.granma.1779307513", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "The Young Communists League calls for a day of celebration for Raúl's 95th birthday", :as-of 1779267954, :url "http://en.granma.cu/cuba/2026-05-20/the-young-communists-league-calls-for-a-day-of-celebration-for-rauls-95th-birthday", :section "sec.international", :byline "Digital Editor", :excerpt "<p>We call upon all the people to join us in a day of celebration for Raúl's 95th birthday. Let us unite in love and respect, from the neighborhood to the school, from the university to the front lines, to amplify every message, every poem, every song, every story, as a sincere r", :id "art.outlet.granma.1779267954", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Rewriting the past to kill the future", :as-of 1779267913, :url "http://en.granma.cu/cuba/2026-05-20/rewriting-the-past-to-kill-the-future", :section "sec.international", :byline "Jorge Enrique Jerez Belisario", :excerpt "<p>Nostalgia for the bourgeois Republic is not an innocent exercise in memory. It is a cognitive warfare operation designed to rewrite the past, delegitimize the Revolution, and push a people to question their own history<br><br></p>", :id "art.outlet.granma.1779267913", :sourcing :verified}]

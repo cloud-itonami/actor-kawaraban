@@ -1,0 +1,15 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.bbc-business", :lang ["en"], :kind :mirror, :headline "New era for Gibraltar with removal of 118-year-old border controls with Spain", :as-of 1783898946, :url "https://www.bbc.co.uk/news/articles/cwydz60j3eno?at_medium=RSS&at_campaign=rss", :section "sec.economy", :excerpt "It is hoped that free movement between the UK territory and Spain will provide an economic boost.", :id "art.outlet.bbc-business.1783898946", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw-business", :lang ["en"], :kind :mirror, :headline "Are German companies leaving the country?", :as-of 1783874760, :url "https://www.dw.com/en/are-german-companies-leaving-the-country/a-77875399?maca=en-rss-en-bus-2091-rdf", :section "sec.economy", :excerpt "Should I stay or should I go? Given Germany's high cost and sluggish growth, some business leaders are mulling relocating, or at least investing abroad. DW has a look at the numbers.", :id "art.outlet.dw-business.1783874760", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "Are German companies leaving the country?", :as-of 1783874760, :url "https://www.dw.com/en/are-german-companies-leaving-the-country/a-77875399?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "Should I stay or should I go? Given Germany's high cost and sluggish growth, some business leaders are mulling relocating, or at least investing abroad. DW has a look at the numbers.", :id "art.outlet.dw.1783874760", :sourcing :verified}
+ #:news.article{:outlet "outlet.unicef", :lang ["en"], :kind :mirror, :headline "UNICEF calls for urgent action as peak wasting season nears and child food and nutrition insecurity puts 3.7 million children in Afghanistan at heightened risk of malnutrition", :as-of 1783863831, :url "https://www.unicef.org/press-releases/unicef-calls-urgent-action-peak-wasting-season-nears-and-child-food-and-nutrition", :section "sec.international", :excerpt "New analysis highlights the need to protect young children’s diets, prioritise children under two, and strengthen multisectoral services to prevent malnutrition", :id "art.outlet.unicef.1783863831", :sourcing :verified}
+ #:news.article{:outlet "outlet.dw", :lang ["en"], :kind :mirror, :headline "California's largest lake is turning to dust", :as-of 1783852260, :url "https://www.dw.com/en/california-s-largest-lake-is-turning-to-dust/a-77864212?maca=en-rss-en-all-1573-rdf", :section "sec.international", :excerpt "The Salton Sea is drying up, worsening air pollution for nearby communities. Officials are racing to contain it, but for some families, it's already too late.", :id "art.outlet.dw.1783852260", :sourcing :verified}]

@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "The National Electric System continues to operate under extreme pressure", :as-of 1778753147, :url "http://en.granma.cu/cuba/2026-05-14/the-national-electric-system-continues-to-operate-under-extreme-pressure", :section "sec.international", :byline "Wennys Diaz Ballaga", :excerpt "<p>The main cause of the current crisis is the lack of fuel, linked to the intensification of the economic and energy blockade against the island<br><br></p>", :id "art.outlet.granma.1778753147", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "China and the United States: The global problem at a table for two", :as-of 1778753120, :url "http://en.granma.cu/mundo/2026-05-14/china-and-the-united-states-the-global-problem-at-a-table-for-two", :section "sec.international", :byline "Dilbert Reyes Rodríguez |", :excerpt "<p>Even though there are exclusively bilateral issues to be resolved, it is presumed that no global issue will be left out of the dialogue between the presidents of China and the United States<br><br><br></p>", :id "art.outlet.granma.1778753120", :sourcing :verified}
+ #:news.article{:outlet "outlet.granma", :lang ["en"], :kind :mirror, :headline "Cuban President denounces the impact of the blockade on the worsening energy situation in the country", :as-of 1778753112, :url "http://en.granma.cu/cuba/2026-05-14/cuban-president-denounces-the-impact-of-the-blockade-on-the-worsening-energy-situation-in-the-country", :section "sec.international", :byline "Digital Editor", :excerpt "<p>The Cuban president stated that this dramatic worsening has a single cause: \"the genocidal energy blockade to which the U.S. subjects our country, threatening irrational tariffs on any nation that supplies us with fuel\"<br><br></p>", :id "art.outlet.granma.1778753112", :sourcing :verified}]
