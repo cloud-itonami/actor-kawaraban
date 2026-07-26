@@ -16,4 +16,19 @@
      :homepage {:type "string"}
      :access   {:type "string" :enum ["open" "registration-wall"]
                 :description "G4 INVARIANT — only public facing pages are mirrored; 'paywall'/'proprietary-terminal' are NOT enum members (kanjo §2(c) anti-gatekeeping)"}
-     :sourcing {:type "string" :enum ["representative" "verified"]}}}}}}
+     ;; ADR-2607253400 / issue 6bcb348 — sourcing はこの **組織記録** の出所であって、
+     ;; その媒体の feed が生きているかではない。両者は長らく取り違えられていた:
+     ;; sourcing は allowlist の :verified（= feed が items を返したか）から機械的に
+     ;; 導出されていたので、":verified" な outlet が主張していたのは「ある日 feed が
+     ;; 生きていた」ことだけで、「この媒体が誰で、どの国の、どういう種類か」は一度も
+     ;; 確認されていなかった。feed の生死は :kawaraban.ingest/verified が持つ。
+     ;;   verified     — その媒体自身のページを取得し、名称が載っていることを確認した
+     ;;   third-party  — 実在するが、その媒体自身のページでは未確認（既定）
+     ;;   representative — 例示（data/seed.edn）。coverage に数えない
+     :sourcing {:type "string" :enum ["representative" "third-party" "verified"]}
+     :provenance {:type "string"
+                  :description "the outlet's own page this record was checked against — what makes `sourcing: verified` mean anything"}
+     :lastVerified {:type "string"
+                    :description "the date that check was actually performed. An outlet can be renamed, absorbed or defunded; without a date this record asserts more than it knows"}
+     :kindEvidence {:type "string"
+                    :description "a verbatim snippet from the outlet's own page supporting `kind`. RECORDED, NEVER INFERRED — kind drives the charter's selection criterion (state/public-broadcaster or non-profit press ONLY), so it must not be set from a keyword match. Absent means nobody has confirmed the kind yet, which is a gap, not a denial."}}}}}}

@@ -65,7 +65,19 @@
  #:db{:ident       :news.outlet/sourcing
       :valueType   :db.type/keyword
       :cardinality :db.cardinality/one
-      :doc         "G5 — :representative（説明用の例示。実在の取得結果ではない）| :verified（実際に取得・確認した）。"}
+      :doc         "G5 — **この組織記録の**出所であって、その媒体の feed が生きているかではない（ADR-2607253400 / issue 6bcb348）。両者は長く取り違えられていた: この属性は allowlist の :verified（= feed が items を返したか）から機械的に導出されていたので、:verified な outlet が主張していたのは『ある日 feed が生きていた』ことだけで、『この媒体が誰で、どの国の、どういう種類か』は一度も確認されていなかった。feed の生死は :kawaraban.ingest/verified が持つ。:verified = その媒体自身のページを取得し名称を確認した / :third-party = 実在するが媒体自身のページでは未確認（既定）/ :representative = 例示（data/seed.edn）。"}
+ #:db{:ident       :news.outlet/provenance
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "照合に使ったその媒体自身のページ。:sourcing :verified を意味あるものにしているのはこの1本で、無いのに :verified を名乗る行は矛盾。"}
+ #:db{:ident       :news.outlet/last-verified
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         "その照合を実際に行った日。媒体は改称・統合・廃局しうるので、日付の無い記録は自分の知っている以上を主張することになる。"}
+ #:db{:ident       :news.outlet/kind-evidence
+      :valueType   :db.type/string
+      :cardinality :db.cardinality/one
+      :doc         ":news.outlet/kind を支持する、その媒体自身のページからの逐語断片。**記録するだけで推論しない** — kind は憲章の選定基準そのもの（state/public-broadcaster か非営利/国際機関 press のみ）なので、キーワード一致で機械的に確定させてはいけない。不在は『まだ誰も kind を確認していない』であって、否定ではない。"}
 
  ;; ── SECTION（面）──────────────────────────────────────────────────────────
  #:db{:ident       :news.section/id

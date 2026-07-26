@@ -199,11 +199,22 @@
 (defn outlet-datom
   "allowlist の 1 entry → :news.outlet/* datom（+ :kawaraban.ingest/* の取得ポリシー）。
 
-  `:news.outlet/sourcing` は allowlist の `:verified` から引く: feed を実際に取得
-  できた媒体は `:verified`、確認できなかった媒体は `:representative`。lexicon の enum
-  はこの2値しか持たないので第3の値は作らない。根拠が『feed が items を返した』で
-  あることは `:kawaraban.ingest/note` に日付つきで残っているので、この 1 bit を
-  それ以上の意味に読まないこと。"
+  **`:news.outlet/sourcing` は feed の生死から切り離されている**（ADR-2607253400 /
+  issue 6bcb348）。以前はここが allowlist の `:verified` を読んでいたが、それが
+  測っているのは『feed が items を返したか』の1点だけで、その媒体が誰で・どの国の・
+  どういう種類かは一度も確認していなかった。とりわけ `:kind` は憲章の選定基準
+  そのもの（state/public-broadcaster または非営利・国際機関 press のみ）なので、
+  未確認のまま `:verified` を名乗らせるのは、確認していないことを確認したことに
+  する類の主張だった。
+
+  いまは:
+  - `:news.outlet/sourcing` ← `:org-verified`（`scripts/verify-outlets.cljs` が
+    その媒体自身のページで名称を確認したか）。既定は `:third-party`。
+  - `:kawaraban.ingest/verified` ← `:verified`（feed の生死）。取得ポリシーとして
+    正しい置き場はこちら。
+
+  `:news.outlet/kind-evidence` は kind を支持する逐語引用で、**記録するだけで
+  `:kind` の決定には使わない**。"
   [entry]
   (let [base (reduce-kv (fn [m k attr]
                           (if-let [v (get entry k)]
@@ -213,11 +224,15 @@
                             m))
                         {}
                         outlet-key->attr)]
-    (cond-> (assoc base :news.outlet/sourcing (if (:verified entry) :verified :representative)
+    (cond-> (assoc base :news.outlet/sourcing (if (:org-verified entry) :verified :third-party)
                         :kawaraban.ingest/verified (boolean (:verified entry)))
+      (:org-provenance entry) (assoc :news.outlet/provenance (:org-provenance entry))
+      (:org-checked entry) (assoc :news.outlet/last-verified (:org-checked entry))
+      (:org-kind-evidence entry) (assoc :news.outlet/kind-evidence (:org-kind-evidence entry))
       (:feed-url entry) (assoc :kawaraban.ingest/feed-url (:feed-url entry))
       (:section entry) (assoc :kawaraban.ingest/section (:section entry))
-      (:note entry) (assoc :kawaraban.ingest/note (:note entry)))))
+      (:note entry) (assoc :kawaraban.ingest/note (:note entry))
+      (:org-note entry) (assoc :kawaraban.ingest/org-note (:org-note entry)))))
 
 (defn outlet-datoms [allowlist] (mapv outlet-datom allowlist))
 
