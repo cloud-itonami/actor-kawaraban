@@ -207,9 +207,32 @@
       (is (true? (:kawaraban.ingest/verified d)))
       (is (nil? (:news.outlet/feed-url d)))
       (is (nil? (:news.outlet/verified d))))
-    (testing "sourcing reflects the feed measurement"
-      (is (= :verified (:news.outlet/sourcing d)))
-      (is (= :representative (:news.outlet/sourcing (store/outlet-datom (assoc entry :verified false))))))))
+    ;; ADR-2607253400 / issue 6bcb348 replaced this assertion. It used to require that
+    ;; :news.outlet/sourcing follow the feed measurement, which is exactly the confusion
+    ;; being fixed: a live feed says nothing about who the outlet is, and :kind in
+    ;; particular is the charter's own selection criterion.
+    (testing "sourcing describes the ORGANISATION record, not the feed"
+      (is (= :third-party (:news.outlet/sourcing d))
+          "a live feed alone must not make the organisation record :verified")
+      (is (= :verified (:news.outlet/sourcing
+                        (store/outlet-datom (assoc entry :org-verified true
+                                                         :org-provenance "https://x.example"
+                                                         :org-checked "2026-07-26")))))
+      (testing "a dead feed does not downgrade a confirmed organisation record"
+        (is (= :verified (:news.outlet/sourcing
+                          (store/outlet-datom (assoc entry :verified false
+                                                           :org-verified true)))))))
+    (testing "organisational provenance rides on the outlet record, feed policy does not"
+      (let [v (store/outlet-datom (assoc entry :org-verified true
+                                               :org-provenance "https://x.example"
+                                               :org-checked "2026-07-26"
+                                               :org-kind-evidence "X is the public broadcaster of ZZ."))]
+        (is (= "https://x.example" (:news.outlet/provenance v)))
+        (is (= "2026-07-26" (:news.outlet/last-verified v)))
+        (is (= "X is the public broadcaster of ZZ." (:news.outlet/kind-evidence v)))
+        (testing "kind-evidence is recorded, never used to set :kind"
+          (is (= :public-broadcaster (:news.outlet/kind v))
+              "kind still comes from the registry, not from the evidence string"))))))
 
 (deftest query-joins-articles-to-outlets-for-real
   (testing "the join that was empty in ADR-2607252600 now resolves"

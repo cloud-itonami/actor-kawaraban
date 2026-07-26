@@ -1,45 +1,77 @@
 {
-  "lexicon" : 1,
-  "id" : "com.etzhayyim.kawaraban.outlet",
-  "defs" : {
-    "main" : {
-      "type" : "record",
-      "key" : "tid",
-      "record" : {
-        "type" : "object",
-        "required" : [ "outletId", "name", "kind", "access" ],
-        "properties" : {
-          "outletId" : {
-            "type" : "string",
-            "description" : "→ :news.outlet/id"
+  "lexicon": 1,
+  "id": "com.etzhayyim.kawaraban.outlet",
+  "defs": {
+    "main": {
+      "type": "record",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "outletId",
+          "name",
+          "kind",
+          "access"
+        ],
+        "properties": {
+          "outletId": {
+            "type": "string",
+            "description": "→ :news.outlet/id"
           },
-          "name" : {
-            "type" : "string"
+          "name": {
+            "type": "string"
           },
-          "country" : {
-            "type" : "string"
+          "country": {
+            "type": "string"
           },
-          "lang" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
+          "lang": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           },
-          "kind" : {
-            "type" : "string",
-            "enum" : [ "public-broadcaster", "wire-agency", "newspaper", "magazine", "digital-native", "ngo-press" ]
+          "kind": {
+            "type": "string",
+            "enum": [
+              "public-broadcaster",
+              "wire-agency",
+              "newspaper",
+              "magazine",
+              "digital-native",
+              "ngo-press"
+            ]
           },
-          "homepage" : {
-            "type" : "string"
+          "homepage": {
+            "type": "string"
           },
-          "access" : {
-            "type" : "string",
-            "enum" : [ "open", "registration-wall" ],
-            "description" : "G4 INVARIANT — only public facing pages are mirrored; 'paywall'/'proprietary-terminal' are NOT enum members (kanjo §2(c) anti-gatekeeping)"
+          "access": {
+            "type": "string",
+            "enum": [
+              "open",
+              "registration-wall"
+            ],
+            "description": "G4 INVARIANT — only public facing pages are mirrored; 'paywall'/'proprietary-terminal' are NOT enum members (kanjo §2(c) anti-gatekeeping)"
           },
-          "sourcing" : {
-            "type" : "string",
-            "enum" : [ "representative", "verified" ]
+          "sourcing": {
+            "type": "string",
+            "enum": [
+              "representative",
+              "third-party",
+              "verified"
+            ],
+            "description": "provenance of THIS ORGANISATION RECORD, not of the feed. Feed liveness is kawaraban-internal ingest policy. ADR-2607253400"
+          },
+          "provenance": {
+            "type": "string",
+            "description": "the outlet's own page this record was checked against"
+          },
+          "lastVerified": {
+            "type": "string",
+            "description": "the date that check was performed"
+          },
+          "kindEvidence": {
+            "type": "string",
+            "description": "verbatim snippet from the outlet's own page supporting kind. Recorded, never inferred."
           }
         }
       }

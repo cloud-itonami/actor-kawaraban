@@ -112,7 +112,16 @@
                     :articles-representative (n '[:find (count ?a) . :where [?a :news.article/sourcing :representative]])
                     :articles-with-byline (n '[:find (count ?a) . :where [?a :news.article/byline]])
                     :outlets (n '[:find (count ?o) . :where [?o :news.outlet/id]])
+                    ;; 2つの数は別物で、別々に出す（ADR-2607253400 / issue 6bcb348）。
+                    ;; feed-verified は「その媒体の feed がその日 items を返した」、
+                    ;; org-verified は「その媒体自身のページで組織記録を照合した」。
+                    ;; 片方をもう片方の代わりに読ませないために、まとめない。
                     :outlets-feed-verified (n '[:find (count ?o) . :where [?o :kawaraban.ingest/verified true]])
+                    :outlets-org-verified (n '[:find (count ?o) . :where [?o :news.outlet/sourcing :verified]])
+                    :countries-org-verified (count (d/q '[:find ?c
+                                                          :where [?o :news.outlet/sourcing :verified]
+                                                                 [?o :news.outlet/country ?c]]
+                                                        db))
                     :countries (count (d/q '[:find ?c :where [?o :news.outlet/country ?c]] db))
                     :countries-feed-verified (count (d/q '[:find ?c
                                                            :where [?o :kawaraban.ingest/verified true]
