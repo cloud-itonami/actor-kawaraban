@@ -8,5 +8,5 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "\"Zwaarste brand sinds Tweede Wereldoorlog\": president Macron bezoekt zwaar getroffen departement Gironde", :as-of 1783177910, :url "https://vrtnws.be/p.93mlpPbP7", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1783177910", :sourcing :verified}
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Natuurbrand nabij Bordeaux breidt zich niet verder uit: \"Wel 14 heropflakkeringen\"", :as-of 1783177910, :url "https://vrtnws.be/p.93mlpPbP7", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1783177910", :sourcing :verified}
  #:news.article{:outlet "outlet.bbc-sport", :lang ["en"], :kind :mirror, :headline "In spotlight but shunning limelight - Olise's unique rise to top", :as-of 1783162922, :url "https://www.bbc.co.uk/sport/football/articles/c5yzr42943lo?at_medium=RSS&at_campaign=rss", :section "sec.sports", :excerpt "A footballer who dislikes too much media attention, but Michael Olise might not have much choice if he carries on his World Cup heroics.", :id "art.outlet.bbc-sport.1783162922", :sourcing :verified}]
