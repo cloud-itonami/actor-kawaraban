@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Enhancing Global Health and Well-Being: WHO and the Netherlands strengthen their Partnership", :as-of 1712930273, :url "https://www.who.int/news/item/12-04-2024-enhancing-global-health-and-well-being--who-and-the-netherlands-strengthen-their-partnership", :section "sec.international", :excerpt "<p style=\"text-align:center;\"><img src=\"https://cdn.who.int/media/images/default-source/funding/nl-strategic-dialogue-10apr24-group-photo.jpg?sfvrsn=22e8ac1f_3\" alt=\"\" sf-size=\"429679\" /><br /><sup><em>WHO and Netherlands Strategic Dialogue in The Hague, Netherlands 10 April 2024", :id "art.outlet.who-news.1712930273", :sourcing :verified}]

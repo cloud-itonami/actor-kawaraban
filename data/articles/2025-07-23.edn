@@ -8,4 +8,4 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Israël valt, ondanks 'historisch' akkoord, Gaza opnieuw aan: 2 mensen komen om", :as-of 1761226780, :url "https://vrtnws.be/p.11O9OWQ7W", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1761226780", :sourcing :verified}]
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Timor-Leste certified malaria-free by WHO", :as-of 1753265261, :url "https://www.who.int/news/item/24-07-2025-timor-leste-certified-malaria-free-by-who", :section "sec.international", :excerpt "<p>The World Health Organization (WHO) has certified Timor-Leste as malaria-free, a remarkable achievement for a country that prioritized the disease and embarked on a concerted, nation-wide response shortly after gaining independence in 2002.</p><p>&ldquo;WHO congratulates the p", :id "art.outlet.who-news.1753265261", :sourcing :verified}]

@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "The Republic of Korea and WHO discuss joint priorities, challenges and trends around global health", :as-of 1725441545, :url "https://www.who.int/news/item/29-08-2024-the-republic-of-korea-and-who-discuss-joint-priorities--challenges-and-trends-around-global-health", :section "sec.international", :excerpt "<p>The World Health Organization (WHO) and the Republic of Korea have a long-standing partnership spanning over 75 years. As a result of their fruitful collaboration, there has been significant progress in health and development all around the world. The Republic of Korea has gon", :id "art.outlet.who-news.1725441545", :sourcing :verified}]

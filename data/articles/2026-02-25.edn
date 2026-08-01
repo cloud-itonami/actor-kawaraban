@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "WHO Director-General visits Jordan to recognize strong collaboration on health system delivery, emergency relief and advancing mental health", :as-of 1772042815, :url "https://www.who.int/news/item/25-02-2026-who-director-general-visits-jordan-to-recognize-strong-collaboration-on-health-system-delivery--emergency-relief-and-advancing-mental-health", :section "sec.international", :excerpt "The Director-General of the World Health Organization, Dr Tedros Adhanom Ghebreyesus, today concluded the first day of his two-day State visit to the Hashemite Kingdom of Jordan, underscoring the strong partnership between WHO and Jordan across the areas of universal health cover", :id "art.outlet.who-news.1772042815", :sourcing :verified}]

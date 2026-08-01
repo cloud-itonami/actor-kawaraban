@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Frank, in-depth discussion as Belgium and WHO map ahead priorities for collaboration", :as-of 1741682963, :url "https://www.who.int/news/item/11-03-2025-frank--in-depth-discussion-as-belgium-and-who-map-ahead-priorities-for-collaboration", :section "sec.international", :excerpt "In a three-day strategic dialogue, Belgium and WHO reviewed progress in their longstanding partnership, and agreed to further boost their collaboration on universal health coverage, health-systems strengthening and equitable access to essential vaccines, medicines and health tech", :id "art.outlet.who-news.1741682963", :sourcing :verified}]

@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Qatar Fund for Development (QFFD) supports the implementation of WHO's extended 13th General Programme of Work with flexible funding", :as-of 1716466371, :url "https://www.who.int/news/item/23-05-2024-Qatar-Fund-for-Development-(QFFD)-supports-the-implementation-of-WHO's-extended-13th-General-Programme-of-Work-with-flexible-funding", :section "sec.international", :excerpt "<p>Ahead of the <a href=\"https://www.who.int/about/governance/world-health-assembly/seventy-seventh\"></a><a href=\"https://www.who.int/about/accountability/governance/world-health-assembly/seventy-seventh\">Seventy-seventh World Health Assembly</a>, the Qatar Fund for Development (", :id "art.outlet.who-news.1716466371", :sourcing :verified}]

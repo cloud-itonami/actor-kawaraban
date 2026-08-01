@@ -1,0 +1,14 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.nhk-news-ja", :lang ["ja"], :kind :mirror, :headline "香川 観音寺 海水浴に訪れたベトナム国籍の20代男性が死亡", :as-of 1785639502, :url "http://www3.nhk.or.jp/news/html/20260802/k10015193931000.html", :section "sec.front", :excerpt "香川県観音寺市の海水浴場で1日、ベトナム国籍の20代の男性が海の中で意識がない状態で見つかり、その後死亡しました。警察は泳いでいる最中に溺れたとみて調べています。", :id "art.outlet.nhk-news-ja.1785639502", :sourcing :verified}
+ #:news.article{:outlet "outlet.nhk-news-ja", :lang ["ja"], :kind :mirror, :headline "【地震情報】熊本 水俣市 上天草市などで震度4 津波の心配なし", :as-of 1785634471, :url "http://www3.nhk.or.jp/news/html/20260802/k10015193911000.html", :section "sec.front", :excerpt "2日午前1時7分ごろ、熊本県で震度4の揺れを観測する地震がありました。この地震による津波の心配はありません。", :id "art.outlet.nhk-news-ja.1785634471", :sourcing :verified}
+ #:news.article{:outlet "outlet.nhk-news-ja", :lang ["ja"], :kind :mirror, :headline "秋田 横手市に避難指示 686世帯の計1479人", :as-of 1785634191, :url "http://www3.nhk.or.jp/news/html/20260802/k10015193921000.html", :section "sec.front", :excerpt "「レベル4土砂災害危険警報」と「レベル4大雨危険警報」が発表されている秋田県横手市は、土砂災害のおそれがあるとして1日午後11時20分、横手本町や城南町などの土砂災害警戒区域に住む686世帯、あわせて1479人に避難指示を出しました。市は横手中央地区交流センターと山内地区交流センターの2か所に避難所を開設しています。", :id "art.outlet.nhk-news-ja.1785634191", :sourcing :verified}
+ #:news.article{:outlet "outlet.nhk-news-ja", :lang ["ja"], :kind :mirror, :headline "バレーボール国際大会 日本男子は準決勝で米に敗れ3位決定戦へ", :as-of 1785630064, :url "http://www3.nhk.or.jp/news/html/20260802/k10015193891000.html", :section "sec.front", :excerpt "バレーボールの国際大会「ネーションズリーグ」は男子の準決勝が中国で行われ、日本はアメリカにフルセットの末に敗れて3位決定戦にまわりました。", :id "art.outlet.nhk-news-ja.1785630064", :sourcing :verified}]

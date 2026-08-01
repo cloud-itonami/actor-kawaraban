@@ -8,4 +8,4 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Israël valt, ondanks 'historisch' akkoord, Gaza opnieuw aan: 2 mensen komen om", :as-of 1761226780, :url "https://vrtnws.be/p.11O9OWQ7W", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1761226780", :sourcing :verified}]
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "Luxembourg and WHO sign two strategic agreements", :as-of 1734972284, :url "https://www.who.int/news/item/23-12-2024-luxembourg-and-who-sign-two-strategic-agreements", :section "sec.international", :excerpt "A Strategic Partnership Framework (SPF) with the Ministry of Development Cooperation and Humanitarian Affairs and multiyear agreement with the Ministry of Health and Social Safety was signed on 20 December 2024. By signing two new partnership agreements, Luxembourg reaffirmed its", :id "art.outlet.who-news.1734972284", :sourcing :verified}]

@@ -8,4 +8,4 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Israël valt, ondanks 'historisch' akkoord, Gaza opnieuw aan: 2 mensen komen om", :as-of 1761226780, :url "https://vrtnws.be/p.11O9OWQ7W", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1761226780", :sourcing :verified}]
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "WHO comments on United States’ announcement of intent to withdraw", :as-of 1737453889, :url "https://www.who.int/news/item/21-01-2025-who-comments-on-united-states--announcement-of-intent-to-withdraw", :section "sec.international", :excerpt "The World Health Organization regrets the announcement that the United States of America intends to withdraw from the organization.", :id "art.outlet.who-news.1737453889", :sourcing :verified}]

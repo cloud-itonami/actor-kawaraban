@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.who-news", :lang ["en"], :kind :mirror, :headline "India commits US$ 85 million to WHO Global Traditional Medicine Centre", :as-of 1722402027, :url "https://www.who.int/news/item/31-07-2024-india-commits-usd-85-million-to-who-global-traditional-medicine-centre", :section "sec.international", :excerpt "The WHO-India donor agreement is part of a US$ 250 million investment from India in support of the establishment of the WHO Global Centre of Traditional Medicine in 2022, which includes financial support for the workplan of the Centre, interim premises and a new building. This su", :id "art.outlet.who-news.1722402027", :sourcing :verified}]
