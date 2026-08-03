@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Waarom zijn hoortoestellen zo duur en moet je ze een maand lang uittesten? \"Opnieuw goed horen kan overweldigend zijn\"", :as-of 1747230669, :url "https://vrtnws.be/p.Nvd43vA44", :section "sec.international", :excerpt "Wie een hoortoestel nodig heeft, moet daar al snel veel geld voor neertellen. De kostprijs kan oplopen tot enkele duizenden euro's. Voor je een toestel koopt, moet je dat ook eerst 28 dagen uittesten en heb je een doktersvoorschrift nodig. WinWin legt uit wat de kostprijs is voor", :id "art.outlet.vrt-nws.1747230669", :sourcing :verified}]

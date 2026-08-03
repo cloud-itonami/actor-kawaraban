@@ -8,4 +8,4 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.dw-culture", :lang ["en"], :kind :mirror, :headline "Human rights expert Philippe Sands wins German Peace Prize", :as-of 1782391080, :url "https://www.dw.com/en/human-rights-expert-philippe-sands-wins-german-peace-prize/a-77702306?maca=en-rss-en-cul-2090-rdf", :section "sec.culture", :excerpt "From advocating for the law of ecocide to representing Palestinian rights, the descendant of Holocaust survivors tirelessly fights against genocide and crimes against humanity.", :id "art.outlet.dw-culture.1782391080", :sourcing :verified}]
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Olieprijzen zakken na nieuwe verklaringen van Trump", :as-of 1774344708, :url "https://vrtnws.be/p.6K7w8D3Y0", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1774344708", :sourcing :verified}]
