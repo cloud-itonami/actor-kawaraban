@@ -1,0 +1,13 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.rnz", :lang ["en"], :kind :mirror, :headline "Concern for 6-year-old Auckland boy missing overnight", :as-of 1785897929, :url "https://www.rnz.co.nz/news/regions_auckland/886815/concern-for-6-year-old-auckland-boy-missing-overnight", :section "sec.international", :excerpt "Prior to leaving his house, Malakai mentioned to family members he was going to Rainbows End.", :id "art.outlet.rnz.1785897929", :sourcing :verified}
+ #:news.article{:outlet "outlet.yonhap", :lang ["en"], :kind :mirror, :headline "(LEAD) U.S., Iran could reach deal this week to reopen Strait of Hormuz: Bessent", :as-of 1785893304, :url "https://en.yna.co.kr/view/AEN20260804009151315", :section "sec.international", :byline "Song Sang-ho", :excerpt "WASHINGTON, Aug. 4 (Yonhap) -- U.S. Treasury Secretary Scott Bessent said Tuesda...", :id "art.outlet.yonhap.1785893304", :sourcing :verified}
+ #:news.article{:outlet "outlet.yonhap", :lang ["en"], :kind :mirror, :headline "(LEAD) Bessent cites volatility in Korean won while stressing stable yen's importance", :as-of 1785888159, :url "https://en.yna.co.kr/view/AEN20260804009451315", :section "sec.international", :byline "Song Sang-ho", :excerpt "WASHINGTON, Aug. 4 (Yonhap) -- U.S. Treasury Secretary Scott Bessent said Tuesda...", :id "art.outlet.yonhap.1785888159", :sourcing :verified}]
