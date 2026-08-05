@@ -8,4 +8,4 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Israël wijst plan voor ontwapening Hamas en terugtrekking uit Gaza af, zegt premier Netanyahu", :as-of 1761226780, :url "https://vrtnws.be/p.11O9OWQ7W", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1761226780", :sourcing :verified}]
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "AI ziet lek over het hoofd, hackers stelen 112,6 miljoen euro aan bitcoins", :as-of 1776705622, :url "https://vrtnws.be/p.Nvy0JR391", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1776705622", :sourcing :verified}]
