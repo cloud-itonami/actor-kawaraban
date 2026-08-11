@@ -1,0 +1,12 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.rnz", :lang ["en"], :kind :mirror, :headline "Arthur's Pass tramper died of hypothermia after losing marked track", :as-of 1786509099, :url "https://www.rnz.co.nz/news/emergencies_local/968910/arthur-s-pass-tramper-died-of-hypothermia-after-losing-marked-track", :section "sec.international", :excerpt "Rebecca Woolley was an experienced tramper who set out out in fine weather on a day walk on Mount Aicken Track, but never returned.", :id "art.outlet.rnz.1786509099", :sourcing :verified}
+ #:news.article{:outlet "outlet.yonhap", :lang ["en"], :kind :mirror, :headline "Expert cautions against U.S. trade concerns defining entire relationship with Korea", :as-of 1786499891, :url "https://en.yna.co.kr/view/AEN20260812000200315", :section "sec.international", :byline "Song Sang-ho", :excerpt "WASHINGTON, Aug. 11 (Yonhap) -- A U.S. expert cautioned Tuesday against letting ...", :id "art.outlet.yonhap.1786499891", :sourcing :verified}]
