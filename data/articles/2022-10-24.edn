@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.rtbf", :lang ["fr"], :kind :mirror, :headline "Éclipse de Soleil : comment photographier l’événement ?", :as-of 1666614969, :url "https://www.rtbf.be/article/eclipse-de-soleil-comment-photographier-l-evenement-11087339", :section "sec.international", :byline "Antoine Binamé, Caroline Dossogne et Fédération Francophone d’Astronomes Amateurs de Belgique", :excerpt "Le Service espace de l’Observatoire de Paris a mis en place un site web dédié à l’éclipse permettant de savoir...", :id "art.outlet.rtbf.1666614969", :sourcing :verified}]
