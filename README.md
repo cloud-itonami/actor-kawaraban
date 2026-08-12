@@ -1,5 +1,10 @@
 # kawaraban 瓦版 — News Medium
 
+Canonical repository: `cloud-itonami/actor-kawaraban`. This governed,
+resident public-information actor belongs to the Itonami operations plane. It
+mirrors and routes attributed public events; it neither authors source claims
+nor owns Tamaki's artificial-organism evolution loop.
+
 > Real-media **mirror** + actor-to-actor **wire**. kotoba-wasm-native, runs on the
 > Murakumo fleet. ADR-2606061900.
 
