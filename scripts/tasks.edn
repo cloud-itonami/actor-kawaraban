@@ -1,3 +1,18 @@
-;; Auto-generated from bb.edn (ADR-2607173000).
-;; nbb scripts/run-task.cljs <task> [args…]
-{}
+;; Originally generated from bb.edn (ADR-2607173000 Wave 3); repaired 2026-08-13
+;; (ADR-2608131600).  nbb scripts/run-task.cljs <task> [args…]
+;;
+;; The Wave-3 conversion emitted an EMPTY registry for this repo and deleted
+;; bb.edn, so BOTH entrypoints below had no runnable path from 2026-07-17 until
+;; today.  Recovered from bb.edn at 8b04ccb^ — both were plain `(shell "clojure
+;; …")` forms, i.e. a conversion the converter simply did not perform, not a
+;; babashka-hosted body needing a port.
+;;
+;; `test`'s bb-era argv was `clojure -M -m kawaraban.test-runner`; that spelling
+;; no longer resolves, because store_test.clj gained a datascript dependency
+;; (ADR-2607252600) that lives only in the :test alias's :extra-deps.  Registered
+;; here as the command README.md and CLAUDE.md already document, `clojure -M:test`
+;; ("complete standalone suite") — 97 tests / 236 assertions green, 2026-08-13.
+{:test  {:cmd ["clojure" "-M:test"]
+         :doc "Run the complete standalone kawaraban suite (cognitect test-runner via the :test alias)."}
+ :audit {:cmd ["clojure" "-M" "scripts/audit.clj"]
+         :doc "Validate canonical EDN and artifact boundaries."}}
