@@ -1,0 +1,5 @@
+{:repo/id "cloud-itonami/actor-kawaraban"
+ :repo/aliases ["etzhayyim/com-etzhayyim-kawaraban"]
+ :repo/role :governed-executable-actor
+ :repo/execution :resident
+ :repo/boundary "Attributed news mirroring and actor-event routing only; no truth verdict or source impersonation, and Tamaki owns organism evolution."}

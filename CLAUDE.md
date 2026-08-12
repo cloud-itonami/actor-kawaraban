@@ -1,4 +1,7 @@
-# kawaraban 瓦版 — CLAUDE instructions
+# cloud-itonami/actor-kawaraban — CLAUDE instructions
+
+Canonical repository: `https://github.com/cloud-itonami/actor-kawaraban`.
+The former `etzhayyim/com-etzhayyim-kawaraban` path is a compatibility redirect.
 
 News medium. ADR-2606061900. **Read the root `/CLAUDE.md` Charter + substrate rules
 first.** kawaraban-specific invariants below make the Charter concrete for this actor;
