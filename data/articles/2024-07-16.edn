@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.bbc-sport", :lang ["en"], :kind :mirror, :headline "Daley: Olympic Superstar", :as-of 1721106000, :url "https://www.bbc.co.uk/iplayer/episode/m00216mg?at_mid=bxLvtB1WXo&at_campaign=Daley_Olympic_Superstar_Sport_Rail&at_medium=display_ad&at_campaign_type=owned&at_nation=NET&at_audience_id=SS&at_product=iplayer&at_brand=m00216mg&at_ptr_name=bbc&at_ptr_type=media&at_format=image&at_objective=consumption&at_link_title=Daley_Olympic_Superstar_Sport_Rail&at_bbc_team=BBC", :section "sec.sports", :excerpt "Daley Thompson takes an epic journey to tell his story.", :id "art.outlet.bbc-sport.1721106000", :sourcing :verified}]
