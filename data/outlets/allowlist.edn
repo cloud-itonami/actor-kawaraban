@@ -42,7 +42,7 @@
   :feed-url "https://www.radionacional.com.ar/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 15 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 15 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -57,7 +57,7 @@
   :feed-url "https://rss.orf.at/news.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rdf, 18 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rdf, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -72,7 +72,7 @@
   :feed-url "https://www.abc.net.au/news/feed/51120/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 25 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 25 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -87,7 +87,7 @@
   :feed-url "https://rss.rtbf.be/article/rss/highlight_rtbfinfo_info.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -102,7 +102,7 @@
   :feed-url "https://www.vrt.be/vrtnws/nl.rss.articles.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, atom, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, atom, 50 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"VRT NWS\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.vrt.be/vrtnws/nl/"
@@ -118,7 +118,7 @@
   :feed-url "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Agência Brasil\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://agenciabrasil.ebc.com.br/"
@@ -134,7 +134,7 @@
   :feed-url "https://ici.radio-canada.ca/rss/4159"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 25 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 28 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -149,7 +149,7 @@
   :feed-url "https://www.cgtn.com/subscribe/rss/section/world.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 49 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"CGTN\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.cgtn.com/"
@@ -165,7 +165,7 @@
   :feed-url "http://www.xinhuanet.com/english/rss/worldrss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -180,7 +180,7 @@
   :feed-url "http://www.cubadebate.cu/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Cubadebate\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "http://www.cubadebate.cu/"
@@ -196,7 +196,7 @@
   :feed-url "https://en.granma.cu/feed"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 150 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 152 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -211,7 +211,7 @@
   :feed-url "https://english.radio.cz/rcz-rss/en"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 120 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 120 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Radio Prague International\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://english.radio.cz/"
@@ -227,7 +227,7 @@
   :feed-url "https://www.deutschlandfunk.de/nachrichten-100.rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 36 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 33 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "vom 30. Mai 2026 USA und Kuba Wird Donald Trump die Diktatur angreifen? vom 27. Mai 2026 Öffentlich-Rechtliche Wie Deutschlandradio, ARD und ZDF relevant bleiben vom 20. Mai 2026 Krise der Demokratie"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Deutschlandfunk\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -244,7 +244,7 @@
   :feed-url "https://rss.dw.com/rdf/rss-en-all"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rdf, 143 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rdf, 137 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -259,7 +259,7 @@
   :feed-url "https://rss.dw.com/rdf/rss-en-bus"
   :verified true
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 200, rdf, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rdf, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 404. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -274,7 +274,7 @@
   :feed-url "https://rss.dw.com/rdf/rss-en-cul"
   :verified true
   :section "sec.culture"
-  :note "verify-feeds 2026-08-09: HTTP 200, rdf, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rdf, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 404. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -289,7 +289,7 @@
   :feed-url "https://www.tagesschau.de/xml/rss2/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 40 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 40 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"tagesschau\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.tagesschau.de/"
@@ -305,7 +305,7 @@
   :feed-url "https://www.dr.dk/nyheder/service/feeds/allenyheder"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -320,7 +320,7 @@
   :feed-url "https://news.err.ee/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "tion pressure 25.07 Ministries oppose Riigikogu members&#039; special military court bill public broadcasters launch news portal LIVE European public broadcasters launch joint trusted news portal us"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"ERR News\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -337,7 +337,7 @@
   :feed-url "https://api2.rtve.es/rss/temas_noticias.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 40 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 40 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"RTVE Noticias\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rtve.es/noticias/"
@@ -353,7 +353,7 @@
   :feed-url "https://yle.fi/rss/news"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -368,7 +368,7 @@
   :feed-url "https://www.france24.com/en/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 24 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 24 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"France 24\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.france24.com/en/"
@@ -384,7 +384,7 @@
   :feed-url "https://www.francetvinfo.fr/titres.rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 29 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 29 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -399,7 +399,7 @@
   :feed-url "https://www.rfi.fr/en/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 21 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 21 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"RFI English\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rfi.fr/en/"
@@ -415,7 +415,7 @@
   :feed-url "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
   :verified true
   :section "sec.culture"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 27 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 26 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"BBC News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bbc.co.uk/news/entertainment_and_arts"
@@ -431,7 +431,7 @@
   :feed-url "http://feeds.bbci.co.uk/news/business/rss.xml"
   :verified true
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 54 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 53 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"BBC News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bbc.co.uk/news/business"
@@ -447,7 +447,7 @@
   :feed-url "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
   :verified true
   :section "sec.science"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 42 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 42 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"BBC News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bbc.co.uk/news/science_and_environment"
@@ -463,7 +463,7 @@
   :feed-url "http://feeds.bbci.co.uk/sport/rss.xml"
   :verified true
   :section "sec.sports"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 71 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 69 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"BBC Sport\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bbc.co.uk/sport"
@@ -479,7 +479,7 @@
   :feed-url "http://feeds.bbci.co.uk/news/world/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 29 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 31 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"BBC News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bbc.co.uk/news"
@@ -495,7 +495,7 @@
   :feed-url "https://www.gbcghanaonline.com/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: This operation was aborted. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -510,7 +510,7 @@
   :feed-url "https://www.ertnews.gr/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 35 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 35 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"ERT News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.ertnews.gr/"
@@ -526,7 +526,7 @@
   :feed-url "https://rthk9.rthk.hk/rthk/news/rss/e_expressnews_elocal.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -541,7 +541,7 @@
   :feed-url "https://vijesti.hrt.hr/feed.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 33 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 33 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -556,7 +556,7 @@
   :feed-url "https://en.antaranews.com/rss/news.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Antara News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://en.antaranews.com/"
@@ -572,7 +572,7 @@
   :feed-url "https://www.rte.ie/feeds/rss/?index=/news/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 60 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 60 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"RTÉ News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rte.ie/news/"
@@ -588,7 +588,7 @@
   :feed-url "https://www.newsonair.gov.in/rss-feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 100 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 100 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -603,7 +603,7 @@
   :feed-url "https://www.esa.int/rssfeed/Our_Activities/Space_News"
   :verified true
   :section "sec.science"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 9 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 9 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"European Space Agency\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.esa.int/"
@@ -619,7 +619,7 @@
   :feed-url "https://www.icrc.org/rss/news"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"International Committee of the Red Cross\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.icrc.org/en/news"
@@ -635,7 +635,7 @@
   :feed-url "https://www.rferl.org/api/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -650,7 +650,7 @@
   :feed-url "https://www.telesurenglish.net/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"teleSUR English\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.telesurenglish.net/"
@@ -666,7 +666,7 @@
   :feed-url "https://news.un.org/feed/subscribe/en/news/all/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"UN News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://news.un.org/en/"
@@ -682,7 +682,7 @@
   :feed-url "https://www.unicef.org/news/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 61 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 63 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -697,7 +697,7 @@
   :feed-url "https://www.who.int/rss-feeds/news-english.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 25 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 25 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "ctivities Initiatives General Programme of Work WHO Academy Funding Investment in WHO WHO Foundation Accountability External audit Financial statements Internal audit and investigations&#160"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"WHO News\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -714,7 +714,7 @@
   :feed-url "https://www.wto.org/library/rss/latest_news_e.xml"
   :verified true
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"World Trade Organization\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.wto.org/english/news_e/news_e.htm"
@@ -730,7 +730,7 @@
   :feed-url "https://en.irna.ir/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -745,7 +745,7 @@
   :feed-url "https://www.ruv.is/rss/frettir"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 40 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 40 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -760,7 +760,7 @@
   :feed-url "https://www.rainews.it/rss/tutti"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 40 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 40 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Rai News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rainews.it/"
@@ -776,7 +776,7 @@
   :feed-url "https://www3.nhk.or.jp/rss/news/cat0.xml"
   :verified true
   :section "sec.front"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 7 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 7 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"NHKニュース\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www3.nhk.or.jp/news/"
@@ -792,7 +792,7 @@
   :feed-url "https://www.kbc.co.ke/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -807,7 +807,7 @@
   :feed-url "http://world.kbs.co.kr/rss/rss_news.htm?lang=e"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"KBS World Radio\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://world.kbs.co.kr/"
@@ -823,7 +823,7 @@
   :feed-url "https://en.yna.co.kr/RSS/news.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 87 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 101 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -836,9 +836,9 @@
   :access "open"
   :homepage "https://en.inform.kz/"
   :feed-url "https://en.inform.kz/feed.xml"
-  :verified false
+  :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "\"NewsMediaOrganization\", \"@id\": \"https://qazinform.com/#organization\", \"name\": \"Qazinform News Agency\", \"alternateName\": \"Qazinform\", \"url\": \"https://qazinform.com/\", \"logo\": { \"@type\": \"Imag"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Kazinform\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -855,7 +855,7 @@
   :feed-url "https://www.lrt.lt/en/news-in-english?rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 100 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 100 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"LRT English\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.lrt.lt/en/news-in-english"
@@ -871,7 +871,7 @@
   :feed-url "https://eng.lsm.lv/rss/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -884,9 +884,9 @@
   :access "open"
   :homepage "https://snrtnews.com/"
   :feed-url "https://snrtnews.com/rss.xml"
-  :verified true
+  :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"SNRT News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://snrtnews.com/"
@@ -902,7 +902,7 @@
   :feed-url "https://www.imer.mx/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 5 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 5 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Instituto Mexicano de la Radio\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.imer.mx/"
@@ -918,7 +918,7 @@
   :feed-url "https://www.bernama.com/en/rssfeed.php"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "BERNAMA - Malaysian National News Agency --> @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"BERNAMA\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -935,7 +935,7 @@
   :feed-url "https://nannews.ng/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "Home - News Agency Of Nigeria img:is([sizes=auto i],[sizes^=\"auto,\" i]){contain-intrinsic-size:3000px 1500px"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"News Agency of Nigeria\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -952,7 +952,7 @@
   :feed-url "https://feeds.nos.nl/nosnieuwsalgemeen"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -967,7 +967,7 @@
   :feed-url "https://www.nrk.no/toppsaker.rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 99 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 100 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -982,7 +982,7 @@
   :feed-url "https://www.rnz.co.nz/rss/national.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 39 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 42 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -997,7 +997,7 @@
   :feed-url "https://www.app.com.pk/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Associated Press of Pakistan\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.app.com.pk/"
@@ -1013,7 +1013,7 @@
   :feed-url "https://www.rtp.pt/noticias/rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"RTP Notícias\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rtp.pt/noticias/"
@@ -1029,7 +1029,7 @@
   :feed-url "https://www.aljazeera.com/xml/rss/all.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 25 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 25 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Al Jazeera English\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.aljazeera.com/"
@@ -1045,7 +1045,7 @@
   :feed-url "https://www.rri.ro/en/feed"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 3 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 3 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "UCPRESS - știri din Cernăuți Affiliates Euranet Plus AIB | the trade association for international broadcasters Digital Radio Mondiale News and current affairs from Germany and around the world Comuni"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Radio Romania International\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1062,7 +1062,7 @@
   :feed-url "https://www.rts.rs/vesti/rss.html"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1077,7 +1077,7 @@
   :feed-url "https://tass.com/rss/v2.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 73 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 49 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "TASS Russian News Agency var TASSconfig = { centrifugo: {\"host\":\"https://centrifugo.tass.ru\",\"port\":\"443\",\"user\":\""
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"TASS\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1094,7 +1094,7 @@
   :feed-url "https://api.sr.se/api/rss/program/83"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, atom, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, atom, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1109,7 +1109,7 @@
   :feed-url "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 15 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1124,7 +1124,7 @@
   :feed-url "https://www.rtvslo.si/feeds/00.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"RTV Slovenija\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rtvslo.si/"
@@ -1140,7 +1140,7 @@
   :feed-url "https://spravy.stvr.sk/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 100 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 100 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"STVR Spravy\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://spravy.stvr.sk/"
@@ -1156,7 +1156,7 @@
   :feed-url "https://www.aa.com.tr/en/rss/default?cat=guncel"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1171,7 +1171,7 @@
   :feed-url "https://www.trtworld.com/feed/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 100 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 100 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"TRT World\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.trtworld.com/"
@@ -1187,7 +1187,7 @@
   :feed-url "https://www.ukrinform.net/rss/block-lastnews"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "Ukrinform - Ukrainian National News Agency window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Ukrinform\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1204,7 +1204,7 @@
   :feed-url "https://www.nasa.gov/rss/dyn/breaking_news.rss"
   :verified true
   :section "sec.science"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "ights 2 min read MCMC Science article 1 day ago 1 min read Amendment 66: B.2 Heliophysics Foundational Research Step-2 Due Date Announced and Correction article 1 day ago 1 min read Request"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"NASA\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1221,7 +1221,7 @@
   :feed-url "https://feeds.npr.org/1004/rss.xml"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1236,7 +1236,7 @@
   :feed-url "https://feeds.npr.org/1008/rss.xml"
   :verified true
   :section "sec.culture"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1251,7 +1251,7 @@
   :feed-url "https://feeds.npr.org/1006/rss.xml"
   :verified true
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1266,7 +1266,7 @@
   :feed-url "https://feeds.npr.org/1007/rss.xml"
   :verified true
   :section "sec.science"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1281,7 +1281,7 @@
   :feed-url "https://www.pbs.org/newshour/feeds/rss/headlines"
   :verified true
   :section "sec.society"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "er PBS News 1996 - 2026 NewsHour Productions LLC. All Rights Reserved. PBS is a 501(c)(3) not-for-profit organization. Sections The Latest Politics Arts Nation World Economy Science Health Educa"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"PBS NewsHour\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1298,7 +1298,7 @@
   :feed-url "https://www.voanews.com/api/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 20 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 20 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Voice of America\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.voanews.com/"
@@ -1314,7 +1314,7 @@
   :feed-url "https://www.telesurenglish.net/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 30 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 30 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"teleSUR English\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.telesurenglish.net/"
@@ -1330,7 +1330,7 @@
   :feed-url "https://en.vietnamplus.vn/rss/home.rss"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-kind-evidence "forts to reclaim cultural heritage Vietnam+ (VietnamPlus) Copyright, VietnamPlus, Vietnam News Agency (VNA) Editor-in-chief, Mr. Tran Tien Duan. Intellectual Property Terms Of Use RSS Support"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Vietnam News Agency\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1347,7 +1347,7 @@
   :feed-url "https://www.sabcnews.com/sabcnews/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"SABC News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.sabcnews.com/"
@@ -1363,7 +1363,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1378,7 +1378,7 @@
   :feed-url "https://www.wam.ae/en/rss"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1393,7 +1393,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1408,7 +1408,7 @@
   :feed-url "https://www.bssnews.net/rss.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Bangladesh Sangbad Sangstha\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bssnews.net/"
@@ -1424,7 +1424,7 @@
   :feed-url "https://www.bssnews.net/rss/all"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Bangladesh Sangbad Sangstha\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.bssnews.net/news"
@@ -1440,7 +1440,7 @@
   :feed-url "https://bnr.bg/rss"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1455,7 +1455,7 @@
   :feed-url "https://bnrnews.bg/api/rss/horizont"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 50 items. Feed URL discovered from the homepage this run."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 50 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1470,7 +1470,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1485,7 +1485,7 @@
   :feed-url "https://www.cbc.ca/cmlink/rss-world"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1500,7 +1500,7 @@
   :feed-url "https://www.cbc.ca/webfeed/rss/rss-topstories"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1515,7 +1515,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 406 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 406 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"RTS Info\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.rts.ch/info/"
@@ -1531,7 +1531,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"SRF News\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.srf.ch/news"
@@ -1547,7 +1547,7 @@
   :feed-url "https://www.swissinfo.ch/service/rss/all/rss.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-kind-evidence "n Switzerland work without Microsoft? This content was published on Jul 23, 2026 From the public broadcaster to the railways and government ministries: why can’t Switzerland do without Microsoft? Re"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"SWI swissinfo.ch\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1564,7 +1564,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"SWI swissinfo.ch\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.swissinfo.ch/eng/latest-news/"
@@ -1580,7 +1580,7 @@
   :feed-url "https://www.plenglish.com/feed/"
   :verified true
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200, rss, 10 items."
+  :note "verify-feeds 2026-08-16: HTTP 200, rss, 10 items."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1595,7 +1595,7 @@
   :feed-url "https://www.aps.dz/en/?format=feed&type=rss"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Algérie Presse Service\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.aps.dz/en/"
@@ -1611,7 +1611,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: This operation was aborted. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1626,7 +1626,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1641,7 +1641,7 @@
   :feed-url "https://www.ena.et/rss"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-kind-evidence "Office of the Prime Minister, Bikila Hurissa, said. Executive leadership of the Ethiopian News Agency (ENA) planted tree seedlings along the shores of Lake Hora Arsedi in Bishoftu, Oromia Reg"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Ethiopian News Agency\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1658,7 +1658,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Voice of Croatia\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://glashrvatske.hrt.hr/en"
@@ -1674,7 +1674,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1689,7 +1689,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1704,7 +1704,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1719,7 +1719,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1734,7 +1734,7 @@
   :feed-url "https://ddnews.gov.in/en/feed/"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1749,7 +1749,7 @@
   :feed-url "https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1764,7 +1764,7 @@
   :feed-url "https://www.fao.org/feeds/newsroom/en/"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1779,7 +1779,7 @@
   :feed-url "https://www.iaea.org/feeds/topnews.rss"
   :verified false
   :section "sec.science"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1794,7 +1794,7 @@
   :feed-url nil
   :verified false
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1809,7 +1809,7 @@
   :feed-url "https://www.imf.org/en/News/RSS?language=eng"
   :verified false
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: unreachable — This operation was aborted. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — This operation was aborted. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1824,7 +1824,7 @@
   :feed-url nil
   :verified false
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1839,7 +1839,7 @@
   :feed-url "https://www.ohchr.org/en/rss/news"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 404. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1854,7 +1854,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1869,7 +1869,7 @@
   :feed-url "https://www.unesco.org/en/rss.xml"
   :verified false
   :section "sec.culture"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-kind-evidence "es Partners UNEVOC Youth Specialized websites World Heritage Intangible Cultural Heritage Intergovernmental Oceanographic Commission International Decade of Action for Cryospheric Sciences Internat"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"UNESCO\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1886,7 +1886,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1901,7 +1901,7 @@
   :feed-url "https://www.wfp.org/rss"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1916,7 +1916,7 @@
   :feed-url "https://wmo.int/rss.xml"
   :verified false
   :section "sec.science"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-kind-evidence "tically refresh as filter values change. Clear filters Magazine Article 20 July 2026 “The Foundation of the Global Atmosphere Watch is a Long-term, Open and Trusted Source of Information” Ma"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"World Meteorological Organization\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -1933,7 +1933,7 @@
   :feed-url "https://www.worldbank.org/en/news/all?format=rss"
   :verified false
   :section "sec.economy"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"World Bank\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.worldbank.org/en/news"
@@ -1949,7 +1949,7 @@
   :feed-url "https://www.presstv.ir/rss.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1964,7 +1964,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1979,7 +1979,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -1994,7 +1994,7 @@
   :feed-url "https://www3.nhk.or.jp/nhkworld/en/news/all.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"NHK World-Japan\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www3.nhk.or.jp/nhkworld/"
@@ -2010,7 +2010,7 @@
   :feed-url "https://www3.nhk.or.jp/nhkworld/en/news/rss/all.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"NHK World-Japan\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www3.nhk.or.jp/nhkworld/en/news/"
@@ -2026,7 +2026,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2041,7 +2041,7 @@
   :feed-url "https://www.kuna.net.kw/RSSFeed.aspx?language=en"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2056,7 +2056,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2071,7 +2071,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2086,7 +2086,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2101,7 +2101,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2116,7 +2116,7 @@
   :feed-url "https://canalonce.mx/feed"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Canal Once\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://canalonce.mx/"
@@ -2132,7 +2132,7 @@
   :feed-url nil
   :verified false
   :section "sec.culture"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Canal 22\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://canal22.org.mx/"
@@ -2148,7 +2148,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2163,7 +2163,7 @@
   :feed-url "https://www.pna.gov.ph/rss"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2178,7 +2178,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2193,7 +2193,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2208,7 +2208,7 @@
   :feed-url "https://polskieradio24.pl/rss/all.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Polskie Radio\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.polskieradio.pl/"
@@ -2224,7 +2224,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"TVP World\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://tvpworld.com/"
@@ -2240,7 +2240,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-kind-evidence "Home | Qatar news agency window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gt"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Qatar News Agency\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -2257,7 +2257,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2272,7 +2272,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2287,7 +2287,7 @@
   :feed-url "https://www.spa.gov.sa/rss/en"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-kind-evidence "The official Saudi Press Agency window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gt"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Saudi Press Agency\". A kind-supporting quote was captured verbatim below — recorded as evidence, NOT used to set :kind."
@@ -2304,7 +2304,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 404. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2319,7 +2319,7 @@
   :feed-url "https://world.thaipbs.or.th/feed/"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Thai PBS World\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://world.thaipbs.or.th/"
@@ -2335,7 +2335,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Thai PBS\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://www.thaipbs.or.th/news"
@@ -2351,7 +2351,7 @@
   :feed-url "https://tap.info.tn/en/feed"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
+  :note "verify-feeds 2026-08-16: unreachable — fetch failed. Feed URL needs correcting before this outlet can yield articles."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: unreachable: fetch failed. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2366,7 +2366,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: outlet name not found on its own homepage. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2381,7 +2381,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 403 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 403 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 403. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2396,7 +2396,7 @@
   :feed-url "https://www.ukrinform.net/rss/rss-ukrinform-news.xml"
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: HTTP 404. The record is kept and stays unconfirmed — being unable to reach an outlet is not evidence about what it is."
   :org-verified false}
@@ -2411,7 +2411,7 @@
   :feed-url nil
   :verified false
   :section "sec.front"
-  :note "verify-feeds 2026-08-09: HTTP 404 — not a usable feed endpoint."
+  :note "verify-feeds 2026-08-16: HTTP 404 — not a usable feed endpoint."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Associated Press\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://apnews.com/"
@@ -2427,7 +2427,7 @@
   :feed-url nil
   :verified false
   :section "sec.international"
-  :note "verify-feeds 2026-08-09: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
+  :note "verify-feeds 2026-08-16: HTTP 200 but returned an HTML page, not RSS/Atom XML — the feed URL is a landing page, not a feed."
   :org-checked "2026-07-26"
   :org-note "verify-outlets 2026-07-26: fetched the outlet's own page; its name appears there as \"Voice of Vietnam\". No kind-supporting phrase was found on this page, so :kind remains unconfirmed."
   :org-provenance "https://vovworld.vn/en-US"
