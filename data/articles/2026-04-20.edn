@@ -8,4 +8,4 @@
 ;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
 ;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
 
-[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Anthropic aast op overname start-up Decart voor 6 miljard dollar ", :as-of 1776705622, :url "https://vrtnws.be/p.Nvy0JR391", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1776705622", :sourcing :verified}]
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Google koopt data van failliete luchtvaartmaatschappij Spirit Airlines om AI te trainen", :as-of 1776705622, :url "https://vrtnws.be/p.Nvy0JR391", :section "sec.international", :excerpt "", :id "art.outlet.vrt-nws.1776705622", :sourcing :verified}]
