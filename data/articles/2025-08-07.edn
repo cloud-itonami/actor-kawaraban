@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.vrt-nws", :lang ["nl"], :kind :mirror, :headline "Op de foto op festival of evenement? Organisatie mag jouw afbeelding gebruiken, zélfs soms om reclame te maken", :as-of 1754569649, :url "https://vrtnws.be/p.YbBvk7PMy", :section "sec.international", :excerpt "Wanneer je naar een festival of ander evenement gaat, mag de organisator vaak foto's of video's van jou maken en die nadien op allerlei manieren gebruiken. Daar heb je toestemming voor gegeven, zonder dat je dat misschien zelf doorhad. Vaak gebeurt dat via de algemene voorwaarden", :id "art.outlet.vrt-nws.1754569649", :sourcing :verified}]

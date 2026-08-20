@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.esa", :lang ["en"], :kind :mirror, :headline "Meteosat Third Generation", :as-of 1541007060, :url "https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/meteosat_third_generation", :section "sec.science", :excerpt "<img src=\"https://www.esa.int/var/esa/storage/images/esa_multimedia/satellite_images/mtg_mission_cover/12059961-2-eng-GB/MTG_mission_cover_card_full.jpg\" alt=\"Meteosat Third Generation\">\n\t<p>Meteosat Third Generation</p>\n\t<p></p>", :id "art.outlet.esa.1541007060", :sourcing :verified}]
