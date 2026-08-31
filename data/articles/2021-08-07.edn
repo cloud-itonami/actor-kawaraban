@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.francetvinfo", :lang ["fr"], :kind :mirror, :headline "Le jour où Edouard Balladur a annoncé sa candidature à la présidence de la République", :as-of 1628361964, :url "https://www.franceinfo.fr/replay-radio/reparties-de-campagne/reparties-de-campagne-le-jour-ou-edouard-balladur-a-annonce-sa-candidature-a-la-presidence-de-la-republique_4703129.html#xtor=RSS-3-[lestitres]", :section "sec.international", :excerpt "<p>Ce jour de janvier 1995 a marqué définitivement la rupture avec Jacques Chirac et fini de diviser la droite avant le premier tour. Pour la première fois, deux candidats d’un même parti allaient s’affronter.</p>", :id "art.outlet.francetvinfo.1628361964", :sourcing :verified}]
