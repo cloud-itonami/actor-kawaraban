@@ -1,0 +1,11 @@
+;; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）
+;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、
+;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま
+;; transact でき、`clojure -M:query` が読む。
+;;
+;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。
+;; 本文は決して含まれない（含む record は ingest が refuse する）。
+;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に
+;; 取得した記事。data/seed.edn の :representative（例示）とは別物。
+
+[#:news.article{:outlet "outlet.yonhap", :lang ["en"], :kind :mirror, :headline "Lee arrives in France, set for summit with Macron in Paris", :as-of 1788740108, :url "https://en.yna.co.kr/view/AEN20260906000300315", :section "sec.international", :byline "Park Boram", :excerpt "NICE, France, Sept. 6 (Yonhap) -- South Korean President Lee Jae Myung arrived i...", :id "art.outlet.yonhap.1788740108", :sourcing :verified}]
