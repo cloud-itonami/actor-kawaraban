@@ -28,7 +28,7 @@
   (:require [clojure.data.json :as json]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.methods.live-fetch :as live-fetch]
             [kawaraban.mirror-actor :as mirror-actor]
             [kawaraban.publish :as publish]

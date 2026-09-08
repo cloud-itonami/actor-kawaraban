@@ -1,6 +1,6 @@
 (ns kawaraban.murakumo
   "Pure cljc actor boundary generated from manifest migration scaffold."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def actor-did
   "did:web:etzhayyim.com:actor:kawaraban")

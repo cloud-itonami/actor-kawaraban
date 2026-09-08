@@ -3,7 +3,7 @@
   1:1 port of cells/section_route/state_machine.py (ADR-2606061900). Routes an article into its 面
   + attaches :news.mention edges. ROUTED only if the 面 is a real section, G2 rank signals ⊆
   public-good allowlist (paid/engagement unrepresentable), G11 mention roles are observational."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def men #{"front" "politics" "economy" "international" "society" "culture" "science" "sports" "local" "opinion"})
 (def allowed-rank #{"recency" "section-fit" "source-diversity" "actor-relevance" "geo-proximity"})

@@ -11,7 +11,7 @@
   Publication is kawaraban's own SPEECH (ADR-2606281500, autonomous-by-default) — bounded by
   the structural gates already enforced upstream (route/validate + cell state machines), NOT
   by a per-post operator/Council approval."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kawaraban.cacao :as cacao]
             [kawaraban.publisher :as publisher])
   (:import [java.net URI]
@@ -45,7 +45,7 @@
   [{:keys [url method headers body]}]
   (let [b (HttpRequest/newBuilder (URI/create url))]
     (doseq [[k v] headers] (.header b k v))
-    (let [req  (-> b (.method (str/upper-case (name (or method :post)))
+    (let [req  (-> b (.method (str/upper (name (or method :post)))
                              (if body
                                (HttpRequest$BodyPublishers/ofString body)
                                (HttpRequest$BodyPublishers/noBody)))

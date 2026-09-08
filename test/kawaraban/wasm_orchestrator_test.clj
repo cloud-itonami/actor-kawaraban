@@ -29,7 +29,7 @@
        prove identity minting, CACAO signing, wire encoding, createSession,
        and createRecord all genuinely run as wasm."
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [kawaraban.methods.ingest :as ingest]
             [kawaraban.methods.live-fetch :as live-fetch]

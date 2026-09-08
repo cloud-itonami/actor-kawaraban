@@ -18,7 +18,7 @@
 
   G1 / G3 / G4 / G9 forbidden fields, G11 closed kinds, and the G4 excerpt bound all REFUSE
   by throwing ex-info (mirror of Python's ValueError)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── minimal EDN reader (subset: [] {} :kw \"str\" num bool nil) — ported from route.py
 ;; (itself from watari/watatsuna). Keywords kept as \":ns/name\" STRINGS, not clojure

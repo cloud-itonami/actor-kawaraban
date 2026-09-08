@@ -3,7 +3,7 @@
   The point of these assertions is G9: a mirror actor's profile text must always disclose
   the mirror relationship up front, never read as the outlet's own official voice."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.mirror-actor :as mirror-actor]))
 
 (def outlet {:id "outlet.bbc-world" :name "BBC News — World"})

@@ -3,7 +3,7 @@
   1:1 port of test_ingest.py. Refusals (Python IngestRefused/ValueError) become ex-info,
   caught here as clojure.lang.ExceptionInfo (assertRaises analogue)."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.methods.ingest :as ingest]))
 
 (defn- batch-path [] (clojure.java.io/file "wire/ingest/sample-batch.json"))
@@ -44,7 +44,7 @@
     (ingest/normalize-record {"outlet" "o" "headline" "h"})
     (is false "expected G4/G5 url refusal")
     (catch clojure.lang.ExceptionInfo e
-      (is (str/includes? (str/lower-case (.getMessage e)) "url")))))
+      (is (str/includes? (str/lower (.getMessage e)) "url")))))
 
 (deftest test-excerpt-truncated-to-280
   (let [rec (ingest/normalize-record {"outlet" "o" "url" "u" "excerpt" (apply str (repeat 500 "x"))})]

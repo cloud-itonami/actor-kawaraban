@@ -4,7 +4,7 @@
   actor_project (G7/G9/G11, the medium) · issue_compose (G2/G7/G8/G10) · fulltext_cache (G4
   PRIVATE buffer, ADR-2607010930); .solve() raises at R0."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.cells.outlet-ingest.state-machine :as oi]
             [kawaraban.cells.article-mirror.state-machine :as am]
             [kawaraban.cells.section-route.state-machine :as sr]
@@ -42,7 +42,7 @@
 
 (deftest test-article-mirror-refuses-missing-url
   (let [r (am/mirror {"article_id" "a" "outlet" "o"})]
-    (is (= "refused" (p r))) (is (str/includes? (str/lower-case (refusal r)) "url"))))
+    (is (= "refused" (p r))) (is (str/includes? (str/lower (refusal r)) "url"))))
 
 ;; ── section_route ──
 (deftest test-section-route-ok
@@ -115,4 +115,4 @@
 
 (deftest test-fulltext-cache-refuses-missing-provenance
   (let [r (fc/cache {"article_id" "a" "url" "u" "access" "open" "body" "b"})]
-    (is (= "refused" (p r))) (is (str/includes? (str/lower-case (refusal r)) "outlet"))))
+    (is (= "refused" (p r))) (is (str/includes? (str/lower (refusal r)) "outlet"))))

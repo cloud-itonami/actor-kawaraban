@@ -2,7 +2,7 @@
   "Pure crypto round-trip tests for kawaraban.cacao (ADR-2607110200). No network I/O."
   (:require [clojure.test :refer [deftest is testing]]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.cacao :as cacao]))
 
 (deftest test-generate-identity-shape

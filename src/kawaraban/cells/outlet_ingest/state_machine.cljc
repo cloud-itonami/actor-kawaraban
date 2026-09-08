@@ -3,7 +3,7 @@
   1:1 port of cells/outlet_ingest/state_machine.py (ADR-2606061900). An outlet is INGESTED only if
   its access is a PUBLIC facing page (:open / :registration-wall); :paywall / :proprietary-terminal
   are REFUSED (G4). Refusal, never coercion. Conventions: dataclass → plain map (Python string keys)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def open-access #{"open" "registration-wall"})
 (def outlet-kinds #{"public-broadcaster" "wire-agency" "newspaper" "magazine" "digital-native" "ngo-press"})

@@ -3,7 +3,7 @@
   1:1 port of cells/actor_project/state_machine.py (ADR-2606061900). Projects a first-party actor's
   Datom as-of event into the matching 面 as :article/kind 'actor-event'. PROJECTED only if: G11 kind
   with source_actor+source_tid; G7 member-signed + server_held_key false; G9 no speak_as."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def state-defaults
   {"phase" "init" "article_id" "" "source_actor" "" "source_tid" "" "men" "front" "headline" ""

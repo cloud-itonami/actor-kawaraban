@@ -14,7 +14,7 @@
   offline CLI's `--live` flag. This namespace's pure parsing fns have no gate (parsing text
   you already have is not a live fetch); `fetch-outlet!` (the #?(:clj) HTTP edge) refuses
   unless the gate is open, mirroring `ingest/-main`'s existing refusal message."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kawaraban.methods.ingest :as ingest]))
 
 ;; ── XML entity / CDATA handling ────────────────────────────────────────────

@@ -31,7 +31,7 @@
   純粋部（datomize / day-key / merge-articles / group-by-day）に I/O は無く、
   ファイル書き込みは `#?(:clj)` の edge だけ — 本 repo の
   methods/*.cljc と同じ house style。"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             #?(:clj [clojure.edn :as edn])
             #?(:clj [clojure.java.io :as io])))
 
