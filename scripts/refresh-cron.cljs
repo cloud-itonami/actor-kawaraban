@@ -39,7 +39,7 @@
 ;; 1つ落としたまま parse エラーで壊れているのに `clojure -M:test` も audit も緑のまま
 ;; だった（2026-07-25 に発覚）。壊れていれば、以後はこのジョブが失敗して気付ける。
 
-(require '[clojure.string :as str]
+(require '[kotoba.lang.text :as str]
          '["node:child_process" :as cp]
          '["node:path" :as path])
 

@@ -47,7 +47,7 @@
 ;; からの到達率は約55%で、報道機関がそれを上回る理由は無い。
 
 (require '[clojure.edn :as edn]
-         '[clojure.string :as str]
+         '[kotoba.lang.text :as str]
          '["node:fs" :as fs])
 
 (def argv (vec *command-line-args*))
@@ -95,7 +95,7 @@
       (str/replace #"\s+" " ")))
 
 (defn normalize [s]
-  (-> (str s) str/lower-case (.normalize "NFD")
+  (-> (str s) str/lower (.normalize "NFD")
       (str/replace #"[̀-ͯ]" "")
       (str/replace #"\s+" " ") str/trim))
 
@@ -124,9 +124,9 @@
   **判定はしない** — 返すのは引用だけ。"
   [raw-text kind]
   (let [t raw-text
-        low (str/lower-case t)]
+        low (str/lower t)]
     (some (fn [phrase]
-            (when-let [i (str/index-of low (str/lower-case phrase))]
+            (when-let [i (str/index-of low (str/lower phrase))]
               (let [from (max 0 (- i 90))
                     to (min (count t) (+ i (count phrase) 90))]
                 (str/trim (subs t from to)))))
