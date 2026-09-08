@@ -33,7 +33,7 @@
 ;; 記録されている "live-checked" 注記と同じ行為を自動化したもの。
 
 (require '[clojure.edn :as edn]
-         '[clojure.string :as str]
+         '[kotoba.lang.text :as str]
          '["node:fs" :as fs])
 
 (def argv (vec *command-line-args*))

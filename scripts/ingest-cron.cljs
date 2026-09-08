@@ -39,7 +39,7 @@
 ;; 1つ落としたまま parse エラーで壊れているのに `clojure -M:test` も audit も緑のまま
 ;; だった（2026-07-25 に発覚）。壊れていれば、以後はこのジョブが失敗して気付ける。
 
-(require '[clojure.string :as str]
+(require '[kotoba.lang.text :as str]
          '["node:child_process" :as cp]
          '["node:path" :as path])
 
@@ -84,7 +84,7 @@
            code)))
 
 ;; 3. 書かれたものが datom として読めることを確かめる
-(let [{:keys [code]} (run! "nbb" ["-e" "(require (quote [\"node:fs\" :as fs]) (quote [clojure.string :as str])) (let [d \"data/articles\" fl (filter #(str/ends-with? % \".edn\") (js->clj (.readdirSync fs d))) a (mapcat #(cljs.reader/read-string (.readFileSync fs (str d \"/\" %) \"utf8\")) fl)] (when-not (every? :news.article/id a) (.exit js/process 1)) (println (str \"archive ok: \" (count fl) \" file(s), \" (count a) \" article(s)\")))"])]
+(let [{:keys [code]} (run! "nbb" ["-e" "(require (quote [\"node:fs\" :as fs]) (quote [kotoba.lang.text :as str])) (let [d \"data/articles\" fl (filter #(str/ends-with? % \".edn\") (js->clj (.readdirSync fs d))) a (mapcat #(cljs.reader/read-string (.readFileSync fs (str d \"/\" %) \"utf8\")) fl)] (when-not (every? :news.article/id a) (.exit js/process 1)) (println (str \"archive ok: \" (count fl) \" file(s), \" (count a) \" article(s)\")))"])]
   (when (pos? code)
     (fail! "the archive does not parse as :news.article/* datoms" 1)))
 
