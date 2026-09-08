@@ -3,7 +3,7 @@
   1:1 port of cells/article_mirror/state_machine.py (ADR-2606061900). Mirrors a REAL article as an
   observation ONLY if: G11 kind=mirror with outlet+url; G4 no full_text + excerpt ≤280; G1 no
   verdict/truth_rating; G9 no speak_as. Illegal article REFUSED, never coerced."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def state-defaults
   {"phase" "init" "article_id" "" "section" "" "outlet" "" "url" "" "headline" "" "excerpt" ""

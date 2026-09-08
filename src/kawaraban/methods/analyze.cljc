@@ -20,7 +20,7 @@
   anyone's name (G9). The edition is dated, not final (G10), unsigned + unpublished at R0
   (G7/G8). House style: Python ':…' keyword strings stay strings; pure fns; file I/O at the
   #?(:clj) edge; HALF_EVEN round() via exact BigDecimal.(double)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kawaraban.methods.route :as route]))
 
 ;; G2 INVARIANT — the only ranking signals that exist. Engagement / paid placement /

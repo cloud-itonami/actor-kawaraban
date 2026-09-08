@@ -3,7 +3,7 @@
   1:1 port of cells/issue_compose/state_machine.py (ADR-2606061900). Composes an EDITION. COMPOSED
   only if: G2 rank signals ⊆ public-good allowlist; G10 final is false (非終末論); G7 server_held_key
   false. PUBLISHED stays false unless member-signed AND operator-gated (G7/G8)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def allowed-rank #{"recency" "section-fit" "source-diversity" "actor-relevance" "geo-proximity"})
 

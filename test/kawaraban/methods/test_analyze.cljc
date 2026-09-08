@@ -1,7 +1,7 @@
 (ns kawaraban.methods.test-analyze
   "kawaraban — tests for the edition composer (analyze.cljc). 1:1 port of test_analyze.py."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.methods.route :as route]
             [kawaraban.methods.analyze :as a]))
 
@@ -42,7 +42,7 @@
   (let [md (a/render-md (c))]
     (is (str/includes? md "一面"))
     (is (str/includes? md "Actor-to-actor wire"))
-    (is (or (str/includes? (str/lower-case md) "no full") (str/includes? md "G4")))
+    (is (or (str/includes? (str/lower md) "no full") (str/includes? md "G4")))
     (is (str/includes? md "([link]("))))
 
 (deftest test-render-edn-is-unpublished-and-not-final

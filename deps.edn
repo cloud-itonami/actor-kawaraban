@@ -3,7 +3,12 @@
  ;; mint) and aozora.clj (aozora PDS publish) — need real JDK crypto, unlike the portable
  ;; .cljc methods/cells exercised by the standalone Clojure test runner. Same split as tashikame's
  ;; deps.edn (its closest sibling: identical cacao/aozora/publisher shape).
- :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       org.clojure/clojure {:mvn/version "1.12.0"}
         org.clojure/data.json {:mvn/version "2.5.1"}
         ;; Phase G (com-junkawasaki/root): promoted out of the :test alias's
         ;; :extra-deps below -- `src/kawaraban/wasm_orchestrator.clj` hosts

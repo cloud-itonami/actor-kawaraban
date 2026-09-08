@@ -48,7 +48,7 @@
   `known-divergence-siwe-message-chain-id-for-non-did-key-issuers` below --
   read that test before \"fixing\" anything."
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             [kawaraban.cacao :as cacao]
             [kawaraban.wasm-orchestrator :as orch]

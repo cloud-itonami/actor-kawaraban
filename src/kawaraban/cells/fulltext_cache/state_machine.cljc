@@ -24,7 +24,7 @@
   :registration-wall}). A paywall / proprietary-terminal body is REFUSED —
   kawaraban cannot have fetched it on the public-web-up contract in the first
   place. .solve() raises at R0 (live fetch is G8-gated = Council Lv6+ + operator)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def state-defaults
   {"phase" "init" "article_id" "" "outlet" "" "url" "" "access" "" "body" ""

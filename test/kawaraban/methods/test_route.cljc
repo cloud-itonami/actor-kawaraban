@@ -1,7 +1,7 @@
 (ns kawaraban.methods.test-route
   "kawaraban — tests for the medium/routing core (route.cljc). 1:1 port of test_route.py."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.methods.route :as route]))
 
 (def W "did:web:etzhayyim.com:actor:")

@@ -21,7 +21,7 @@
 
   Self-contained: own minimal JSON reader (no cheshire/data.json), no dependency on a sibling
   namespace. A refused record throws ex-info (mirror of Python's IngestRefused/ValueError)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def FORBIDDEN-BODY-KEYS ["body" "fullText" "full_text" "content" "articleBody"])
 (def FORBIDDEN-FIELDS

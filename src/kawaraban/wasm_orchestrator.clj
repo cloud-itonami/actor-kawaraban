@@ -136,7 +136,7 @@
   (:require [clojure.data.json :as json]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [kawaraban.methods.live-fetch :as live-fetch]
             [kawaraban.publisher :as publisher]
             [kawaraban.store :as store]
