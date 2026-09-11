@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; scripts/verify-feeds.cljs — kawaraban 瓦版 outlet allowlist の feed 実地検証 +
 ;; feed URL 自動発見（com-junkawasaki/root ADR-2607252600）。
 ;;
@@ -7,9 +7,9 @@
 ;; ない。世界規模に広げるほど推測で true を置きたくなるので、その判定を
 ;; 人間の記憶から外して実測に固定するのがこのスクリプト。
 ;;
-;;   nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn
-;;   nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn --apply
-;;   nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn --discover --apply
+;;   kbb --backend sci scripts/verify-feeds.cljk data/outlets/allowlist.edn
+;;   kbb --backend sci scripts/verify-feeds.cljk data/outlets/allowlist.edn --apply
+;;   kbb --backend sci scripts/verify-feeds.cljk data/outlets/allowlist.edn --discover --apply
 ;;
 ;; 既定は検証してレポートを出すだけ（副作用なし）。`--apply` を付けたときだけ
 ;; allowlist を書き戻す — :verified を実測結果に、:note を日付つきの機械記録に

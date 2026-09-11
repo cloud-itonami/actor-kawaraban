@@ -1,10 +1,10 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; scripts/verify-outlets.cljs — kawaraban 瓦版 — outlet を **その媒体自身のページ**で
 ;; 照合し、組織記録に provenance を与える（com-junkawasaki/root ADR-2607253400、
 ;; Radicle issue 6bcb348）。
 ;;
-;;   nbb scripts/verify-outlets.cljs             # 測るだけ
-;;   nbb scripts/verify-outlets.cljs --apply     # allowlist に書き戻す
+;;   kbb --backend sci scripts/verify-outlets.cljk             # 測るだけ
+;;   kbb --backend sci scripts/verify-outlets.cljk --apply     # allowlist に書き戻す
 ;;
 ;; ## 何を直しているか
 ;;

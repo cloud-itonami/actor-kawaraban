@@ -20,7 +20,7 @@
 ;;                    :verified, so an unverified entry is inert, not harmful.
 ;;
 ;; Both fields are written by:
-;;   nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn --discover --apply
+;;   kbb --backend sci scripts/verify-feeds.cljk data/outlets/allowlist.edn --discover --apply
 ;; which re-measures every feed and, for entries whose URL is missing or dead, discovers a
 ;; replacement from the outlet's homepage <link rel="alternate"> (or common feed paths).
 ;; The prior convention was a hand-written "well-known, high-confidence endpoint" flag; on

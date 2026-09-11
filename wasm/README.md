@@ -412,11 +412,11 @@ bump.
     both genuinely reach a real HTTP server, mirroring kototama's own
     `post-request-with-headers-sends-real-headers-to-a-local-server`
     proof pattern).
-- `clojure -M:test` — **39 tests / 72 assertions, 0 failures, 0 errors**
+- `kbb -M:test` — **39 tests / 72 assertions, 0 failures, 0 errors**
   (29 tests / 56 assertions pre-existing from Phase B + this phase's 10
   tests / 16 assertions).
-- `clojure -M scripts/audit.clj` — `audit: ok`.
-- `clojure -M:lint` — 7 pre-existing errors / 39 pre-existing warnings, ALL
+- `kbb -M scripts/audit.clj` — `audit: ok`.
+- `kbb -M:lint` — 7 pre-existing errors / 39 pre-existing warnings, ALL
   in `.cljc` files unrelated to this port (unresolved `clojure.*`/JDK
   interop symbols under clj-kondo's cljc-shared-config analysis — a
   pre-existing baseline, not introduced by this port; neither Phase F's
@@ -463,7 +463,7 @@ were "not yet wired into a single call chain". Phase G is that wiring:
 charter gate (`src/kawaraban/methods/ingest.cljc`, **unchanged**) →
 per-outlet identity → CACAO signing → nested wire encoding → createSession
 → createRecord, all via the wasm modules above, and actually **runs** it
-(`clojure -M:test` / the new `:wasm-orchestrator` alias), not just links
+(`kbb -M:test` / the new `:wasm-orchestrator` alias), not just links
 each module in isolation. Read that namespace's own docstring for the
 full detail; this section is a summary + the three honest findings it
 surfaced.
@@ -583,7 +583,7 @@ share or clobber each other's progress marks.
 ### Deployment (launchd)
 
 `scripts/launchd/com.etzhayyim.kawaraban.wasm-orchestrator.plist` runs
-`clojure -M:wasm-orchestrator` (→ `kawaraban.wasm-orchestrator/-main`)
+`kbb -M:wasm-orchestrator` (→ `kawaraban.wasm-orchestrator/-main`)
 every 6 hours (`StartInterval` 21600), matching the format
 `orgs/gftdcojp/cloud-itonami/scripts/launchd/`'s 5 existing plists already
 establish. Install (same `sed` HOME/REPO-path-substitution pattern those
@@ -618,12 +618,12 @@ not installed.
   `test/wasm/identity_sign_test.clj` (6 tests), plus every pre-existing
   test in this repo (cells/methods/cacao/mirror-actor/publish/publisher/
   run-live-ingest/wasm.*): **136 tests / 295 assertions, 0 failures, 0
-  errors** (`clojure -M:test -r ".*"` from this repo's root — the default
-  `clojure -M:test` regex, `.*-test$`, only matches namespace names ending
+  errors** (`kbb -M:test -r ".*"` from this repo's root — the default
+  `kbb -M:test` regex, `.*-test$`, only matches namespace names ending
   in `-test`, which misses this repo's `test-*`-prefixed cells/methods
   namespaces; `-r ".*"` runs the complete suite in one pass).
-- `clojure -M scripts/audit.clj` — `audit: ok`.
-- `clojure -M:lint` — 7 errors / 39 warnings, the exact same pre-existing
+- `kbb -M scripts/audit.clj` — `audit: ok`.
+- `kbb -M:lint` — 7 errors / 39 warnings, the exact same pre-existing
   baseline Phase F already documented — zero new lint findings from any
   Phase G file.
 - No internet access happened anywhere in this phase's test suite — every
@@ -710,7 +710,7 @@ prepares un-flagged"):
   network calls stop refusing. Neither env var is set by this PR, the
   launchd plist, or any file in this repo — both are operator-set on the
   actual deployment host only.
-- Verified: `clojure -M:test -r ".*"` — 136 tests / 295 assertions, 0
+- Verified: `kbb -M:test -r ".*"` — 136 tests / 295 assertions, 0
   failures/errors (same count as Phase G — this recompile changed WHAT the
   refused-by-default tests refuse, not whether they refuse). `clojure
   -M:lint` — 7 errors / 39 warnings, identical pre-existing baseline, zero
