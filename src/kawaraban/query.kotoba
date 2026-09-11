@@ -2,9 +2,9 @@
   "query.clj — kawaraban 瓦版 の datom を DataScript にロードして datalog で
   問い合わせる CLI（com-junkawasaki/root ADR-2607252600）。
 
-      clojure -M:query count
-      clojure -M:query coverage
-      clojure -M:query q '[:find ?country (count ?a)
+      kbb -M:query count
+      kbb -M:query coverage
+      kbb -M:query q '[:find ?country (count ?a)
                            :where [?a :news.article/outlet ?oid]
                                   [?o :news.outlet/id ?oid]
                                   [?o :news.outlet/country ?country]]'
@@ -25,7 +25,7 @@
   の冒頭コメントが同じ制約を記録している）。それでは `schema/news.edn` の
   `:db.unique/identity` upsert も、`:mirror` / `:verified` という keyword 値も
   文字列に潰れてしまい、スキーマを書いた意味が消える。この repo は既に
-  `clojure -M:wasm-orchestrator` を launchd から回している JVM repo なので、
+  `kbb -M:wasm-orchestrator` を launchd から回している JVM repo なので、
   同じ runtime の alias を1つ足すのが素直（ADR-2607173000 が退役させたのは
   `bb` であって、この repo 自身の既存 runtime ではない）。"
   (:require [clojure.edn :as edn]
@@ -155,8 +155,8 @@
       "q"
       (if-let [qs (second args)]
         (pp/pprint (d/q (edn/read-string qs) db))
-        (binding [*out* *err*] (println "usage: clojure -M:query q '<datalog edn>'") (System/exit 2)))
+        (binding [*out* *err*] (println "usage: kbb -M:query q '<datalog edn>'") (System/exit 2)))
 
       (binding [*out* *err*]
-        (println "usage: clojure -M:query [--seed] count|outlets|coverage|q '<datalog edn>'")
+        (println "usage: kbb -M:query [--seed] count|outlets|coverage|q '<datalog edn>'")
         (System/exit 2)))))

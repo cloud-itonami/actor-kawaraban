@@ -1,4 +1,4 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; scripts/ingest-cron.cljs — kawaraban 瓦版 — 6時間ごとの実収集を無人で回す
 ;; （com-junkawasaki/root ADR-2607253200）。
 ;;
@@ -36,7 +36,7 @@
 ;;
 ;; 副次的だが重要な効果として、**このジョブは verify-feeds.cljs を毎週実際に実行する
 ;; 唯一の経路**でもある。同スクリプトは長らくどのテストからも呼ばれておらず、paren を
-;; 1つ落としたまま parse エラーで壊れているのに `clojure -M:test` も audit も緑のまま
+;; 1つ落としたまま parse エラーで壊れているのに `kbb -M:test` も audit も緑のまま
 ;; だった（2026-07-25 に発覚）。壊れていれば、以後はこのジョブが失敗して気付ける。
 
 (require '[kotoba.lang.text :as str]

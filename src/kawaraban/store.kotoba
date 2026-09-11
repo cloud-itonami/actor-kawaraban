@@ -128,7 +128,7 @@
        vec))
 
 (def ^:private file-header
-  ";; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）\n;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、\n;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま\n;; transact でき、`clojure -M:query` が読む。\n;;\n;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。\n;; 本文は決して含まれない（含む record は ingest が refuse する）。\n;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に\n;; 取得した記事。data/seed.edn の :representative（例示）とは別物。\n")
+  ";; kawaraban 瓦版 — live mirror archive（自動生成 / 手編集しない）\n;; `kawaraban.store/append-articles!` が追記マージする。1行1記事、\n;; :news.article/id で dedupe、as-of 降順。`schema/news.edn` でそのまま\n;; transact でき、`kbb -M:query` が読む。\n;;\n;; G4 — headline + canonical url + 280字以内の excerpt + outlet のみ。\n;; 本文は決して含まれない（含む record は ingest が refuse する）。\n;; G5 — :news.article/sourcing :verified = その媒体自身の feed から実際に\n;; 取得した記事。data/seed.edn の :representative（例示）とは別物。\n")
 
 (defn render-day-file
   "日次ファイルの本文（header comment + 1行1記事の vector）。"

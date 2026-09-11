@@ -71,20 +71,20 @@ Ontology: [`/00-contracts/schemas/news-medium-ontology.kotoba.edn`](../../00-con
 ## Run
 
 ```sh
-clojure -M:test                       # complete standalone suite
-clojure -M:lint
+kbb -M:test                       # complete standalone suite
+kbb -M:lint
 
 # query the collected archive (ADR-2607252600)
-clojure -M:query count                # real coverage only; seed excluded by default
-clojure -M:query coverage             # articles by country × outlet kind
-clojure -M:query --seed q '[:find ?headline ?country
+kbb -M:query count                # real coverage only; seed excluded by default
+kbb -M:query coverage             # articles by country × outlet kind
+kbb -M:query --seed q '[:find ?headline ?country
                             :where [?a :news.article/headline ?headline]
                                    [?a :news.article/outlet ?oid]
                                    [?o :news.outlet/id ?oid]
                                    [?o :news.outlet/country ?country]]'
 
 # re-measure every feed in the allowlist and write :verified/:note back
-nbb scripts/verify-feeds.cljs data/outlets/allowlist.edn --discover --apply
+kbb --backend sci scripts/verify-feeds.cljk data/outlets/allowlist.edn --discover --apply
 ```
 
 `:verified` in the allowlist means "this URL actually returned parseable RSS/Atom items

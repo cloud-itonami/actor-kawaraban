@@ -21,5 +21,5 @@ Two properties worth knowing before you query this directory:
   published, attempted, or accepted. It is an observation record, not a publish ledger.
 - **`:news.article/sourcing` is `:verified` here and `:representative` in
   `../seed.edn`.** The seed is an illustrative graph — real-looking but not collected from
-  anywhere. `clojure -M:query` excludes it unless you pass `--seed`, so counts read as real
+  anywhere. `kbb -M:query` excludes it unless you pass `--seed`, so counts read as real
   coverage by default.
