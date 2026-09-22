@@ -75,8 +75,8 @@
 (run! "git" ["clean" "-qfd"])
 
 ;; 2. 測り直す（失敗したらここで止まる — 部分的な結果を commit しない）
-(let [{:keys [code]} (run! "nbb" ["scripts/verify-feeds.cljs" "data/outlets/allowlist.edn"
-                                  "--discover" "--apply"])]
+(let [{:keys [code]} (run! "kbb" ["--backend" "sci" "scripts/verify-feeds.kotoba"
+                                  "data/outlets/allowlist.edn" "--discover" "--apply"])]
   (when (pos? code)
     (fail! (str "verify-feeds exited " code
                 " — either the run failed or its collapse guard refused to write."
@@ -84,7 +84,7 @@
            code)))
 
 ;; 3. 書かれたものが読めることを確かめる
-(let [{:keys [code]} (run! "nbb" ["-e" "(require (quote [\"node:fs\" :as fs])) (let [v (cljs.reader/read-string (.readFileSync fs \"data/outlets/allowlist.edn\" \"utf8\"))] (when-not (and (vector? v) (seq v) (every? :id v)) (.exit js/process 1)) (println (str \"allowlist ok: \" (count v) \" outlets, \" (count (filter :verified v)) \" verified\")))"])]
+(let [{:keys [code]} (run! "kbb" ["-e" "(require (quote [\"node:fs\" :as fs])) (let [v (cljs.reader/read-string (.readFileSync fs \"data/outlets/allowlist.edn\" \"utf8\"))] (when-not (and (vector? v) (seq v) (every? :id v)) (.exit js/process 1)) (println (str \"allowlist ok: \" (count v) \" outlets, \" (count (filter :verified v)) \" verified\")))"])]
   (when (pos? code)
     (fail! "the rewritten allowlist does not parse as a vector of entries with :id" 1)))
 
