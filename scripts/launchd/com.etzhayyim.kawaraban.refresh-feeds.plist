@@ -8,7 +8,7 @@
      いずれにも GitHub PAT は無い）。等価な Actions 版は
      `.github/workflows-pending/refresh-feeds.yml` に温存してあり、scope が
      付いた日に `git mv` すれば置き換えられる — どちらも同じ
-     `scripts/refresh-cron.cljs` を叩くだけなので、二重メンテにはならない。
+     `scripts/refresh-cron.kotoba` を叩くだけなので、二重メンテにはならない。
 
      launchd の弱点は正直に: このマシンが眠っていれば動かない。
      StartCalendarInterval なので、指定時刻を寝過ごした場合は次の起動時に
@@ -16,7 +16,7 @@
      GitHub Actions ならマシン非依存だが、今日動くのはこちら。
 
      専用 clone `~/.kawaraban/refresh-clone` の中で動く。west 管理下の共有
-     checkout は触らない — 無人ジョブが `git reset --hard` する場所と、人が
+     checkout は触らない — 無人ジョブが `git reset (hard)` する場所と、人が
      編集する場所を同じにしてはいけない。
 
      インストール:
@@ -31,13 +31,15 @@
   <key>Label</key><string>com.etzhayyim.kawaraban.refresh-feeds</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/opt/homebrew/bin/nbb</string>
-    <string>/Users/junkawasaki/.kawaraban/refresh-clone/scripts/refresh-cron.cljs</string>
+    <string>/Users/junkawasaki/.local/bin/kbb</string>
+    <string>--backend</string>
+    <string>sci</string>
+    <string>/Users/junkawasaki/.kawaraban/refresh-clone/scripts/refresh-cron.kotoba</string>
   </array>
   <key>WorkingDirectory</key><string>/Users/junkawasaki/.kawaraban/refresh-clone</string>
   <key>EnvironmentVariables</key>
   <dict>
-    <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>PATH</key><string>/Users/junkawasaki/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
     <key>HOME</key><string>/Users/junkawasaki</string>
     <key>KAWARABAN_VERIFY_TIMEOUT_MS</key><string>12000</string>
   </dict>
