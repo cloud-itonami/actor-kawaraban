@@ -3,7 +3,7 @@
 Canonical repository: `https://github.com/cloud-itonami/actor-kawaraban`.
 The former `etzhayyim/com-etzhayyim-kawaraban` path is a compatibility redirect.
 
-News medium. ADR-2606061900. **Read the root `/CLAUDE.md` Charter + substrate rules
+News medium. ADR-2606061900. **Read the root `/AGENTS.md` Charter + substrate rules
 first.** kawaraban-specific invariants below make the Charter concrete for this actor;
 they weaken nothing.
 

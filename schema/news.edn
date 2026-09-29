@@ -23,7 +23,7 @@
 ;;
 ;; ── G ゲートは「属性が存在しないこと」で表現される ─────────────────────────
 ;; :news.article/full-text · /verdict · /truth-rating · /personalized-for ·
-;; /speak-as に相当する属性は **このスキーマに1つも無い**。CLAUDE.md の
+;; /speak-as に相当する属性は **このスキーマに1つも無い**。AGENTS.md の
 ;; 「touch one, touch all three」に対する schema 側の答えは、値を false に
 ;; 固定することではなく **属性そのものを不在にする**こと — 未定義属性を
 ;; transact すれば Datomic は :db.error/not-an-entity で拒否し、DataScript も
