@@ -14,7 +14,7 @@
 ;; このスクリプトは **`~/.kawaraban/refresh-clone`** という専用 clone の中から走る。
 ;; west 管理下の共有 checkout（`orgs/etzhayyim/com-etzhayyim-kawaraban`）では走らせない
 ;; — 無人ジョブが `git reset --hard` / `git clean -fd` する場所と、人や他セッションが
-;; 編集する場所を同じにしてはいけない（root CLAUDE.md「共有 checkout には直接
+;; 編集する場所を同じにしてはいけない（root AGENTS.md「共有 checkout には直接
 ;; commit/push しない」）。
 ;;
 ;; この危険は机上の話ではない: 2026-07-25、このスクリプト自身をまだ commit する前に

@@ -10,7 +10,7 @@
 ;; `test`'s bb-era argv was `kbb -M -m kawaraban.test-runner`; that spelling
 ;; no longer resolves, because store_test.clj gained a datascript dependency
 ;; (ADR-2607252600) that lives only in the :test alias's :extra-deps.  Registered
-;; here as the command README.md and CLAUDE.md already document, `kbb -M:test`
+;; here as the command README.md and AGENTS.md already document, `kbb -M:test`
 ;; ("complete standalone suite") — 97 tests / 236 assertions green, 2026-08-13.
 {:test  {:cmd ["kbb" "-M:test"]
          :doc "Run the complete standalone kawaraban suite (cognitect test-runner via the :test alias)."}
